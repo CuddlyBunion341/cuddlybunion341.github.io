@@ -1,15 +1,19 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-
-const allBlogPosts = await getCollection('blog');
-const graceHopperProfile = await getEntry('authors', 'grace-hopper');
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const allBlogPosts = await getCollection("blog");
 ---
 
-<h1>Posts</h1>
+<BaseLayout>
+  <h1>Posts</h1>
 
-<ul>
-  {allBlogPosts.map(post => (
-    <li><a href={`/blog/${post.slug}`}>{post.data.title}</a></li>
-  ))}
-</ul>
-
+  <ul>
+    {
+      allBlogPosts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
