@@ -1,0 +1,15 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+
+const allBlogPosts = await getCollection('blog');
+const graceHopperProfile = await getEntry('authors', 'grace-hopper');
+---
+
+<h1>Posts</h1>
+
+<ul>
+  {allBlogPosts.map(post => (
+    <li><a href={`/blog/${post.slug}`}>{post.data.title}</a></li>
+  ))}
+</ul>
+
