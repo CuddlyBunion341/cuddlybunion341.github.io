@@ -2,83 +2,57 @@
 layout: '../layouts/BaseLayout.astro'
 ---
 
-# Hi, CB341
-I am a fullstack software engineer
+# CB341
 
-## My Journey
+I'm a full-stack software engineer.
 
-* IMS Hottingen (2019-2023) 
-* Software Engineering Internship @ Renuo (2023-2024)
+## Experience
 
-## Technologies
+* Studied at IMS Hottingen (2019-2023)
+* Software Engineering Internship at Renuo (2023-2024)
 
-### Languages
+## Skills
 
-Python
-* My first language
-* Used for scripts, simple guis
+### Programming Languages
 
-JavaScript
-* Second language, first experience in HTML5 Stack
+* Python: Used for scripting and creating simple GUIs.
+* JavaScript: Used in the HTML5 Stack.
+* TypeScript: Used for most hobby projects.
+* Three JS: Used in a Voxel game project.
+* GLSL: Basic experience with shaders in combination with ThreeJs.
+* Java: Learned OOP basics, Spring Boot, and GUIs with JavaSwing JavaFX at IMS.
+* Ruby: Used daily at Renuo, mainly within Rails.
+* Lua: Used for configuring Neovim.
+* SQL: Proficient in joining tables, adding conditions, and selecting the right data.
 
-TypeScript
-* My favourite language
-* Most hobby projects are written in it
+### Version Control
 
-Three JS
-* Mainly used in association with Voxel game
-* Invested a lot of time into Buffers, Custom Geometry
-* Experience with various material properties, camera settings, rapier
+* Git: Used daily, mostly through Neovim integration.
 
-GLSL
-* Some experience with basic shaders in combination with ThreeJs
+### Text Editors
 
-Java
-* Most used language at IMS
-* OOP basics
-* Spring Boot
-* GUIs with JavaSwing JavaFX
-
-Ruby
-* Since Renuo
-* Daily driver
-* Don't use much ruby outside of Rails
-
-Lua
-* Mainly used for neovim configuration
-
-SQL
-* I know how to join tables, add conditions, select right data
-
-### VCS
-
-Git
-* Use on a daily basis, mostly through nvim integration
-* Cherry pick, rebase, merge, bisect daily
-
-### Text editors
-
-Neovim
-* Favourite text editor
-* Configuration from scratch with Lazyvim Pluginmanager
-
-VSCode
-* Used mainly as a backup for nvim
-* Great image preview integration
-* Used for multicursor
-
-Rubymine
-* Used at start of internship, most features replaced with neovim plugins
-* Insert delay, startup performance makes me sad :(
+* Neovim: Primary text editor.
+* VSCode: Backup for Neovim.
+* Rubymine: Used at the start of my internship.
 
 ### Databases
 
 * Postgres
-* Mysql
-* Sqllite
+* MySQL
+* SQLite
 
 ### Project Management
 
 * Trello
 * Redmine (Ticketing)
 
+## Blogging
+
+I occasionally write blog posts about software engineering and technology.
+
+## Hobbies
+
+* Gaming: Minecraft, Fortnite, Valorant, Call of Duty, Astroneer, Helldivers.
+* Hiking in the mountains
+* Solving Rubiks cubes
+* Coding!
