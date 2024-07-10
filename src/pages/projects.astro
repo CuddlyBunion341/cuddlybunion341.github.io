@@ -2,24 +2,18 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const allProjects = await getCollection("projects");
+
+
+import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <BaseLayout>
   <h1>Projects</h1>
   
   {
-  allProjects.map((project) => (
-    <article class="project-tile">
-      <h2>
-        <a href={`/projects/${project.slug}`}>{project.data.name}</a>
-      </h2>
-      <p>{project.data.description}</p>
-      <ul>
-        {project.data.tags.map((tag: string) => (
-          <li>{tag}</li>
-        ))}
-      </ul>
-    </article>
-  ))
-}
+    allProjects.map((project) => (
+      <ProjectCard project={project} key={project.slug} />
+    ))
+  }
+
 </BaseLayout>
