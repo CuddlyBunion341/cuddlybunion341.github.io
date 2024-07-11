@@ -2,9 +2,7 @@
 title: 'My First Blog Post'
 publishedAt: 2022-07-01
 description: 'This is the first post of my new Astro blog.'
-image:
-    src: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
+heroImage: 'https://docs.astro.build/assets/rose.webp'
 tags: ["astro", "blogging", "learning in public"]
 ---
 # My First Blog Post

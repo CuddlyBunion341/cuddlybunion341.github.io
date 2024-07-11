@@ -5,9 +5,8 @@ const allProjectTiles = await getCollection("projects");
 ---
 
 {
-allProjectTiles.map(async (project) => (
-<article class="project-tile">
-    <HeroImage imagePath={project.data.heroImage} altText={project.data.name} />
+  allProjectTiles.map(async (project) => (
+    <article class="project-tile">
       <h3>{project.data.name}</h3>
       <p>{project.data.description}</p>
       <ul>
@@ -15,7 +14,12 @@ allProjectTiles.map(async (project) => (
           <li>{tag}</li>
         ))}
       </ul>
-      <a href={`/projects/${project.slug}`}>Read more...</a>
+      <a href={`/projects/${project.slug}`}>
+        <HeroImage
+          imagePath={project.data.heroImage}
+          altText={project.data.name}
+        />
+      </a>
     </article>
   ))
 }

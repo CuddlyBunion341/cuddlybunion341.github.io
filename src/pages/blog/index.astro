@@ -1,4 +1,5 @@
 ---
+import {Image} from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const allBlogPosts = await getCollection("blog");
@@ -7,13 +8,21 @@ const allBlogPosts = await getCollection("blog");
 <BaseLayout>
   <h1>Posts</h1>
 
-  <ul>
-    {
-      allBlogPosts.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  {
+    allBlogPosts.map((post) => (
+      <article>
+        <span>
+          📅
+          {new Date(post.data.publishedAt)
+            .toLocaleDateString("en-GB")
+            .split("/")
+            .join(".")}
+        </span>
+        <h1>{post.data.title}</h1>
+        <a href={`/blog/${post.slug}`}>
+          <Image src={post.data.heroImage} inferSize=true alt={post.data.title} />
+        </a>
+      </article>
+    ))
+  }
 </BaseLayout>
