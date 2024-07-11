@@ -5,5 +5,6 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   layout: 'layouts/BaseLayout.astro',
-  integrations: [mdx()]
+  integrations: [mdx()],
+  site: "https://cuddlybunion341.github.io/astro-blog",
 });
