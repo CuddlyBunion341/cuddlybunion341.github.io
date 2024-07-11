@@ -2,6 +2,7 @@
 name: "tsmc2"
 description: "Second iteration of the TypeScript Minecraft clone, not to be confused with the Taiwan Semiconductor Manufacturing Company"
 tags: ["typescript", "wasm", "threejs", "glsl", "rust"]
+heroImage: "/src/assets/projects/ts-mc.webp"
 ---
 
 # TSMC2
