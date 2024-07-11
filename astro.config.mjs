@@ -7,5 +7,4 @@ export default defineConfig({
   layout: 'layouts/BaseLayout.astro',
   integrations: [mdx()],
   site: "https://cuddlybunion341.github.io",
-  base: "astro-blog",
 });
