@@ -7,7 +7,7 @@ const allProjectTiles = await getCollection("projects");
   allProjectTiles.map((project) => (
     <article class="project-tile">
       <h2>
-        <a href={`/projects/${project.slug}`}>{project.data.name}</a>
+        {project.data.name}
       </h2>
       <p>{project.data.description}</p>
       <ul>
@@ -15,6 +15,7 @@ const allProjectTiles = await getCollection("projects");
           <li>{tag}</li>
         ))}
       </ul>
+      <a href={`/projects/${project.slug}`}>Read more...</a>
     </article>
   ))
 }
