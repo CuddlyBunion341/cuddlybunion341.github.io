@@ -3,7 +3,7 @@ import HeroImage from "@components/HeroImage.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
-const projectEntries = await getCollection("projects");
+  const projectEntries = await getCollection("projects");
   return projectEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -19,7 +19,7 @@ const { Content } = await entry.render();
   </header>
   <nav>
     <a href={entry.data.github}>
-      <img src="/github-mark.svg">
+      <img src="/github-mark.svg" />
       GitHub
     </a>
     <a href={entry.data.demo}>Demo</a>

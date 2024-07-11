@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
@@ -13,5 +14,14 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout>
+  <header>
+    <Image src={entry.data.heroImage} inferSize="true" alt={entry.data.title} />
+    <nav>
+      <ul>
+        {entry.data.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+    </nav>
+  </header>
   <Content />
+  <a href="/blog">Back to blog</a>
 </BaseLayout>
