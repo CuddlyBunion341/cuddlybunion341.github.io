@@ -1,4 +1,5 @@
 ---
+import HeroImage from "@components/HeroImage.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
@@ -14,5 +15,16 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout>
+  <header>
+    <HeroImage imagePath={entry.data.heroImage} altText={entry.data.name} />
+  </header>
+  <nav>
+    <a href={entry.data.github}>
+      <img src="/github-mark.svg">
+      GitHub
+    </a>
+    <a href={entry.data.demo}>Demo</a>
+  </nav>
   <Content />
+  <a href="/projects">Back to Projects</a>
 </BaseLayout>
