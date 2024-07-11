@@ -9,7 +9,7 @@ const allProjectTiles = await getCollection("projects");
 allProjectTiles.map(async (project) => (
 <article class="project-tile">
     <HeroImage imagePath={project.data.heroImage} altText={project.data.name} />
-      <h2>{project.data.name}</h2>
+      <h3>{project.data.name}</h3>
       <p>{project.data.description}</p>
       <ul>
         {project.data.tags.map((tag: string) => (
