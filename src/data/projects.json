@@ -1,0 +1,74 @@
+[
+    {
+        "name": "CB341.NET",
+        "slug": "cb341-net",
+        "description": "This website.",
+        "tags": ["php", "js"]
+    },
+    {
+        "name": "TS-MC",
+        "slug": "ts-mc",
+        "description": "A Minecraft Clone written in TypeScript and Three.js.",
+        "tags": ["ts", "threejs"]
+    },
+    {
+        "name": "Greendit",
+        "slug": "greendit",
+        "description": "A Reddit Clone written in PHP and MySQL.",
+        "tags": ["php", "mysql", "js"]
+    },
+    {
+        "name": "RailDit",
+        "slug": "raildit",
+        "description": "A Reddit Clone written in Ruby on Rails.",
+        "tags": ["rails", "js"]
+    },
+    {
+        "name": "MyQuery",
+        "slug": "myquery",
+        "description": "A jQuery Clone written in JavaScript.",
+        "tags": ["js"]
+    },
+    {
+        "name": "Trello Clone",
+        "slug": "trello-clone",
+        "description": "A Trello Clone written in React.",
+        "tags": ["React", "js"]
+    },
+    {
+        "name": "Chess",
+        "slug": "chess",
+        "description": "A Chess Game written in JavaScript.",
+        "tags": ["js"]
+    },
+    {
+        "name": "Wordle Clone",
+        "slug": "wordle-clone",
+        "description": "A Wordle Clone written in JavaScript.",
+        "tags": ["js"]
+    },
+    {
+        "name": "MineSweeper",
+        "slug": "minesweeper",
+        "description": "A MineSweeper Game written in JavaScript.",
+        "tags": ["js"]
+    },
+    {
+        "name": "MC Block Viewer",
+        "slug": "mc-block-viewer",
+        "description": "A Minecraft Block Viewer written in JavaScript.",
+        "tags": ["js"]
+    },
+    {
+        "name": "Crossy Clone",
+        "slug": "crossy-clone",
+        "description": "A Crossy Road Clone written in JavaScript.",
+        "tags": ["js"]
+    },
+    {
+        "name": "MC Inventory",
+        "slug": "mc-inventory",
+        "description": "A interactive Minecraft Inventory written in JavaScript.",
+        "tags": ["js"]
+    }
+]
