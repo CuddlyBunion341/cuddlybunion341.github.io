@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, sharpImageService } from 'astro/config';
 
 import mdx from "@astrojs/mdx";
 
@@ -7,4 +7,7 @@ export default defineConfig({
   layout: 'layouts/BaseLayout.astro',
   integrations: [mdx()],
   site: "https://cuddlybunion341.github.io",
+  image: {
+    service: sharpImageService(),
+  }
 });
