@@ -11,11 +11,18 @@ const { title } = Astro.props.frontmatter || Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/blog">Blog</a>
-      <a href="/projects">Projects</a>
+    <nav class="p-5 border-b">
+      <div class="container">
+        <a href="/" class="font-bold">CB341</a>
+        <div class="float-right">
+          <a class="underline decoration-orange-200 ml-2 font-bold" href="/">Home</a>
+          <a class="underline decoration-orange-200 ml-2 font-bold" href="/blog">Blog</a>
+          <a class="underline decoration-orange-200 ml-2 font-bold" href="/projects">Projects</a>
+        </div>
+      </div>
     </nav>
-    <slot />
+    <main class="container mx-auto">
+      <slot />
+    </main>
   </body>
 </html>
