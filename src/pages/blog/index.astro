@@ -2,6 +2,7 @@
 import {Image} from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import Tag from "@components/Tag.astro";
 const allBlogPosts = await getCollection("blog");
 ---
 
@@ -17,11 +18,7 @@ const allBlogPosts = await getCollection("blog");
             .split("/")
             .join(".")}
         </span>
-        {
-        post.data.tags.map((tag) => (
-          <span class="text-sm bg-orange-400 rounded-full py-0.5 px-2 ml-2">#{tag}</span>
-        ))
-        }
+        {post.data.tags.map((tag) => (<Tag tag={tag} />))}
         <a href={`/blog/${post.slug}`} class="text-primary underline">
           <Image class="rounded-xl mt-5" src={post.data.heroImage} inferSize=true alt={post.data.title} />
         </a>
