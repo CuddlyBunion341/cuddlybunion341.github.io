@@ -5,8 +5,6 @@ description: 'This is the first post of my new Astro blog.'
 heroImage: 'https://docs.astro.build/assets/rose.webp'
 tags: ["astro", "blogging", "learning in public"]
 ---
-# My First Blog Post
-
 ## Lists
 
 ### Ordered list

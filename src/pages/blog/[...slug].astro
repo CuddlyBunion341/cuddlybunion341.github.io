@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import Tag from "@components/Tag.astro";
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => ({
@@ -15,13 +16,16 @@ const { Content } = await entry.render();
 
 <BaseLayout>
   <header>
+    <h1 class="mb-3 font-bold">{entry.data.title}</h1>
     <Image src={entry.data.heroImage} inferSize="true" alt={entry.data.title} />
-    <nav>
+    <nav class="mt-3">
       <ul>
         {entry.data.tags.map((tag) => <Tag tag={tag} />)}
       </ul>
     </nav>
   </header>
-  <Content />
+  <div class="prose prose-stone prose-invert">
+    <Content />
+  </div>
   <a href="/blog">Back to blog</a>
 </BaseLayout>
