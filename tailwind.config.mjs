@@ -4,7 +4,18 @@ import plugin from 'tailwindcss/plugin';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    extend: {},
+    extend: {
+      container: {
+        center: true,
+        padding: '1rem',
+        screens: {
+          sm: '100%',
+          md: '100%',
+          lg: '800px',
+          xl: '900px',
+        },
+      },
+    },
   },
   plugins: [
     plugin(function({ addBase, config }) {
