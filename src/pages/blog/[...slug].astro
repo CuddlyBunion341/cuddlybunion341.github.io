@@ -18,13 +18,13 @@ const { Content } = await entry.render();
   <header>
     <h1 class="mb-3 font-bold">{entry.data.title}</h1>
     <Image src={entry.data.heroImage} inferSize="true" alt={entry.data.title} />
-    <nav class="mt-3">
+    <nav class="my-3">
       <ul>
         {entry.data.tags.map((tag) => <Tag tag={tag} />)}
       </ul>
     </nav>
   </header>
-  <div class="prose prose-stone prose-invert">
+  <div class="prose prose-invert">
     <Content />
   </div>
   <a href="/blog">Back to blog</a>
