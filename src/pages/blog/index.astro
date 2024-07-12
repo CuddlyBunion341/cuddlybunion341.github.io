@@ -6,23 +6,25 @@ const allBlogPosts = await getCollection("blog");
 ---
 
 <BaseLayout>
-  <h1>Posts</h1>
-
   {
     allBlogPosts.map((post) => (
-      <article>
-        <h1>{post.data.title}</h1>
-        <span>
+    <article class="rounded-xl">
+        <h1 class="font-bold">{post.data.title}</h1>
+        <span class="text-sm">
           📅
           {new Date(post.data.publishedAt)
             .toLocaleDateString("en-GB")
             .split("/")
             .join(".")}
         </span>
-        <a href={`/blog/${post.slug}`}>
-          Read more..
+        {
+        post.data.tags.map((tag) => (
+          <span class="text-sm bg-orange-400 rounded-full py-0.5 px-2 ml-2">#{tag}</span>
+        ))
+        }
+        <a href={`/blog/${post.slug}`} class="text-primary underline">
+          <Image class="rounded-xl mt-5" src={post.data.heroImage} inferSize=true alt={post.data.title} />
         </a>
-        <Image src={post.data.heroImage} inferSize=true alt={post.data.title} />
       </article>
     ))
   }
