@@ -35,7 +35,7 @@ export default {
         'h1': { fontSize: config('theme.fontSize.2xl') },
         'h2': { fontSize: config('theme.fontSize.xl') },
         'h3': { fontSize: config('theme.fontSize.lg') },
-        'body': { backgroundColor: config('theme.colors.gray.800'), color: config('theme.colors.white') },
+        'body': { backgroundColor: config('theme.colors.gray.900'), color: config('theme.colors.white') },
       })
     })
   ],

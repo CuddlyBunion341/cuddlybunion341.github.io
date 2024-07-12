@@ -10,5 +10,10 @@ export default defineConfig({
   site: "https://cuddlybunion341.github.io",
   image: {
     service: sharpImageService()
+  },
+  markdown: {
+    shikiConfig: {
+      theme: "aurora-x"
+    }
   }
 });
