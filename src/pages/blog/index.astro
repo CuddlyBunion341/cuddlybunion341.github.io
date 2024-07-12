@@ -2,7 +2,7 @@
 import {Image} from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import Tag from "@components/Tag.astro";
+import Tags from "@components/Tags.astro";
 const allBlogPosts = await getCollection("blog");
 ---
 
@@ -10,7 +10,7 @@ const allBlogPosts = await getCollection("blog");
   {
     allBlogPosts.map((post) => (
     <article class="rounded-xl my-5">
-<h1 class="font-bold leading-tight">{post.data.title}</h1>
+      <h1 class="font-bold leading-tight">{post.data.title}</h1>
         <span class="text-sm">
           📅
           {new Date(post.data.publishedAt)
@@ -18,7 +18,7 @@ const allBlogPosts = await getCollection("blog");
             .split("/")
             .join(".")}
         </span>
-        {post.data.tags.map((tag) => (<Tag tag={tag} />))}
+        <Tags tags={post.data.tags} />
         <a href={`/blog/${post.slug}`} class="text-primary underline">
           <Image class="rounded-xl mt-5" src={post.data.heroImage} inferSize=true alt={post.data.title} />
         </a>

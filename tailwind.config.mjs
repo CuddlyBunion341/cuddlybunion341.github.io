@@ -23,7 +23,7 @@ export default {
           sm: '100%',
           md: '100%',
           lg: '700px',
-          xl: '800px',
+          xl: '60ch',
         },
       },
     },

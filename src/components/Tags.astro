@@ -1,0 +1,13 @@
+---
+import Tag from '@components/Tag.astro';
+
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<nav class="my-2 flex flex-wrap">
+  {tags.map((tag) => (<Tag tag={tag} />))}
+</nav>
