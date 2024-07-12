@@ -20,7 +20,7 @@ const { Content } = await entry.render();
     <Image class="rounded-xl" src={entry.data.heroImage} inferSize="true" alt={entry.data.title} />
     <Tags tags={entry.data.tags} />
   </header>
-  <div class="max-w-none prose prose-invert">
+  <div class="max-w-none prose prose-invert prose-table:overflow-x-auto prose-table:w-full prose-table:block">
     <Content />
   </div>
   <a href="/blog">Back to blog</a>
