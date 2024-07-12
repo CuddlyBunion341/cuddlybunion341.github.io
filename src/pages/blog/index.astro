@@ -11,18 +11,18 @@ const allBlogPosts = await getCollection("blog");
     allBlogPosts.map((post) => (
     <article class="rounded-xl my-5">
       <h1 class="font-bold leading-tight">{post.data.title}</h1>
-        <span class="text-sm">
-          📅
-          {new Date(post.data.publishedAt)
-            .toLocaleDateString("en-GB")
-            .split("/")
-            .join(".")}
-        </span>
-        <Tags tags={post.data.tags} />
-        <a href={`/blog/${post.slug}`} class="text-primary underline">
-          <Image class="rounded-xl mt-5" src={post.data.heroImage} inferSize=true alt={post.data.title} />
-        </a>
-      </article>
+      <span class="text-sm">
+        📅
+        {new Date(post.data.publishedAt)
+        .toLocaleDateString("en-GB")
+        .split("/")
+        .join(".")}
+      </span>
+      <Tags tags={post.data.tags} />
+      <a href={`/blog/${post.slug}`} class="text-primary underline">
+        <Image class="rounded-xl mt-5" src={post.data.heroImage} inferSize=true alt={post.data.title} />
+      </a>
+    </article>
     ))
-  }
+    }
 </BaseLayout>
