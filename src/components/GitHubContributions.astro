@@ -3,7 +3,7 @@
 ---
 <section>
   <div class="flex flex-col items-center justify-center">
-    <div id="contributions" class="flex gap-1">
+    <div id="contributions" class="flex gap-1" style="filter: hue-rotate(90deg)">
       {
         Array.apply(null, Array(53)).map((week, i) => {
           return (
@@ -31,9 +31,6 @@
   </div>
 </section>
 <script>
-  /**
-   * Types for our data
-   */
   type ContributionDay = {
     color: string;
     contributionCount: number;
@@ -55,9 +52,6 @@
     };
   };
 
-  /**
-   * Fetch against GitHub GraphQL API
-   */
   async function getContributions(token: string, username: string) {
     const headers = {
       Authorization: `bearer ${token}`,
@@ -93,27 +87,18 @@
     return data;
   }
 
-  /**
-   * Run fetch from above
-   */
   const { data } = await getContributions(
-    import.meta.env.PUBLIC_GITHUB_TOKEN, // token in .env file
+    import.meta.env.PUBLIC_GITHUB_TOKEN,
     "CuddlyBunion341"
   );
   console.log("data", data);
 
-  /**
-   * If there's an error with the fetch or the user doesn't exist, show error text
-   */
   if (!data || !data.user) {
     const oops = document.getElementById("contribution-error");
     oops?.classList.remove("hidden");
     throw "Error fetching from Github";
   }
 
-  /**
-   * Drill down to data from fetch request
-   */
   const {
     user: {
       contributionsCollection: {
@@ -122,14 +107,9 @@
     },
   }: GraphQLRes = data;
 
-  /**
-   * Loop through the weeks + add them to the parent div
-   */
   weeks.forEach(({ contributionDays }, i) => {
-    // Loop through each week's days + add them to their week
     contributionDays.forEach(({ color, date, contributionCount }, j) => {
-      const bgColor = color === "#ebedf0" ? "rgba(235,	237,	240, 0.15)" : color; // Make white squares a more pleasing gray
-      // Get + update each day square
+      const bgColor = color === "#ebedf0" ? "rgba(235,	237,	240, 0.15)" : color;
       const dayDiv = document.getElementById(`week-${i}-day-${j}`);
       dayDiv?.setAttribute("style", `background-color: ${bgColor}`);
       dayDiv?.setAttribute(
