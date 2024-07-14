@@ -10,14 +10,16 @@ const { project } = Astro.props;
   </a>
   <p>{project.data.description}</p>
   {project.data.tags.map((tag: string) => <Tag tag={tag} />)}
-  <p>
-    {project.data.demo && <a href={project.data.demo}>Live Demo</a>}
-    {
-      project.data.github && (
-        <a href={project.data.github}>
-          <i class="devicon-github-plain" /> GitHub
-        </a>
-      )
-    }
-  </p>
+  <div class="float-right">
+    <p>
+      {project.data.demo && <a href={project.data.demo}>Live Demo</a>}
+      {
+        project.data.github && (
+          <a href={project.data.github}>
+            <i class="devicon-github-plain" /> GitHub
+          </a>
+        )
+      }
+    </p>
+  </div>
 </article>
