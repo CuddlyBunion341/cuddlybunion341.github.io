@@ -16,7 +16,7 @@ But in the end:
 
 In this blog article I want to convince you that Hotwire is not meant to be a rails only framework and that you can use its features, mainly turbo outside of the Ruby on Rails context.
 
-### Goals
+## Goals
 
 In this blog article you will learn:
 - Hot to use the Hotwire framework outside of Ruby on Rails
@@ -25,13 +25,13 @@ In this blog article you will learn:
 - How to implement a simple realtime chatting application
 - How to implement a simple stimulus controller and attach it to the DOM
 
-#### The plan
+## The plan
 
 The plan for this project is to create a realtime chatting application using a Bun, Turbo and Stimulus. This is the core concept:
 
 ![[Pasted image 20240303193438.png]]
 
-#### Step 0: Setup a BunJS application
+## Step 0: Setup a BunJS application
 
 Initially I thought about revolving this blog around Java Spring but it turns out that Websockets are really painful so I decided to stick with a much simpler, TypeScript application.
 
@@ -48,7 +48,7 @@ bun run index.ts
 Hello via Bun!
 ```
 
-#### Step 1: Implement a simple Websocket HTTP Server with Bun
+## Step 1: Implement a simple Websocket HTTP Server with Bun
 
 WebSockets are the backbone of almost every realtime web application. In this project we will use the multiple publisher - multiple subscriber pattern as our clients will send messages to the server and the server will broadcast the messages to all open sockets. 
 
@@ -94,7 +94,7 @@ Bun.serve({
 })
 ```
 
-The application is incomplete with the client which connects to the WebSocket of course! Following the [WebSocket server connection documentation](https://bun.sh/docs/api/websockets#connect-to-a-websocket-server) connecting to the backend is rather simple:
+The application is incomplete with the client which connects to the WebSocket of course! Following the [WebSocket server connection documentation](https://bun.sh/docs/api/websocketsconnect-to-a-websocket-server) connecting to the backend is rather simple:
 
 ```ts
 const client = new WebSocket("ws://localhost:8080/subscribe")
@@ -116,16 +116,16 @@ form.addEventListener("submit", (event) => {
 
 Don't forget to implement the client JavaScript file response our backend and include a link to the file it inside of the layout. 
 
-##### The problem
+## The problem
 
 As you can see here, every change in UI needs to be manually implemented. At the moment we are listening to a single event and updating one single element. When the application grows in complexity, the javascript code grows too.  What if I told you that we can "almost" completely get rid of the client code by introducing Turbo streams?
 
-#### Step 3: Understanding Turbo
+## Step 3: Understanding Turbo
 
 Turbo is a JavaScript library, part of the Hotwire Framework:
 // TODO
 
-#### Step 4: Implementing Turbo
+## Step 4: Implementing Turbo
 
 Importing Turbo is as simple as including this snippet of code inside our layout file:
 
@@ -156,7 +156,7 @@ I'd say that the HTML does precise what it promises to do:
 `Append` a paragraph with the message "Anonymous: Hello World!" to the `chat-feed`.
 This eliminates _almost_ all the client side JavaScript.
 
-#### Step 5: Form Controller
+## Step 5: Form Controller
 
 Before introducing turbo, we added a simple event listener to reset the Form after the data has been sent to the server. We now need to bring the functionality back but without reusing the old code. We could use a turbo-stream to reset the form or even a turbo-frame but rather than using that, I decided to use another library of the Hotwire framework, namely Stimulus:
 
@@ -179,7 +179,7 @@ application.register("form", FormController);
 
 This is what the form looks like after the change:
 ```html
-  <form id="chat-form" action="/submit" method="post" data-controller="form" data-action="turbo:submit-end->form#clear">
+  <form id="chat-form" action="/submit" method="post" data-controller="form" data-action="turbo:submit-end->formclear">
     <label for="message-input">Message:</label>
     <input name="message" data-form-target="input" required >
     <input type="hidden" name="clientId" value="${clientId}">
@@ -189,7 +189,7 @@ This is what the form looks like after the change:
 
 I thank user [Deepesh on StackOverflow](https://stackoverflow.com/questions/71462885/how-to-clear-form-after-submission-in-rails-using-stimulus-hotwire) for showing me that you can use the turbo:submit-end event to clear the form. Note that you don't even need to specify any targets, as the goal is to reset the entire form on submission. Quite neat indeed!
 
-#### Conclusion
+## Conclusion
 
 Hotwire is a JavaScript framework that helps us make applications more interactive while keeping the JavaScript code to a minimum. The framework itself is backend agnostic and can be thus used without almost any backend.
 
