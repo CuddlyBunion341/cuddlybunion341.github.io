@@ -1,0 +1,14 @@
+---
+interface Props {
+  icon: string;
+  name: string;
+  description: string;
+}
+const { icon, name, description } = Astro.props;
+---
+
+<li class="border my-1 rounded">
+  <i class={icon}></i>
+  <b>{name}:</b>
+  {description}
+</li>
