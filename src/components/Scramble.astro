@@ -5,35 +5,64 @@
     "scramble",
   ) as HTMLElement;
   const originalString = scrambleElement.innerText;
-  const chars = "_{}[]@#%&^*!$".split("");
+  const chars = "-:_{}[]@#%&^*!$".split("");
   const scrambledState = Array(originalString.length).fill(false);
 
-  function isScrambled() {
-    return scrambledState.every((s) => s === true);
-  }
+  const isScrambled = () => scrambledState.every((s) => s === true);
+  const isUnscrambled = () => scrambledState.every((s) => s === false);
 
-  function isUnscrambled() {
-    return scrambledState.every((s) => s === false);
-  }
+  const sleep = (durationMs: number) =>
+    new Promise((resolve) => setTimeout(resolve, durationMs));
 
-  function scramble() {
-    if (isScrambled()) return;
-
-    const index = Math.floor(Math.random() * originalString.length);
-
-    if (scrambledState[index]) {
-      scramble();
-      return;
+  const scrambleFull = () => {
+    for (let i = 0; i < originalString.length; i++) {
+      const before = scrambleElement.innerText.substring(0, i);
+      const letter = chars[Math.floor(Math.random() * chars.length)];
+      const after = scrambleElement.innerText.substring(i + 1);
+      scrambleElement.innerText = `${before}${letter}${after}`;
+      scrambledState[i] = true;
     }
+  };
 
-    const before = scrambleElement.innerText.substring(0, index);
-    const letter = chars[Math.floor(Math.random() * chars.length)];
-    const after = scrambleElement.innerText.substring(index + 1);
-    scrambleElement.innerText = `${before}${letter}${after}`;
-    scrambledState[index] = true;
+  const scramble = async () => {
+    while (!isScrambled()) {
+      const index = Math.floor(Math.random() * originalString.length);
 
-    setTimeout(scramble, 50);
-  }
+      const before = scrambleElement.innerText.substring(0, index);
+      const letter = chars[Math.floor(Math.random() * chars.length)];
+      const after = scrambleElement.innerText.substring(index + 1);
+      scrambleElement.innerText = `${before}${letter}${after}`;
+      scrambledState[index] = true;
+      await sleep(20);
+    }
+  };
 
-  scramble();
+  const unscramble = async () => {
+    while (!isUnscrambled()) {
+      const index = Math.floor(Math.random() * originalString.length);
+
+      if (!scrambledState[index]) {
+        unscramble();
+        continue;
+      }
+
+      const before = scrambleElement.innerText.substring(0, index);
+      const letter = originalString[index];
+      const after = scrambleElement.innerText.substring(index + 1);
+      scrambleElement.innerText = `${before}${letter}${after}`;
+      scrambledState[index] = false;
+
+      await sleep(20);
+    }
+  };
+
+  const loop = async () => {
+    await scramble();
+    await unscramble();
+    await sleep(1000);
+    loop();
+  };
+
+  scrambleFull();
+  loop();
 </script>
