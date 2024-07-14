@@ -6,6 +6,10 @@ const { title } = Astro.props.frontmatter || Astro.props;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -13,16 +17,34 @@ const { title } = Astro.props.frontmatter || Astro.props;
   <body>
     <nav class="p-6 border-b">
       <div class="container">
-        <a href="/" class="font-bold">CB341.DEV</a>
+        <a href="/" class="font-bold">
+          <i class="devicon-astro-plain"></i>
+          CB341.DEV</a
+        >
         <div class="float-right">
-          <a class="underline decoration-blue-200 ml-2 font-bold" href="/">Home</a>
-          <a class="underline decoration-blue-200 ml-2 font-bold" href="/blog">Blog</a>
-          <a class="underline decoration-blue-200 ml-2 font-bold" href="/projects">Projects</a>
+          <a class="underline decoration-blue-200 ml-2 font-bold" href="/"
+            >Home</a
+          >
+          <a class="underline decoration-blue-200 ml-2 font-bold" href="/blog"
+            >Blog</a
+          >
+          <a
+            class="underline decoration-blue-200 ml-2 font-bold"
+            href="/projects">Projects</a
+          >
         </div>
       </div>
     </nav>
     <main class="container mx-auto">
       <slot />
     </main>
+    <footer>
+      <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/">
+        <i class="devicon-linkedin-plain"></i>
+      </a>
+      <a href="https://github.com/CuddlyBunion341">
+        <i class="devicon-github-original"></i></a
+      >
+    </footer>
   </body>
 </html>

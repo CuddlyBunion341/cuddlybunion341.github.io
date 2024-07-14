@@ -9,7 +9,15 @@ const { project } = Astro.props;
     <h2>{project.data.name}</h2>
   </a>
   <p>{project.data.description}</p>
-  <a href={project.data.github}>GitHub</a>
-  <a href={project.data.demo}>Live Demo</a>
   {project.data.tags.map((tag: string) => <Tag tag={tag} />)}
+  <p>
+    {project.data.demo && <a href={project.data.demo}>Live Demo</a>}
+    {
+      project.data.github && (
+        <a href={project.data.github}>
+          <i class="devicon-github-plain" /> GitHub
+        </a>
+      )
+    }
+  </p>
 </article>
