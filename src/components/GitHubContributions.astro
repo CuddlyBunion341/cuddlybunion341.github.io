@@ -2,7 +2,8 @@
 // https://www.larocque.dev/projects/github-contribution-astro-component/
 ---
 <section>
-  <div class="flex flex-col items-center justify-center">
+  <div class="max-w-full flex flex-col items-center justify-center overflow-hidden">
+    <div class="bg-gray-800 p-3 rounded">
     <div id="contributions" class="flex gap-1" style="filter: hue-rotate(105deg)">
       {
         Array.apply(null, Array(53)).map((week, i) => {
@@ -28,6 +29,7 @@
     <p class="my-1 hidden" id="contribution-error">
       Ooops, error fetching from GitHub.
     </p>
+    </div>
   </div>
 </section>
 <script>
