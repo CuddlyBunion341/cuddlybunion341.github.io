@@ -1,16 +1,11 @@
 ---
-import Tag from "./Tag.astro";
+import Tags from "./Tags.astro";
 
 const { project } = Astro.props;
 ---
 
 <article class="border-b last:border-b-0 py-3">
-  <a href={`/projects/${project.slug}`}>
-    <h2>{project.data.name}</h2>
-  </a>
-  <p>{project.data.description}</p>
-  {project.data.tags.map((tag: string) => <Tag tag={tag} />)}
-  <div class="float-right">
+ <div class="float-right">
     <p>
       {project.data.demo && <a href={project.data.demo}>Live Demo</a>}
       {
@@ -21,5 +16,9 @@ const { project } = Astro.props;
         )
       }
     </p>
-  </div>
+  </div> <a href={`/projects/${project.slug}`}>
+    <h2>{project.data.name}</h2>
+  </a>
+  <p>{project.data.description}</p>
+  <Tags tags={project.data.tags} />
 </article>
