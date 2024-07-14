@@ -4,7 +4,7 @@ import Tags from "./Tags.astro";
 const { project } = Astro.props;
 ---
 
-<article class="border-b last:border-b-0 py-3">
+<article class="border-b last:border-b-0 py-3 first:pt-0">
  <div class="float-right">
     <p>
       {project.data.demo && <a href={project.data.demo}>Live Demo</a>}

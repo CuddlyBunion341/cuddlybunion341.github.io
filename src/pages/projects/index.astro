@@ -8,12 +8,9 @@ import ProjectCard from "../../components/ProjectCard.astro";
 ---
 
 <BaseLayout>
-  <h1>Projects</h1>
-  
   {
     allProjects.map((project) => (
       <ProjectCard project={project} key={project.slug} />
     ))
   }
-
 </BaseLayout>
