@@ -1,14 +1,15 @@
 ---
-const {project} = Astro.props;
+import Tag from "./Tag.astro";
+
+const { project } = Astro.props;
 ---
 
-<article class="project-tile">
-  <h2>{project.data.name}</h2>
+<article class="border-b last:border-b-0 py-3">
+  <a href={`/projects/${project.slug}`}>
+    <h2>{project.data.name}</h2>
+  </a>
   <p>{project.data.description}</p>
-  <ul>
-    {project.data.tags.map((tag: string) => (
-      <li>{tag}</li>
-    ))}
-  </ul>
-  <a href={`/projects/${project.slug}`}>Read more...</a>
+  <a href={project.data.github}>GitHub</a>
+  <a href={project.data.demo}>Live Demo</a>
+  {project.data.tags.map((tag: string) => <Tag tag={tag} />)}
 </article>
