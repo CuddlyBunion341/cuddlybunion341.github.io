@@ -17,11 +17,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 if (!images[imagePath]) throw new Error(`No image found for path: ${path}`);
 ---
 
-<figure>
+<figure class={`relative overflow-hidden shadow-md rounded-lg ${className}`}>
   <Image
     src={images[imagePath]()}
     alt={alt}
-    class={`rounded-lg shadow-md ${className}`}
   />
-  <figcaption>{alt}</figcaption>
+  <figcaption class="text-lg bg-white text-black absolute bottom-0 w-full p-2">{alt}</figcaption>
 </figure>
