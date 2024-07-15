@@ -30,10 +30,12 @@ const { Content } = await entry.render();
   >
     <Content />
   </div>
-  <p>
-    <a
-      href={`https://github.com/CuddlyBunion341/cuddlybunion341.github.io/blob/main/src/content/${entry.collection}/${entry.id}`}
-      >View this entry on GitHub</a
-    >
-  </p>
+  <footer slot="after-main">
+    <p>
+      <a
+        href={`https://github.com/CuddlyBunion341/cuddlybunion341.github.io/blob/main/src/content/${entry.collection}/${entry.id}`}
+        >View this entry on GitHub</a
+      >
+    </p>
+  </footer>
 </BaseLayout>
