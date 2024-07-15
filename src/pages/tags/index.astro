@@ -25,30 +25,38 @@ entryTags.forEach((tag) => {
 <BaseLayout>
   <ul>
     {
-      mergedTags.map((tag) => (
-        <li>
-          <h2>{tag.name}</h2>
-          <p>{tag.description}</p>
-          {tag.icon && <i class={tag.icon} />}
-          <p>
-            {
-              allProjects.filter((project) =>
-                project.data.tags.includes(tag.slug),
-              ).length
-            }{" "}
-            Projects
-            <a href={`/projects?tag=${tag.slug}`}>View Projects</a>
-          </p>
-          <p>
-            {
-              allBlogPosts.filter((post) => post.data.tags.includes(tag.slug))
-                .length
-            }{" "}
-            Blog Posts
-            <a href={`/blog?tag=${tag.slug}`}>View Blog Posts</a>
-          </p>
-        </li>
-      ))
+      mergedTags.map((tag) => {
+        const projectCount = allProjects.filter((project) =>
+          project.data.tags.includes(tag.slug),
+        ).length;
+        const postCount = allBlogPosts.filter((post) =>
+          post.data.tags.includes(tag.slug),
+        ).length;
+
+        return (
+          <li>
+            <h2>{tag.name}</h2>
+            <p>{tag.description}</p>
+            {tag.icon && <i class={tag.icon} />}
+            <p>
+              <a
+                href={`/projects?tag=${tag.slug}`}
+                class="text-blue-500 hover:underline"
+              >
+                {projectCount} {projectCount === 1 ? "Project" : "Projects"}
+              </a>
+            </p>
+            <p>
+              <a
+                href={`/blog?tag=${tag.slug}`}
+                class="text-blue-500 hover:underline"
+              >
+                {postCount} {postCount === 1 ? "Post" : "Posts"}
+              </a>
+            </p>
+          </li>
+        );
+      })
     }
   </ul>
 </BaseLayout>
