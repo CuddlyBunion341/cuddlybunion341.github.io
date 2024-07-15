@@ -29,11 +29,11 @@ function getCountAndUrl(
     item.data.tags.includes(tag.slug),
   );
   const count = itemsWithTag.length;
-  if (items.length === 0 || count === 0) return { count: 0, url: "#" };
+  if (count === 0) return { count: 0, url: "#" };
   const url =
     count === 1
-      ? `${items[0]?.collection}/?tag=${tag.slug}`
-      : `/${items[0]?.collection}/${itemsWithTag[0]?.slug}`;
+      ? `/${items[0]?.collection}/${itemsWithTag[0]?.slug}`
+      : `/${items[0]?.collection}/?tag=${tag.slug}`;
 
   return { count, url };
 }
