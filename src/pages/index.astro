@@ -1,131 +1,24 @@
 ---
-import GitHubContributions from "@components/GitHubContributions.astro";
+import SectionGitHubContributions from "@components/SectionGitHubContributions.astro";
 import BaseLayout from "src/layouts/BaseLayout.astro";
-import ProgrammingLanguage from "@components/ProgrammingLanguage.astro";
-import Scramble from "@components/Scramble.astro";
-import Education from "@components/Education.astro";
+import SectionEducation from "@components/SectionEducation.astro";
 import SectionQA from "@components/SectionQA.astro";
 import SectionHobbies from "@components/SectionHobbies.astro";
+import SectionSkills from "@components/SectionSkills.astro";
+import SectionProjects from "@components/SectionProjects.astro";
+import SectionIntro from "@components/SectionIntro.astro";
+import SectionBlog from "@components/SectionBlog.astro";
+import SectionContact from "@components/SectionContact.astro";
 ---
 
 <BaseLayout>
-  <Scramble />
-
-  <p>I'm a full-stack software engineer based in Zurich, Switzerland.</p>
-
-  <p class="bg-gray-800 p-4 my-4 rounded">
-    I am a passionate learner, problem solver and novice developer. Coding is my
-    biggest hobby and arguably my biggest strength. I like challenging myself
-    with new technologies outside of work hours and spending time with my
-    friends in video-games.
-  </p>
-
-  <GitHubContributions />
-
-  <Education />
-
-  <h2 class="my-2">Programming Languages</h2>
-
-  <ul class="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-    <ProgrammingLanguage
-      icon="devicon-python-plain"
-      name="Python"
-      description="Used for scripting and creating simple GUIs."
-    />
-    <ProgrammingLanguage
-      icon="devicon-css3-plain"
-      name="CSS"
-      description="I know how to center a div"
-    />
-    <ProgrammingLanguage
-      icon="devicon-javascript-plain"
-      name="JavaScript"
-      description="Used in the HTML5 Stack."
-    />
-    <ProgrammingLanguage
-      icon="devicon-typescript-plain"
-      name="TypeScript"
-      description="Used for most hobby projects."
-    />
-    <ProgrammingLanguage
-      icon="devicon-threejs-original"
-      name="Three JS"
-      description="Used in a Voxel game project."
-    />
-    <ProgrammingLanguage
-      icon="devicon-opengl-plain"
-      name="GLSL"
-      description="Basic experience with shaders in combination with ThreeJs."
-    />
-    <ProgrammingLanguage
-      icon="devicon-java-plain"
-      name="Java"
-      description="Learned OOP basics, Spring Boot, and GUIs with JavaSwing JavaFX at IMS."
-    />
-    <ProgrammingLanguage
-      icon="devicon-ruby-plain"
-      name="Ruby"
-      description="Basic experience with Ruby on Rails."
-    />
-    <ProgrammingLanguage
-      icon="devicon-rails-plain"
-      name="Rails"
-      description="Professionally used at Renuo."
-    />
-    <ProgrammingLanguage
-      icon="devicon-lua-plain"
-      name="Lua"
-      description="Used for configuring Neovim."
-    />
-    <ProgrammingLanguage
-      icon="devicon-azuresqldatabase-plain"
-      name="SQL"
-      description="Proficient in joining tables, adding conditions, and selecting the right data."
-    />
-  </ul>
-
-  <h3>Text Editors</h3>
-
-  <ul class="flex gap-3">
-    <ProgrammingLanguage
-      icon="devicon-neovim-plain"
-      name="Neovim"
-      description="Primary text editor."
-    />
-    <ProgrammingLanguage
-      icon="devicon-vscode-plain"
-      name="VSCode"
-      description="Backup for Neovim."
-    />
-    <ProgrammingLanguage
-      icon="devicon-rubymine-plain"
-      name="Rubymine"
-      description="Used at the start of my internship."
-    />
-  </ul>
-
-  <h2>Projects</h2>
-
-  <p>
-    My work-related projects are not very interesting and school projects mild,
-    so here is a collection of my hobby projects:
-  </p>
-
-  <!-- <ProjectCardGrid /> -->
-
-  <h2>Blog</h2>
-
-  <p>
-    I occasionally write blog posts about software engineering and technology.
-  </p>
-
+  <SectionIntro />
+  <SectionGitHubContributions />
+  <SectionEducation />
+  <SectionSkills />
+  <SectionProjects />
+  <SectionBlog />
   <SectionHobbies />
-
   <SectionQA />
-
-  <h2>Contact</h2>
-
-  <p>
-    If you'd like to get in touch, feel free to reach out on GitHub or LinkedIn.
-  </p>
+  <SectionContact />
 </BaseLayout>
