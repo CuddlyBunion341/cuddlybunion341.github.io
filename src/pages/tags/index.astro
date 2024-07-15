@@ -5,11 +5,11 @@ const allBlogPosts = await getCollection("blog");
 const allProjects = await getCollection("projects");
 import allTags from "../../data/tags.json";
 
-const mergedTags = [...allTags];
-
 const entryTags = [...allBlogPosts, ...allProjects]
   .map((entry) => entry.data.tags)
   .flat();
+
+const mergedTags = [...allTags];
 
 entryTags.forEach((tag) => {
   if (!mergedTags.find((t) => t.slug === tag)) {
@@ -20,32 +20,65 @@ entryTags.forEach((tag) => {
     });
   }
 });
+
+function getCountAndUrl(
+  items: { slug: string; collection: string; data: { tags: string[] } }[],
+  tag: { slug: string },
+) {
+  const itemsWithTag = items.filter((item) =>
+    item.data.tags.includes(tag.slug),
+  );
+  const count = itemsWithTag.length;
+  if (items.length === 0 || count === 0) return { count: 0, url: "#" };
+  const url =
+    count === 1
+      ? `${items[0]?.collection}/?tag=${tag.slug}`
+      : `/${items[0]?.collection}/${itemsWithTag[0]?.slug}`;
+
+  return { count, url };
+}
 ---
 
 <BaseLayout>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-    {mergedTags.map(tag => {
-      const projectWithTag = allProjects.filter(project => project.data.tags.includes(tag.slug));
-      const postWithTag = allBlogPosts.filter(post => post.data.tags.includes(tag.slug));
+    {
+      mergedTags.map((tag) => {
+        const { count: projectCount, url: projectUrl } = getCountAndUrl(
+          allProjects,
+          tag,
+        );
+        const { count: postCount, url: postUrl } = getCountAndUrl(
+          allBlogPosts,
+          tag,
+        );
 
-      return (
-        <li class="border border-gray-200 hover:border-blue-500 transition-colors duration-200 rounded p-4 flex flex-col items-start">
-          <div class="flex items-center mb-2">
-            {tag.icon ? <i class={`${tag.icon} text-4xl mr-2`} /> : <h2 class="text-2xl">{tag.name}</h2>}
-          </div>
-          <p class="mb-2">{tag.description}</p>
-          <p class="mb-1">
-            <a href={projectWithTag.length === 1 ? `/projects/${projectWithTag[0].slug}` : `/projects?tag=${tag.slug}`} class="text-blue-500 hover:underline">
-              {projectWithTag.length} {projectWithTag.length === 1 ? 'Project' : 'Projects'}
-            </a>
-          </p>
-          <p>
-            <a href={postWithTag.length === 1 ? `/blog/${postWithTag[0].slug}` : `/blog?tag=${tag.slug}`} class="text-blue-500 hover:underline">
-              {postWithTag.length} {postWithTag.length === 1 ? 'Post' : 'Posts'}
-            </a>
-          </p>
-        </li>
-      );
-    })}
+        return (
+          <li class="border border-gray-200 hover:border-blue-500 transition-colors duration-200 rounded p-4 flex flex-col items-start">
+            <div class="flex items-center mb-2">
+              {tag.icon ? (
+                <i class={`${tag.icon} text-4xl mr-2`} />
+              ) : (
+                <h2 class="text-2xl">{tag.name}</h2>
+              )}
+            </div>
+            <p class="mb-2">{tag.description}</p>
+            <p class="mb-1">
+              {projectCount > 0 && (
+                <a href={projectUrl} class="text-blue-500 hover:underline">
+                  {projectCount} {projectCount === 1 ? "Project" : "Projects"}
+                </a>
+              )}
+            </p>
+            <p>
+              {postCount > 0 && (
+                <a href={postUrl} class="text-blue-500 hover:underline">
+                  {postCount} {postCount === 1 ? "Post" : "Posts"}
+                </a>
+              )}
+            </p>
+          </li>
+        );
+      })
+    }
   </ul>
 </BaseLayout>
