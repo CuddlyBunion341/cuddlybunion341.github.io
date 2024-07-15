@@ -23,40 +23,29 @@ entryTags.forEach((tag) => {
 ---
 
 <BaseLayout>
-  <ul>
-    {
-      mergedTags.map((tag) => {
-        const projectCount = allProjects.filter((project) =>
-          project.data.tags.includes(tag.slug),
-        ).length;
-        const postCount = allBlogPosts.filter((post) =>
-          post.data.tags.includes(tag.slug),
-        ).length;
+  <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    {mergedTags.map(tag => {
+      const projectCount = allProjects.filter(project => project.data.tags.includes(tag.slug)).length;
+      const postCount = allBlogPosts.filter(post => post.data.tags.includes(tag.slug)).length;
 
-        return (
-          <li>
-            <h2>{tag.name}</h2>
-            <p>{tag.description}</p>
-            {tag.icon && <i class={tag.icon} />}
-            <p>
-              <a
-                href={`/projects?tag=${tag.slug}`}
-                class="text-blue-500 hover:underline"
-              >
-                {projectCount} {projectCount === 1 ? "Project" : "Projects"}
-              </a>
-            </p>
-            <p>
-              <a
-                href={`/blog?tag=${tag.slug}`}
-                class="text-blue-500 hover:underline"
-              >
-                {postCount} {postCount === 1 ? "Post" : "Posts"}
-              </a>
-            </p>
-          </li>
-        );
-      })
-    }
+      return (
+        <li class="border border-gray-200 hover:border-blue-500 transition-colors duration-200 rounded p-4 flex flex-col items-start">
+          <div class="flex items-center mb-2">
+            {tag.icon ? <i class={`${tag.icon} text-4xl mr-2`} /> : <h2 class="text-2xl">{tag.name}</h2>}
+          </div>
+          <p class="mb-2">{tag.description}</p>
+          <p class="mb-1">
+            <a href={`/projects?tag=${tag.slug}`} class="text-blue-500 hover:underline">
+              {projectCount} {projectCount === 1 ? 'Project' : 'Projects'}
+            </a>
+          </p>
+          <p>
+            <a href={`/blog?tag=${tag.slug}`} class="text-blue-500 hover:underline">
+              {postCount} {postCount === 1 ? 'Post' : 'Posts'}
+            </a>
+          </p>
+        </li>
+      );
+    })}
   </ul>
 </BaseLayout>
