@@ -7,8 +7,8 @@ interface Props {
 const { icon, name, description } = Astro.props;
 ---
 
-<li class="my-1 rounded">
+<li class="rounded p-2 bg-gray-800 shadow-md">
   <i class={icon}></i>
-  <b>{name}:</b>
-  {description}
+  <b>{name}</b>
+  <p>{description}</p>
 </li>
