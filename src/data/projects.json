@@ -33,7 +33,7 @@
         "name": "Trello Clone",
         "slug": "trello-clone",
         "description": "A Trello Clone written in React.",
-        "tags": ["React", "js"]
+        "tags": ["react", "js"]
     },
     {
         "name": "Chess",
