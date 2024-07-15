@@ -1,0 +1,13 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<li class="bg-gray-800 my-2 p-3 rounded">
+  <h3>{question}</h3>
+  <p>{answer}</p>
+</li>
