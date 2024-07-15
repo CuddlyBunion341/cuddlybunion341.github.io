@@ -1,0 +1,21 @@
+---
+import Tags from './Tags.astro';
+
+interface Props {
+  year: string;
+  title: string;
+  tags: string[]
+}
+
+const { year, title, tags } = Astro.props;
+---
+
+<li class="border-l pl-4 py-2">
+  <span>{year}</span>
+  <h3 class="flex items-center relative text-blue-300">
+    <span class="w-3 h-3 bg-blue-300 block rounded-xl absolute -left-[1.40rem]"></span>
+    {title}
+  </h3>
+  <slot />
+  <Tags tags={tags} />
+</li>
