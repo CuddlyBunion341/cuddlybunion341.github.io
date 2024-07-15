@@ -5,13 +5,13 @@ import ProgrammingLanguage from "@components/ProgrammingLanguage.astro";
 import Scramble from "@components/Scramble.astro";
 import Education from "@components/Education.astro";
 import SectionQA from "@components/SectionQA.astro";
+import SectionHobbies from "@components/SectionHobbies.astro";
 ---
 
 <BaseLayout>
   <Scramble />
 
   <p>I'm a full-stack software engineer based in Zurich, Switzerland.</p>
-
 
   <p class="bg-gray-800 p-4 my-4 rounded">
     I am a passionate learner, problem solver and novice developer. Coding is my
@@ -142,17 +142,7 @@ import SectionQA from "@components/SectionQA.astro";
     I occasionally write blog posts about software engineering and technology.
   </p>
 
-  <h2>Hobbies</h2>
-
-  <ul>
-    <li>
-      Gaming: Minecraft, Fortnite, Valorant, Call of Duty, Astroneer,
-      Helldivers.
-    </li>
-    <li>Hiking in the mountains</li>
-    <li>Solving Rubiks cubes</li>
-    <li>Coding!</li>
-  </ul>
+  <SectionHobbies />
 
   <SectionQA />
 
