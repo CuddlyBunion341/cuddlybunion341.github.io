@@ -65,11 +65,15 @@ import { ViewTransitions } from "astro:transitions";
       </div>
     </header>
     <div class="flex">
-      <aside class="flex-grow hidden lg:block bg-orange-100"><slot name="sidebar-left"></aside>
+      <aside class="flex-grow hidden lg:block bg-orange-100">
+        <slot name="sidebar-left" />
+      </aside>
       <main class="container mx-auto">
         <slot />
       </main>
-      <aside class="flex-grow hidden lg:block bg-red-200"><slot name="sidebar-right"></aside>
+      <aside class="flex-grow hidden lg:block bg-red-200">
+        <slot name="sidebar-right" />
+      </aside>
     </div>
     <slot name="after-main" />
   </body>
