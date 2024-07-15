@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { TOC } from "astro-toc";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import Tags from "@components/Tags.astro";
@@ -11,10 +12,16 @@ export async function getStaticPaths() {
   }));
 }
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+const mappedHeadings = headings.map(({ depth, slug, text }) => ({
+  depth,
+  title: text,
+  url: `#${slug}`,
+}));
 ---
 
 <BaseLayout>
+  <TOC toc={mappedHeadings} depth={2} />
   <header>
     <h1 class="mt-5 mb-3 font-bold leading-tight">{entry.data.title}</h1>
     <Image

@@ -20,9 +20,11 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "rehype-stringify": "^10.0.0",
-    "rehype-toc": "^3.0.2",
     "remark-toc": "^9.0.0",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "astro-toc": "^0.1.3"
   }
 }
