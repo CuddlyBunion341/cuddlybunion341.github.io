@@ -20,14 +20,20 @@ import { ViewTransitions } from "astro:transitions";
     <header class="mb-5">
       <div class="container">
         <nav class="text-center my-2">
-          <a class="underline decoration-blue-200 ml-2 font-bold" href="/"
-            >Home</a
-          >
-          <a class="underline decoration-blue-200 ml-2 font-bold" href="/blog"
-            >Blog</a
+          <a
+            class={`underline ml-2 font-bold ${Astro.url.pathname == "/" ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
+            href="/">Home</a
           >
           <a
-            class="underline decoration-blue-200 ml-2 font-bold"
+            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/tags") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
+            href="/tags">Tags</a
+          >
+          <a
+            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/blog") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
+            href="/blog">Blog</a
+          >
+          <a
+            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/projects") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/projects">Projects</a
           >
         </nav>
