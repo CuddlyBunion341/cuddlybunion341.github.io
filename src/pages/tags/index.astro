@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import Tags from "@components/Tags.astro";
+const allBlogPosts = await getCollection("blog");
+const allProjects = await getCollection("projects");
+import allTags from "../../data/tags.json";
+---
+
+<BaseLayout>
+  <ul>
+    {allTags.map(tag => (
+      <li>
+        <h2>{tag.name}</h2>
+        <p>{tag.description}</p>
+        {tag.icon && <i class={tag.icon}></i>}
+        <p>
+          {allProjects.filter(project => project.data.tags.includes(tag.slug)).length} Projects
+          <a href={`/projects?tag=${tag.slug}`}>View Projects</a>
+        </p>
+        <p>
+          {allBlogPosts.filter(post => post.data.tags.includes(tag.slug)).length} Blog Posts
+          <a href={`/blog?tag=${tag.slug}`}>View Blog Posts</a>
+        </p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
