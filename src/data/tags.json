@@ -103,11 +103,6 @@
     "description": "Blogging is the act of writing posts for a blog."
   },
   {
-    "slug": "learning-in-public",
-    "name": "Learning In Public",
-    "description": "Learning in public is the act of sharing your learning process and progress with others."
-  },
-  {
     "slug": "tmux",
     "name": "Tmux",
     "description": "Tmux is a terminal multiplexer for Unix-like operating systems."

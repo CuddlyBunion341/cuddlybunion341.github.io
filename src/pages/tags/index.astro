@@ -25,8 +25,8 @@ entryTags.forEach((tag) => {
 <BaseLayout>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
     {mergedTags.map(tag => {
-      const projectCount = allProjects.filter(project => project.data.tags.includes(tag.slug)).length;
-      const postCount = allBlogPosts.filter(post => post.data.tags.includes(tag.slug)).length;
+      const projectWithTag = allProjects.filter(project => project.data.tags.includes(tag.slug));
+      const postWithTag = allBlogPosts.filter(post => post.data.tags.includes(tag.slug));
 
       return (
         <li class="border border-gray-200 hover:border-blue-500 transition-colors duration-200 rounded p-4 flex flex-col items-start">
@@ -35,13 +35,13 @@ entryTags.forEach((tag) => {
           </div>
           <p class="mb-2">{tag.description}</p>
           <p class="mb-1">
-            <a href={`/projects?tag=${tag.slug}`} class="text-blue-500 hover:underline">
-              {projectCount} {projectCount === 1 ? 'Project' : 'Projects'}
+            <a href={projectWithTag.length === 1 ? `/projects/${projectWithTag[0].slug}` : `/projects?tag=${tag.slug}`} class="text-blue-500 hover:underline">
+              {projectWithTag.length} {projectWithTag.length === 1 ? 'Project' : 'Projects'}
             </a>
           </p>
           <p>
-            <a href={`/blog?tag=${tag.slug}`} class="text-blue-500 hover:underline">
-              {postCount} {postCount === 1 ? 'Post' : 'Posts'}
+            <a href={postWithTag.length === 1 ? `/blog/${postWithTag[0].slug}` : `/blog?tag=${tag.slug}`} class="text-blue-500 hover:underline">
+              {postWithTag.length} {postWithTag.length === 1 ? 'Post' : 'Posts'}
             </a>
           </p>
         </li>
