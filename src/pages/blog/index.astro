@@ -9,7 +9,7 @@ const allBlogPosts = await getCollection("blog");
 <BaseLayout>
   {
     allBlogPosts.map((post) => (
-    <article class="rounded-xl my-5">
+    <article class="rounded-xl my-5 first:mt-0">
       <a href={`/blog/${post.slug}`} class="text-primary underline">
         <Image class="rounded-xl mt-5" src={post.data.heroImage} inferSize=true alt={post.data.title} />
       </a>
