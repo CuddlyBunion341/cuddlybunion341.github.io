@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import tagsJSON from "../../data/tags.json";
+
+export async function getStaticPaths() {
+  const taggedEntries = (
+    entries: { data: { tags: string[] } }[],
+    tag: string,
+  ) => entries.filter((entry) => entry.data.tags.includes(tag));
+
+  const describedTags: {
+    slug: string;
+    name: string;
+    description: string;
+    icon?: string;
+  }[] = tagsJSON;
+
+  const allBlogPosts = await getCollection("blog");
+  const allProjects = await getCollection("projects");
+
+  const entryTags: string[] = [...allBlogPosts, ...allProjects]
+    .map((entry) => entry.data.tags)
+    .flat();
+
+  const allTags = [...describedTags];
+
+  entryTags.forEach((tag) => {
+    if (!allTags.find((t) => t.slug === tag)) {
+      allTags.push({
+        slug: tag,
+        name: tag.replace(/\b\w/g, (l: string) => l.toUpperCase()),
+        description: "",
+        icon: "",
+      });
+    }
+  });
+
+  return allTags.map((tag) => {
+    const projects = taggedEntries(allProjects, tag.slug);
+    const blogPosts = taggedEntries(allBlogPosts, tag.slug);
+    return {
+      params: { tag: tag.slug },
+      props: { tag, projects, blogPosts },
+    };
+  });
+}
+
+const { tag, projects, blogPosts } = Astro.props;
+---
+
+<h1>Projects tagged with #{tag.slug}:</h1>
+<pre>{JSON.stringify(projects, null, 2)}</pre>
+
+<h1>Blog posts tagged with #{tag.slug}:</h1>
+<pre>{JSON.stringify(blogPosts, null, 2)}</pre>
