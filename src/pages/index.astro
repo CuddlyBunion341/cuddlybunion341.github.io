@@ -3,41 +3,46 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import ProjectCard from "@components/ProjectCard.astro";
 import BlogPostCard from "@components/BlogPostCard.astro";
+import Scramble from "@components/Scramble.astro";
 
 const posts = await getCollection("blog");
-const projects = await getCollection("projects");
+const projects = await getCollection("projects", {limit: 1});
 
 const latestPost = posts.sort(
   (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
 )[0];
 const latestProject = projects[0];
-
-console.log({latestPost, latestProject});
 ---
 
 <BaseLayout>
-  <section>
-    <h2>Blog</h2>
-
-    <p>
-      I occasionally write blog posts about software engineering and technology.
+  <section class="bg-gray-800 p-4 text-white"> 
+    <h1 class="text-4xl font-bold mb-4">Hello, I'm Dani!</h1>
+    <p class="text-lg mb-4">
+      I'm a software engineer and web developer. This is my personal space where I share my thoughts on various topics and showcase some of my projects and experiments. Feel free to explore!
     </p>
-
-    <h3>Latest Post: {latestPost.title}</h3>
-    <BlogPostCard post={latestPost} />
-    <a class="text-blue-500 underline" href="/blog">See all posts</a>
+    <a class="text-blue-500 underline text-lg" href="/about">Learn more about me</a>
   </section>
 
-  <section>
-    <h2>Projects</h2>
+  {latestPost && (
+    <section class="mb-3 p-4 shadow rounded">
+      <h2 class="text-3xl font-bold mb-5">Latest Blog Post</h2>
+      <BlogPostCard post={latestPost} />
+    </section>
+  )}
 
-    <p>
-      My work-related projects are not very interesting and school projects
-      mild, so here is a collection of my hobby projects:
-    </p>
+  {latestProject && (
+    <section class="mb-3 p-4 shadow rounded">
+      <h2 class="text-3xl font-bold mb-5">Latest Project</h2>
+      <ProjectCard project={latestProject} />
+    </section>
+  )}
 
-    <ProjectCard project={latestProject} key={latestProject.slug} />
-    <a class="text-blue-500 underline" href="/projects">See all projects</a>
+  <section class="p-4 bg-gray-800 text-white">
+    <h2 class="text-3xl font-bold mb-5">Explore More</h2>
+    <p class="text-lg mb-4">Interested in seeing more? Check out my blog posts and projects.</p>
+    <div class="flex space-x-4">
+      <a class="text-blue-500 underline text-lg" href="/posts">See all posts</a>
+      <a class="text-blue-500 underline text-lg" href="/projects">See all projects</a>
+    </div>
   </section>
-
 </BaseLayout>
