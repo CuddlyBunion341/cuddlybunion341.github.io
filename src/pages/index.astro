@@ -1,10 +1,43 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
-import SectionProjects from "@components/SectionProjects.astro";
-import SectionBlog from "@components/SectionBlog.astro";
+import { getCollection } from "astro:content";
+import ProjectCard from "@components/ProjectCard.astro";
+import BlogPostCard from "@components/BlogPostCard.astro";
+
+const posts = await getCollection("blog");
+const projects = await getCollection("projects");
+
+const latestPost = posts.sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
+)[0];
+const latestProject = projects[0];
+
+console.log({latestPost, latestProject});
 ---
 
 <BaseLayout>
-  <SectionProjects />
-  <SectionBlog />
+  <section>
+    <h2>Blog</h2>
+
+    <p>
+      I occasionally write blog posts about software engineering and technology.
+    </p>
+
+    <h3>Latest Post: {latestPost.title}</h3>
+    <BlogPostCard post={latestPost} />
+    <a class="text-blue-500 underline" href="/blog">See all posts</a>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+
+    <p>
+      My work-related projects are not very interesting and school projects
+      mild, so here is a collection of my hobby projects:
+    </p>
+
+    <ProjectCard project={latestProject} key={latestProject.slug} />
+    <a class="text-blue-500 underline" href="/projects">See all projects</a>
+  </section>
+
 </BaseLayout>
