@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import Tags from "@components/Tags.astro";
+import Tag from "@components/Tag.astro";
 
 export async function getStaticPaths() {
   const allBlogPosts = await getCollection("blog");
@@ -25,7 +26,7 @@ const { taggedBlogPosts } = Astro.props;
 ---
 
 <BaseLayout>
-  <h1>{taggedBlogPosts.length} Posts tagged with #{tag}</h1>
+  <h1>{taggedBlogPosts.length} Posts tagged with <Tag tag={tag} /></h1>
   {
     taggedBlogPosts.map((post) => (
       <article class="rounded-xl my-5 first:mt-0">
@@ -45,7 +46,7 @@ const { taggedBlogPosts } = Astro.props;
             .split("/")
             .join(".")}
         </span>
-        <Tags tags={post.data.tags} />
+        <Tags tags={post.data.tags} path={(tag) => `/blog/tags/${tag}`} />
       </article>
     ))
   }

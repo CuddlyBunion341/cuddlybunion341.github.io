@@ -24,7 +24,7 @@ entryTags.forEach((tag) => {
 const getCountAndUrl = (
   items: { slug: string; collection: string; data: { tags: string[] } }[],
   tag: { slug: string },
-  ) => {
+) => {
   const itemsWithTag = items.filter((item) =>
     item.data.tags.includes(tag.slug),
   );
@@ -36,10 +36,10 @@ const getCountAndUrl = (
       : `/${items[0]?.collection}/tags/${tag.slug}`;
 
   return { count, url };
-}
+};
 
-const pluralize = (count: number, word: string) => count === 1 ? word : `${word}s`;
-
+const pluralize = (count: number, word: string) =>
+  count === 1 ? word : `${word}s`;
 ---
 
 <BaseLayout>
@@ -65,21 +65,19 @@ const pluralize = (count: number, word: string) => count === 1 ? word : `${word}
               )}
             </div>
             <p class="mb-2">{tag.description}</p>
-            <p class="mb-1">
+            <p>
               {projectCount > 0 && (
                 <a href={projectUrl} class="text-blue-500 hover:underline">
                   {projectCount} {pluralize(projectCount, "Project")}
                 </a>
               )}
-            </p>
-            <p>
+              {projectCount > 0 && postCount > 0 && "<br>"}
               {postCount > 0 && (
                 <a href={postUrl} class="text-blue-500 hover:underline">
                   {postCount} {pluralize(postCount, "Post")}
                 </a>
               )}
-            </p>
-            <p>
+              {postCount > 0 && projectCount > 0 && "<br>"}
               {postCount > 0 && projectCount > 0 && (
                 <a
                   class="text-blue-500 hover:underline"

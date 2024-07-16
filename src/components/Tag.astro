@@ -1,9 +1,14 @@
 ---
 interface Props {
   tag: string;
+  path?: (tag: string) => string | undefined;
 }
 
-const { tag } = Astro.props;
+let { tag, path } = Astro.props;
+path = path ?? ((tag: string) => `/tags/${tag}`);
 ---
 
-<span class="text-sm bg-blue-700 rounded-full py-0.5 px-2 mr-2 my-1 whitespace-nowrap">#{tag}</span>
+<a
+  class="text-sm bg-blue-700 rounded-full py-0.5 px-2 mr-2 my-1 whitespace-nowrap"
+  href={path(tag)}>#{tag}</a
+>
