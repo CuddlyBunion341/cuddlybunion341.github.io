@@ -33,7 +33,7 @@ function getCountAndUrl(
   const url =
     count === 1
       ? `/${items[0]?.collection}/${itemsWithTag[0]?.slug}`
-      : `/${items[0]?.collection}/?tag=${tag.slug}`;
+      : `/${items[0]?.collection}/tags/${tag.slug}`;
 
   return { count, url };
 }
