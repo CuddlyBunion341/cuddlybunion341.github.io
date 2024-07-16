@@ -76,6 +76,16 @@ function getCountAndUrl(
                 </a>
               )}
             </p>
+            <p>
+              {postCount > 0 && projectCount > 0 && (
+                <a
+                  class="text-blue-500 hover:underline"
+                  href={`/tags/${tag.slug}`}
+                >
+                  Show both
+                </a>
+              )}
+            </p>
           </li>
         );
       })
