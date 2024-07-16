@@ -1,7 +1,7 @@
 ---
 interface Props {
   tag: string;
-  path?: (tag: string) => string | undefined;
+  path?: (tag: string) => string;
 }
 
 let { tag, path } = Astro.props;

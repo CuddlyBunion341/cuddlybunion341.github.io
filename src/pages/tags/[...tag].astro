@@ -6,7 +6,7 @@ import ProjectCard from "@components/ProjectCard.astro";
 
 export async function getStaticPaths() {
   const taggedEntries = (
-    entries: { data: { slug: string; tags: string[] } }[],
+  entries: { slug: string, data: { tags: string[] } }[],
     tag: string,
   ) => entries.filter((entry) => entry.data.tags.includes(tag));
 
@@ -54,7 +54,7 @@ const { tag, projects, blogPosts } = Astro.props;
   {projects.length > 0 && <h1>Projects tagged with #{tag.slug}:</h1>}
   {
     projects.map((project) => (
-      <ProjectCard project={project} key={project.data.slug} />
+      <ProjectCard project={project} key={project.slug} />
     ))
   }
 

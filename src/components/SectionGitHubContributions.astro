@@ -13,14 +13,14 @@
         style="filter: hue-rotate(105deg); grid-template-columns: repeat(53, 1fr);"
       >
         {
-          Array.apply(null, Array(53)).map((week, i) => {
+          Array.apply(null, Array(53)).map((_week, i) => {
             return (
               <div
                 id={`week-${i}`}
                 class={`flex-col gap-1 grid ${i < 20 ? "hidden md:flex" : "flex"}`}
                 style="grid-template-rows: repeat(7, 1fr);"
               >
-                {Array.apply(null, Array(7)).map((day, j) => {
+                {Array.apply(null, Array(7)).map((_day, j) => {
                   return (
                     <div
                       id={`week-${i}-day-${j}`}

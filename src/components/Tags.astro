@@ -6,7 +6,8 @@ interface Props {
   path?: (tag: string) => string;
 }
 
-const { tags, path } = Astro.props;
+let { tags, path } = Astro.props;
+path ??= (tag) => `tags/${tag}`;
 ---
 
 <nav class="my-2 flex flex-wrap">

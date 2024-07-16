@@ -2,6 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import ProjectCard from "@components/ProjectCard.astro";
+import Tag from "@components/Tag.astro";
 
 export async function getStaticPaths() {
   const allProjects = await getCollection("projects");
