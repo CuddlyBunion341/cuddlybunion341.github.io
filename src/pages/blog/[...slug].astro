@@ -21,7 +21,9 @@ const mappedHeadings = headings.map(({ depth, slug, text }) => ({
 ---
 
 <BaseLayout>
-  <TOC toc={mappedHeadings} depth={2} />
+  <div slot="sidebar-right" class="w-50 float-left mt-5">
+    <TOC toc={mappedHeadings} depth={2} />
+  </div>
   <header>
     <h1 class="mt-5 mb-3 font-bold leading-tight">{entry.data.title}</h1>
     <Image
@@ -37,14 +39,16 @@ const mappedHeadings = headings.map(({ depth, slug, text }) => ({
   >
     <Content />
   </div>
-  <footer slot="after-main">
-    <p>
+  <footer slot="after-main" class="container mt-5 border-t py-5">
     <p class="py-2">
       <a href="#top" class="bg-gray-600 p-2 rounded border">Back to Top</a>
       <a
+        class="bg-gray-600 p-2 rounded border hover:border-gray-500 hover:bg-gray-400"
         href={`https://github.com/CuddlyBunion341/cuddlybunion341.github.io/blob/main/src/content/${entry.collection}/${entry.id}`}
-        >View this entry on GitHub</a
       >
+        View this entry on GitHub
+        <i class="devicon-github-plain"></i>
+      </a>
     </p>
   </footer>
 </BaseLayout>
