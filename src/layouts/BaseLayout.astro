@@ -25,6 +25,10 @@ import { ViewTransitions } from "astro:transitions";
             href="/">Home</a
           >
           <a
+            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/about") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
+            href="/about">About</a
+          >
+          <a
             class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/tags") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/tags">Tags</a
           >

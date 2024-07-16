@@ -1,26 +1,10 @@
 ---
-import SectionGitHubContributions from "@components/SectionGitHubContributions.astro";
 import BaseLayout from "src/layouts/BaseLayout.astro";
-import SectionEducation from "@components/SectionEducation.astro";
-import SectionQA from "@components/SectionQA.astro";
-import SectionHobbies from "@components/SectionHobbies.astro";
-import SectionSkills from "@components/SectionSkills.astro";
 import SectionProjects from "@components/SectionProjects.astro";
-import SectionIntro from "@components/SectionIntro.astro";
 import SectionBlog from "@components/SectionBlog.astro";
-import SectionContact from "@components/SectionContact.astro";
 ---
 
 <BaseLayout>
-  <SectionIntro />
-  <SectionGitHubContributions />
-  <SectionEducation />
-  <div slot="sidebar-right">
-    <SectionSkills />
-  </div>
   <SectionProjects />
   <SectionBlog />
-  <!-- <SectionHobbies /> -->
-  <SectionQA />
-  <SectionContact />
 </BaseLayout>
