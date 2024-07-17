@@ -1,14 +1,30 @@
 ---
 interface Props {
   tag: string;
+  count?: number;
   path?: (tag: string) => string;
 }
 
-let { tag, path } = Astro.props;
+let { tag, path, count } = Astro.props;
 path = path ?? ((tag: string) => `/tags/${tag}`);
+
+const tagClasses = (disabled: boolean) => {
+  const baseClasses =
+    "text-sm rounded-full py-0.5 px-2 mr-2 my-1 whitespace-nowrap";
+  const enabledClasses = "bg-blue-500 text-white";
+  const disabledClasses = "bg-gray-700 text-gray-400 cursor-not-allowed";
+
+  if (disabled) return `${baseClasses} ${disabledClasses}`;
+  else return `${baseClasses} ${enabledClasses}`;
+};
 ---
 
-<a
-  class="text-sm bg-blue-700 rounded-full py-0.5 px-2 mr-2 my-1 whitespace-nowrap"
-  href={path(tag)}>#{tag}</a
->
+{count === 0 && <a class={tagClasses(true)}>{tag}</a>}
+{count === undefined && <a class={tagClasses(false)}>{tag}</a>}
+{
+  count !== undefined && count > 0 && (
+    <a class={tagClasses(false)}>
+      {tag} <span class="text-xs ml-1">{count}</span>{" "}
+    </a>
+  )
+}
