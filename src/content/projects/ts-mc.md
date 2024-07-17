@@ -1,7 +1,7 @@
 ---
 name: "TS-MC"
 description: "A Minecraft Clone written in TypeScript and Three.js."
-tags: [ts, threejs]
+tags: [typescript, threejs]
 heroImage: "/src/assets/projects/ts-mc.webp"
 github: "https://github.com/CuddlyBunion341/ts-mc"
 ---

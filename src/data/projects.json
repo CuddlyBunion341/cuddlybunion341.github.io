@@ -9,7 +9,7 @@
     "name": "TS-MC",
     "slug": "ts-mc",
     "description": "A Minecraft Clone written in TypeScript and Three.js.",
-    "tags": ["ts", "threejs"]
+    "tags": ["typescript", "threejs"]
   },
   {
     "name": "Greendit",
