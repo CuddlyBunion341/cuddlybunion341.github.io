@@ -28,7 +28,7 @@ const { taggedProjects } = Astro.props;
   <h1>{taggedProjects.length} Projects tagged with <Tag tag={tag} /></h1>
   {
     taggedProjects.map((project) => (
-    <ProjectCard project={project} key={project.slug} />
+      <ProjectCard project={project} key={project.slug} />
     ))
   }
 </BaseLayout>

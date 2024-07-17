@@ -1,12 +1,12 @@
 ---
-title: '2 Simple Configurations to Supercharge your TMUX Setup!'
+title: "2 Simple Configurations to Supercharge your TMUX Setup!"
 publishedAt: 2024-04-14
-description: 'This is the first post of my new Astro blog.'
-heroImage: 'https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8xfd3ae514xhra5nnpt3.jpg'
+description: "This is the first post of my new Astro blog."
+heroImage: "https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8xfd3ae514xhra5nnpt3.jpg"
 tags: ["tmux", "terminal"]
 ---
 
-Tmux is a terminal multiplexer. It is a tool for managing multiple shells inside a single terminal window. It is integrated into most modern terminal emulators like Iterm2 or Warp.  In this blog article, I will show you two simple configurations that drastically improved my tmux experience.
+Tmux is a terminal multiplexer. It is a tool for managing multiple shells inside a single terminal window. It is integrated into most modern terminal emulators like Iterm2 or Warp. In this blog article, I will show you two simple configurations that drastically improved my tmux experience.
 
 ## Autoresizing panes
 
@@ -102,8 +102,8 @@ Remember that `black` and `#000000` are not the same thing when configuring your
 While tmux isn't as usable/powerful out of the box as the integrated tmux in Iterm or Warp, with some simple configuration, it can be significantly improved. The manual page for tmux is the go to source for looking up commands and events and will save a lot of time googling.
 
 **Tools and Sources**
+
 - Screen recorder: [CleanShotX](https://cleanshot.com/)
 - Keystroke recorder: [KeyCastr](https://github.com/keycastr/keycastr)
 - Terminal Emulator: [Alacritty](https://github.com/alacritty/alacritty)
 - Other configuration: [My Dotfiles](https://github.com/CuddlyBunion341/dotfiles)
-

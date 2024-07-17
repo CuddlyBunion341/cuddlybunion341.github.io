@@ -1,10 +1,11 @@
 ---
-title: 'My First Blog Post'
+title: "My First Blog Post"
 publishedAt: 2022-07-01
-description: 'This is the first post of my new Astro blog.'
-heroImage: 'https://docs.astro.build/assets/rose.webp'
+description: "This is the first post of my new Astro blog."
+heroImage: "https://docs.astro.build/assets/rose.webp"
 tags: ["astro", "blogging", "learning in public", "multiplayer"]
 ---
+
 ## Lists
 
 ### Ordered list
@@ -16,24 +17,26 @@ tags: ["astro", "blogging", "learning in public", "multiplayer"]
    2. list
 4. Ⅳ
 5. und
-  * noch
-  * mehr
+
+- noch
+- mehr
+
 6. weiter
 
-*Note: the fourth item uses the Unicode character for [Roman numeral four][2].*
+_Note: the fourth item uses the Unicode character for [Roman numeral four][2]._
 
 ### Unordered list
 
-* An item
-* Another item
-* Yet another item
-* test
-  * test2
-  * An item
-  * Another item
-    * blub
-  * narf
-* bla
+- An item
+- Another item
+- Yet another item
+- test
+  - test2
+  - An item
+  - Another item
+    - blub
+  - narf
+- bla
 
 ## Checklist
 
@@ -54,12 +57,12 @@ You can also make `inline code` to add code into other things.
 ```javascript
 // This function returns a string padded with leading zeros
 function padZeros(num, totalLen) {
-   var numStr = num.toString();             // Initialize return value as string
-   var numZeros = totalLen - numStr.length; // Calculate no. of zeros
-   for (var i = 1; i <= numZeros; i++) {
-      numStr = "0" + numStr;
-   }
-   return numStr;
+  var numStr = num.toString(); // Initialize return value as string
+  var numZeros = totalLen - numStr.length; // Calculate no. of zeros
+  for (var i = 1; i <= numZeros; i++) {
+    numStr = "0" + numStr;
+  }
+  return numStr;
 }
 ```
 
@@ -89,7 +92,7 @@ function padZeros(num, totalLen) {
 
 There are six levels of headings. They correspond with the six levels of HTML headings. You've probably noticed them already in the page. Each level down uses one more hash character.
 
-### Headings *can* also contain **formatting**
+### Headings _can_ also contain **formatting**
 
 ### They can even contain `inline code`
 
@@ -101,9 +104,9 @@ I don't recommend using more than three or four levels of headings here, because
 
 URLs can be made in a handful of ways:
 
-* A named link to [MarkItDown][3]. The easiest way to do these is to select what you want to make a link and hit `Ctrl+L`.
-* Another named link to [MarkItDown](http://www.markitdown.net/)
-* Sometimes you just want a URL like <http://www.markitdown.net/>.
+- A named link to [MarkItDown][3]. The easiest way to do these is to select what you want to make a link and hit `Ctrl+L`.
+- Another named link to [MarkItDown](http://www.markitdown.net/)
+- Sometimes you just want a URL like <http://www.markitdown.net/>.
 
 ## Horizontal rule
 
@@ -115,18 +118,18 @@ It's sometimes handy for breaking things up.
 
 ## Tables
 
-| Name | Description          |
-| ------------- | ----------- |
-| Help      | ~~Display the~~ help window.|
-| Close     | _Closes_ a window     |
+| Name  | Description                  |
+| ----- | ---------------------------- |
+| Help  | ~~Display the~~ help window. |
+| Close | _Closes_ a window            |
 
 Finally, by including colons : within the header row, you can define text to be left-aligned, right-aligned, or center-aligned:
 
 | Left-Aligned  | Center Aligned  | Right Aligned |
-| :------------ |:---------------:| -----:|
-| col 3 is      | some wordy text | $1600 |
-| col 2 is      | centered        |   $12 |
-| zebra stripes | are neat        |    $1 |
+| :------------ | :-------------: | ------------: |
+| col 3 is      | some wordy text |         $1600 |
+| col 2 is      |    centered     |           $12 |
+| zebra stripes |    are neat     |            $1 |
 
 ## Images
 
@@ -136,9 +139,8 @@ Finally, by including colons : within the header row, you can define text to be 
 
 There's actually a lot more to Markdown than this :camel:. See the official [introduction][4] and [syntax][5] for more information. However, be aware that this is not using the official implementation, and this might work subtly differently in some of the little things.
 
-
-  [1]: http://daringfireball.net/projects/markdown/
-  [2]: http://www.fileformat.info/info/unicode/char/2163/index.htm
-  [3]: http://www.markitdown.net/
-  [4]: http://daringfireball.net/projects/markdown/basics
-  [5]: http://daringfireball.net/projects/markdown/syntax
+[1]: http://daringfireball.net/projects/markdown/
+[2]: http://www.fileformat.info/info/unicode/char/2163/index.htm
+[3]: http://www.markitdown.net/
+[4]: http://daringfireball.net/projects/markdown/basics
+[5]: http://daringfireball.net/projects/markdown/syntax

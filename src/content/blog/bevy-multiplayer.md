@@ -1,11 +1,10 @@
 ---
-title: 'Multiplayer in Rust using Renet and Bevy'
+title: "Multiplayer in Rust using Renet and Bevy"
 publishedAt: 2024-03-07
-description: 'This is the first post of my new Astro blog.'
-heroImage: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+description: "This is the first post of my new Astro blog."
+heroImage: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 tags: ["rust", "bevy", "multiplayer", "game"]
 ---
-
 
 Here at Renuo, we specialize in web technologies such as Ruby on Rails, React, Angular, and Spring. One of our core company values is continuous learning: we love exploring new technologies even beyond our usual scope of expertise.
 
@@ -20,13 +19,14 @@ My recent experiences with [Rust](https://rustlang.org/) and [Bevy](https://bevy
 Rust is a statically typed, memory-safe, multi-paradigm programming language that matches the performance of C. Due to its safety, concurrency features, and modern syntax, it has gained popularity among developers in recent years.
 
 Some notable software written in Rust includes:
-* **Rapier3d**: A performant physics engine often used with ThreeJS.
-* **Ripgrep**: A performant command line search tool.
-* **Alacritty**: A performant, minimalistic cross-platform terminal emulator.
-* **Warp**: A performant, modern terminal IDE.
-* **Tauri**: A performant and lightweight alternative to ElectronJS.
-* **Amethyst**: A performant tiling window manager for MacOS.
-* **Condorium Blockchain**: A performant and secure blockchain technology.
+
+- **Rapier3d**: A performant physics engine often used with ThreeJS.
+- **Ripgrep**: A performant command line search tool.
+- **Alacritty**: A performant, minimalistic cross-platform terminal emulator.
+- **Warp**: A performant, modern terminal IDE.
+- **Tauri**: A performant and lightweight alternative to ElectronJS.
+- **Amethyst**: A performant tiling window manager for MacOS.
+- **Condorium Blockchain**: A performant and secure blockchain technology.
 
 > I mean, there is no such thing as a perfect programming language Rust is merely a statically type low-level multi-paradigm perfect programming language
 > [YouTube interview](https://www.youtube.com/watch?v=TGfQu0bQTKc&t=95s) by [Programmers Are Also Human](https://www.youtube.com/@programmersarealsohuman5909), Rust is a perfect programming language.
@@ -35,8 +35,7 @@ Some notable software written in Rust includes:
 
 ## Picking a game engine
 
-
-> There are currently 5 games written in Rust.  And 50 game engines.
+> There are currently 5 games written in Rust. And 50 game engines.
 > Interview with a Senior Rust Developer - [2:52](https://www.youtube.com/watch?v=TGfQu0bQTKc&t=168s)
 
 There are too many game engines available for Rust. An excellent resource is [Are We Game Yet](https://arewegameyet.rs/ecosystem/engines/). I also recommend [this article by GeeksforGeeks](https://www.geeksforgeeks.org/rust-game-engines/), which makes picking the optimal engine easier.
@@ -93,26 +92,29 @@ The example above has a flaw: the player position update has a fixed step. Inste
 
 We need to decide on networking libraries after choosing Bevy as our game engine. Here are a few options:
 
-* Matchbox
-* Naia
-* Renet
-* Bootleg_networking
-* Spicy_networking
+- Matchbox
+- Naia
+- Renet
+- Bootleg_networking
+- Spicy_networking
 
 I chose **Renet** because of its popularity and my good experiences with its boilerplate. Additionally, I included **Serde** for efficient binary message encoding.
 
 ## Sketching the scene
 
 Before coding, let's sketch a simple scene:
+
 - **Camera:** Renders the scene.
 - **Plane:** Represents the floor.
 - **Green Cube:** Represents the player.
 - **Red Cubes:** Represent other players.
 
 Attributes to synchronize:
-* **Position:** `Vec3`
+
+- **Position:** `Vec3`
 
 Input method:
+
 - **Keyboard (WASD):** Used to translate the player.
 
 ### Handling Player inputs
@@ -152,6 +154,7 @@ The client-side approach can reduce latency, but is less secure. The server-side
 | System   | send_message_system                              | Broadcasts player positions to keep enemy player positions in clients up-to-date.                             |
 | System   | receive_message_system                           | Updates player lobby position based on messages received from the RenetClient.                                |
 | System   | handle_events_system                             | Handles events such as ClientConnected and ClientDisconnected from the Bevy Renet plugin.                     |
+
 ## Deciding on a project structure
 
 I separated the ECS components into specific modules to structure the Bevy project and used two entry points: one for the client and one for the server. Shared code, such as structures for Client-Server communication, can be placed in a global `lib` module.
@@ -193,6 +196,7 @@ cargo run --bin client
 ## Setting up Boilerplate
 
 To integrate `bevy_renet` into the bevy project, I followed the [Bevy Renet documentation](https://github.com/lucaspoffo/renet/blob/master/bevy_renet/README.md). In my setup, I used these two default channels:
+
 - **Unreliable:** Used for sending and receiving messages for player attribute synchronization. (We don't care about every state change, we can pick the last one)
 - **ReliableOrdered:** Used for sending and receiving messages for player actions such as joining and leaving.
 

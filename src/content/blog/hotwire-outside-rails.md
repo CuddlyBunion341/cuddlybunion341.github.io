@@ -1,17 +1,18 @@
 ---
-title: 'Extending Hotwire beyond Ruby on Rails'
+title: "Extending Hotwire beyond Ruby on Rails"
 publishedAt: 2024-08-03
-description: 'This is the first post of my new Astro blog.'
-heroImage: 'https://images.unsplash.com/photo-1541358150975-668b4a0531c4?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+description: "This is the first post of my new Astro blog."
+heroImage: "https://images.unsplash.com/photo-1541358150975-668b4a0531c4?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 tags: ["bunjs", "hotwire", "websockets"]
 ---
 
 Almost every result you get when you search for Hotwire tutorial on google is about rails. Even the [hotwire guides](https://turbo.hotwired.dev/handbook/streams) use Ruby on Rails as an example on how to implement turbo streams.
 
-There are also numerous references to the [turbo-rails]([`turbo-rails`](https://github.com/hotwired/turbo-rails)) gem.
+There are also numerous references to the [turbo-rails](<[`turbo-rails`](https://github.com/hotwired/turbo-rails)>) gem.
 
 But in the end:
-> Hotwire is a collection of JavaScript modules that produce the behavior of an SPA (e.g. dynamic loading) for classical architectural approaches with SSR. Hotwire uses an _HTML-first_ approach, so the backend returns _HTML_ instead of _JSON_.
+
+> Hotwire is a collection of JavaScript modules that produce the behavior of an SPA (e.g. dynamic loading) for classical architectural approaches with SSR. Hotwire uses an *HTML-first* approach, so the backend returns *HTML* instead of *JSON*.
 > https://www.codecentric.de/wissens-hub/blog/hotwire-new-approach-for-modern-web-applications
 
 In this blog article I want to convince you that Hotwire is not meant to be a rails only framework and that you can use its features, mainly turbo outside of the Ruby on Rails context.
@@ -19,6 +20,7 @@ In this blog article I want to convince you that Hotwire is not meant to be a ra
 ## Goals
 
 In this blog article you will learn:
+
 - Hot to use the Hotwire framework outside of Ruby on Rails
 - How to use server broadcasts and WebSockets in Bun
 - How to utilize turbo streams to update the frontend asynchronously
@@ -36,6 +38,7 @@ The plan for this project is to create a realtime chatting application using a B
 Initially I thought about revolving this blog around Java Spring but it turns out that Websockets are really painful so I decided to stick with a much simpler, TypeScript application.
 
 Firstly we can initialize a new BunJs application:
+
 ```zsh
 mkdir bunjs-turbo-demo
 cd bunjs-turbo-demo
@@ -43,6 +46,7 @@ bun init
 ```
 
 Now we can run the application:
+
 ```zsh
 bun run index.ts
 Hello via Bun!
@@ -50,7 +54,7 @@ Hello via Bun!
 
 ## Step 1: Implement a simple Websocket HTTP Server with Bun
 
-WebSockets are the backbone of almost every realtime web application. In this project we will use the multiple publisher - multiple subscriber pattern as our clients will send messages to the server and the server will broadcast the messages to all open sockets. 
+WebSockets are the backbone of almost every realtime web application. In this project we will use the multiple publisher - multiple subscriber pattern as our clients will send messages to the server and the server will broadcast the messages to all open sockets.
 
 The code for the view helpers such as `layoutHTML` and `chatRoomHTML` is not included here becasue I don't think that it adds much value to this blog so keep that in mind.
 
@@ -60,65 +64,68 @@ const topic = "chatroom";
 Bun.serve({
   port: 8080,
   fetch(req, server) {
-    const url = new URL(req.url)
+    const url = new URL(req.url);
 
-    if (url.pathname === "/") return new Response(layoutHTML("Chatroom", chatRoomHTML()), {
-      headers: {
-        "Content-Type": "text/html",
-      }
-    })
+    if (url.pathname === "/")
+      return new Response(layoutHTML("Chatroom", chatRoomHTML()), {
+        headers: {
+          "Content-Type": "text/html",
+        },
+      });
 
     if (url.pathname === "/subscribe") {
-	    if (server.upgrade(req)) { return }
-		return new Response("Couldn't upgrade to a WebSocket connection")
+      if (server.upgrade(req)) {
+        return;
+      }
+      return new Response("Couldn't upgrade to a WebSocket connection");
     }
 
     return new Response("404!");
   },
   websocket: {
     open(ws) {
-      console.log("Websocket opened")
-      ws.subscribe(topic)
-      ws.publishText(topic, messageHTML("Someone joined the chat"))
+      console.log("Websocket opened");
+      ws.subscribe(topic);
+      ws.publishText(topic, messageHTML("Someone joined the chat"));
     },
     message(ws, message) {
-      console.log("Websocket received: ", message)
-      ws.publishText(topic, messageHTML(`Anonymous: ${message}`))
+      console.log("Websocket received: ", message);
+      ws.publishText(topic, messageHTML(`Anonymous: ${message}`));
     },
     close(ws) {
-      console.log("Websocket closed")
-      ws.publishText(topic, messageHTML("Someone left the chat"))
+      console.log("Websocket closed");
+      ws.publishText(topic, messageHTML("Someone left the chat"));
     },
-    publishToSelf: true
-  }
-})
+    publishToSelf: true,
+  },
+});
 ```
 
 The application is incomplete with the client which connects to the WebSocket of course! Following the [WebSocket server connection documentation](https://bun.sh/docs/api/websocketsconnect-to-a-websocket-server) connecting to the backend is rather simple:
 
 ```ts
-const client = new WebSocket("ws://localhost:8080/subscribe")
-const form = document.getElementById("chat-form")
-const chatFeed = document.getElementById("chat-feed")
+const client = new WebSocket("ws://localhost:8080/subscribe");
+const form = document.getElementById("chat-form");
+const chatFeed = document.getElementById("chat-feed");
 
 client.addEventListener("message", (event) => {
-  chatFeed.innerHTML += event.data
-})
+  chatFeed.innerHTML += event.data;
+});
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault()
-  const formData = new FormData(form)
-  const message = formData.get("message")
-  client.send(message)
-  form.reset()
-})
+  event.preventDefault();
+  const formData = new FormData(form);
+  const message = formData.get("message");
+  client.send(message);
+  form.reset();
+});
 ```
 
-Don't forget to implement the client JavaScript file response our backend and include a link to the file it inside of the layout. 
+Don't forget to implement the client JavaScript file response our backend and include a link to the file it inside of the layout.
 
 ## The problem
 
-As you can see here, every change in UI needs to be manually implemented. At the moment we are listening to a single event and updating one single element. When the application grows in complexity, the javascript code grows too.  What if I told you that we can "almost" completely get rid of the client code by introducing Turbo streams?
+As you can see here, every change in UI needs to be manually implemented. At the moment we are listening to a single event and updating one single element. When the application grows in complexity, the javascript code grows too. What if I told you that we can "almost" completely get rid of the client code by introducing Turbo streams?
 
 ## Step 3: Understanding Turbo
 
@@ -131,7 +138,7 @@ Importing Turbo is as simple as including this snippet of code inside our layout
 
 ```html
 <script type="module">
-	import hotwiredTurbo from 'https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.3/+esm'
+  import hotwiredTurbo from "https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.3/+esm";
 </script>
 ```
 
@@ -142,13 +149,12 @@ In order to use WebSockets for turbo streams in the frontend, we can use the fol
 ```
 
 In order to update the UI when a message is sent, we broadcast the following HTML through WebSockets:
+
 ```html
 <turbo-stream action="append" target="chat-feed">
-	<template>
-	    <p class="notice">
-	       Anonymous: Hello World!
-	    </p>
-	</template>
+  <template>
+    <p class="notice">Anonymous: Hello World!</p>
+  </template>
 </turbo-stream>
 ```
 
@@ -164,12 +170,16 @@ Before introducing turbo, we added a simple event listener to reset the Form aft
 > https://stimulus.hotwired.dev/
 
 This is what the stimulus controller looks like:
+
 ```ts
-import { Application, Controller } from "https://cdn.jsdelivr.net/npm/stimulus@3.2.2/+esm"
+import {
+  Application,
+  Controller,
+} from "https://cdn.jsdelivr.net/npm/stimulus@3.2.2/+esm";
 
 class FormController extends Controller {
   clear() {
-	this.element.reset()
+    this.element.reset();
   }
 }
 
@@ -178,13 +188,20 @@ application.register("form", FormController);
 ```
 
 This is what the form looks like after the change:
+
 ```html
-  <form id="chat-form" action="/submit" method="post" data-controller="form" data-action="turbo:submit-end->formclear">
-    <label for="message-input">Message:</label>
-    <input name="message" data-form-target="input" required >
-    <input type="hidden" name="clientId" value="${clientId}">
-    <input type="submit" value="Send">
-  </form>
+<form
+  id="chat-form"
+  action="/submit"
+  method="post"
+  data-controller="form"
+  data-action="turbo:submit-end->formclear"
+>
+  <label for="message-input">Message:</label>
+  <input name="message" data-form-target="input" required />
+  <input type="hidden" name="clientId" value="${clientId}" />
+  <input type="submit" value="Send" />
+</form>
 ```
 
 I thank user [Deepesh on StackOverflow](https://stackoverflow.com/questions/71462885/how-to-clear-form-after-submission-in-rails-using-stimulus-hotwire) for showing me that you can use the turbo:submit-end event to clear the form. Note that you don't even need to specify any targets, as the goal is to reset the entire form on submission. Quite neat indeed!
@@ -193,9 +210,8 @@ I thank user [Deepesh on StackOverflow](https://stackoverflow.com/questions/7146
 
 Hotwire is a JavaScript framework that helps us make applications more interactive while keeping the JavaScript code to a minimum. The framework itself is backend agnostic and can be thus used without almost any backend.
 
-Turbo streams enable us to update client user interfaces asynchronously without the need forAany (in some cases just very little) frontend code. 
+Turbo streams enable us to update client user interfaces asynchronously without the need forAany (in some cases just very little) frontend code.
 
 Stimulus enables us to add simple JavaScript behavior to our HTML with the use of Stimulus Controllers and `data-` attributes.
 
 https://github.com/CuddlyBunion341/bunjs-turbo-demo
-

@@ -5,5 +5,5 @@ tags: [js]
 heroImage: "/src/assets/projects/mc-block-viewer.webp"
 github: "https://github.com/CuddlyBunion341/mc-block-viewer"
 ---
-There is no description for this project yet.
 
+There is no description for this project yet.

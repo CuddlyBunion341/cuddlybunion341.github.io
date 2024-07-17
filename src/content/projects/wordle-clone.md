@@ -5,5 +5,5 @@ tags: [js]
 heroImage: "/src/assets/projects/wordle-clone.webp"
 github: "https://github.com/CuddlyBunion341/wordle-clone"
 ---
-There is no description for this project yet.
 
+There is no description for this project yet.

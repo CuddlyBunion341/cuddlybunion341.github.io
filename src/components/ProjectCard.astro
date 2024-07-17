@@ -4,7 +4,7 @@ const { project } = Astro.props;
 ---
 
 <article class="border-b last:border-b-0 py-3 first:pt-0">
- <div class="float-right">
+  <div class="float-right">
     <p>
       {project.data.demo && <a href={project.data.demo}>Live Demo</a>}
       {
@@ -15,7 +15,8 @@ const { project } = Astro.props;
         )
       }
     </p>
-  </div> <a href={`/projects/${project.slug}`}>
+  </div>
+  <a href={`/projects/${project.slug}`}>
     <h2>{project.data.name}</h2>
   </a>
   <p>{project.data.description}</p>
