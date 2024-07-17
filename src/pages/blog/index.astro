@@ -2,9 +2,11 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import BlogPostCard from "@components/BlogPostCard.astro";
+import BlogTagList from "@components/BlogTagList.astro";
 const allBlogPosts = await getCollection("blog");
 ---
 
 <BaseLayout>
+  <BlogTagList />
   {allBlogPosts.map((post) => <BlogPostCard post={post} />)}
 </BaseLayout>

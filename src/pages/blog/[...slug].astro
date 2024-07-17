@@ -13,19 +13,10 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const {
   Content,
-  // headings
 } = await entry.render();
-// const mappedHeadings = headings.map(({ depth, slug, text }) => ({
-//   depth,
-//   title: text,
-//   url: `#${slug}`,
-// }));
 ---
 
 <BaseLayout>
-  <div slot="sidebar-right" class="w-50 float-left mt-5">
-    <!-- <TOC toc={mappedHeadings} depth={2} /> -->
-  </div>
   <header>
     <h1 class="mt-5 mb-3 font-bold leading-tight">{entry.data.title}</h1>
     <Image

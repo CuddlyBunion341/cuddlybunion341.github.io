@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import Tags from "./Tags.astro";
+const allBlogPosts = await getCollection("blog");
+const blogTags = allBlogPosts.map((post) => post.data.tags).flat();
+const uniqueTags = [...new Set(blogTags)];
+---
+
+<div class="flex">
+  <Tags tags={uniqueTags} path={(tag) => `/blog/tags/${tag}`} />
+</div>
+
+<h2>Tags</h2>
