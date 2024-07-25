@@ -1,30 +1,39 @@
 ---
 interface Props {
-  tag: string;
-  count?: number;
-  path?: (tag: string) => string;
+	tag: string;
+	count?: number;
+	path?: (tag: string) => string;
+	active?: boolean;
 }
 
-let { tag, path, count } = Astro.props;
+let { tag, path, count, active } = Astro.props;
 path = path ?? ((tag: string) => `/tags/${tag}`);
 
-const tagClasses = (disabled: boolean) => {
-  const baseClasses =
-    "text-sm rounded-full py-0.5 px-2 mr-2 my-1 whitespace-nowrap";
-  const enabledClasses = "bg-blue-500 text-white";
-  const disabledClasses = "bg-gray-700 text-gray-400 cursor-not-allowed";
+const baseClasses =
+	"text-sm rounded-full py-0.5 px-2 mr-2 my-1 whitespace-nowrap flex items-center";
+const variants = {
+	enabled: {
+		active: `${baseClasses} bg-blue-500 text-white border-blue-500`,
+		inactive: `${baseClasses} bg-blue-500 text-white border-blue-800`,
+	},
+	disabled: {
+		active: `${baseClasses} bg-gray-700 text-gray-400 cursor-not-allowed border-blue-500`,
+		inactive: `${baseClasses} bg-gray-700 text-gray-400 cursor-not-allowed border-blue-800`,
+	},
+};
 
-  if (disabled) return `${baseClasses} ${disabledClasses}`;
-  else return `${baseClasses} ${enabledClasses}`;
+const tagClasses = (disabled: boolean, active: boolean) => {
+	const state = disabled ? "disabled" : "enabled";
+	const activity = active ? "active" : "inactive";
+	return variants[state][activity];
 };
 ---
 
-{count === 0 && <a class={tagClasses(true)}>{tag}</a>}
-{count === undefined && <a class={tagClasses(false)}>{tag}</a>}
-{
-  count !== undefined && count > 0 && (
-    <a class={tagClasses(false)}>
-      {tag} <span class="text-xs ml-1">{count}</span>{" "}
-    </a>
-  )
-}
+<a class={tagClasses(count === 0, active ?? true)} href={path(tag)}>
+	{tag}
+	{
+		count !== undefined && count > 0 && (
+			<span class="text-xs ml-1">{count}</span>
+		)
+	}
+</a>

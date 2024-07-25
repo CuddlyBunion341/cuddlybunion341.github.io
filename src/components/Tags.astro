@@ -4,12 +4,23 @@ import Tag from "@components/Tag.astro";
 interface Props {
   tags: string[];
   path?: (tag: string) => string;
+  taggedCount?: (tag: string) => number;
+  activeTag?: string;
 }
 
-let { tags, path } = Astro.props;
+let { tags, path, taggedCount, activeTag } = Astro.props;
 path ??= (tag) => `tags/${tag}`;
 ---
 
 <nav class="my-2 flex flex-wrap">
-  {tags.map((tag) => <Tag tag={tag} path={path} />)}
+  {
+    tags.map((tag) => (
+      <Tag
+        tag={tag}
+        path={path}
+        count={taggedCount === undefined ? undefined : taggedCount(tag)}
+        active={tag === activeTag}
+      />
+    ))
+  }
 </nav>

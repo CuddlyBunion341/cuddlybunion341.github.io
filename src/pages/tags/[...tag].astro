@@ -6,73 +6,73 @@ import ProjectCard from "@components/ProjectCard.astro";
 import BlogPostCard from "@components/BlogPostCard.astro";
 
 export async function getStaticPaths() {
-  const taggedEntries = (
-    entries: { slug: string; data: { tags: string[] } }[],
-    tag: string,
-  ) => entries.filter((entry) => entry.data.tags.includes(tag));
+	const taggedEntries = (
+		entries: { slug: string; data: { tags: string[] } }[],
+		tag: string,
+	) => entries.filter((entry) => entry.data.tags.includes(tag));
 
-  const describedTags: {
-    slug: string;
-    name: string;
-    description: string;
-    icon?: string;
-  }[] = tagsJSON;
+	const describedTags: {
+		slug: string;
+		name: string;
+		description: string;
+		icon?: string;
+	}[] = tagsJSON;
 
-  const allBlogPosts = await getCollection("blog");
-  const allProjects = await getCollection("projects");
+	const allBlogPosts = await getCollection("blog");
+	const allProjects = await getCollection("projects");
 
-  const entryTags: string[] = [...allBlogPosts, ...allProjects]
-    .map((entry) => entry.data.tags)
-    .flat();
+	const entryTags: string[] = [...allBlogPosts, ...allProjects]
+		.map((entry) => entry.data.tags)
+		.flat();
 
-  const allTags = [...describedTags];
+	const allTags = [...describedTags];
 
-  entryTags.forEach((tag) => {
-    if (!allTags.find((t) => t.slug === tag)) {
-      allTags.push({
-        slug: tag,
-        name: tag.replace(/\b\w/g, (l: string) => l.toUpperCase()),
-        description: "",
-        icon: "",
-      });
-    }
-  });
+	entryTags.forEach((tag) => {
+		if (!allTags.find((t) => t.slug === tag)) {
+			allTags.push({
+				slug: tag,
+				name: tag.replace(/\b\w/g, (l: string) => l.toUpperCase()),
+				description: "",
+				icon: "",
+			});
+		}
+	});
 
-  return allTags.map((tag) => {
-    const projects = taggedEntries(allProjects, tag.slug);
-    const blogPosts = taggedEntries(allBlogPosts, tag.slug);
-    return {
-      params: { tag: tag.slug },
-      props: { tag, projects, blogPosts },
-    };
-  });
+	return allTags.map((tag) => {
+		const projects = taggedEntries(allProjects, tag.slug);
+		const blogPosts = taggedEntries(allBlogPosts, tag.slug);
+		return {
+			params: { tag: tag.slug },
+			props: { tag, projects, blogPosts },
+		};
+	});
 }
 
 const { tag, projects, blogPosts } = Astro.props;
 ---
 
 <BaseLayout>
-  <div
-    class="border border-gray-200 hover:border-blue-500 transition-colors duration-200 rounded p-4 flex flex-col items-start"
-  >
-    <div class="mb-2 flex items-center">
-      <div>
-        <h2 class="text-2xl">{tag.name}</h2>
-        <p>
-          {tag.description}
-        </p>
-      </div>
-      {tag.icon && <i class={`${tag.icon} text-4xl mr-2`} />}
-    </div>
-  </div>
+	<div
+		class="border border-gray-200 hover:border-blue-500 transition-colors duration-200 rounded p-4 flex flex-col items-start"
+	>
+		<div class="mb-2 flex items-center">
+			<div>
+				<h2 class="text-2xl">{tag.name}</h2>
+				<p>
+					{tag.description}
+				</p>
+			</div>
+			{tag.icon && <i class={`${tag.icon} text-4xl mr-2`} />}
+		</div>
+	</div>
 
-  {projects.length > 0 && <h1>Projects tagged with #{tag.slug}:</h1>}
-  {
-    projects.map((project) => (
-      <ProjectCard project={project} key={project.slug} />
-    ))
-  }
+	{projects.length > 0 && <h1>Projects tagged with #{tag.slug}:</h1>}
+	{
+		projects.map((project) => (
+			<ProjectCard project={project} key={project.slug} />
+		))
+	}
 
-  {blogPosts.length > 0 && <h1>Blog posts tagged with #{tag.slug}:</h1>}
-  {blogPosts.map((post) => <BlogPostCard post={post} key={post.slug} />)}
+	{blogPosts.length > 0 && <h1>Blog posts tagged with #{tag.slug}:</h1>}
+	{blogPosts.map((post) => <BlogPostCard post={post} key={post.slug} />)}
 </BaseLayout>

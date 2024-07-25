@@ -7,6 +7,6 @@ const allBlogPosts = await getCollection("blog");
 ---
 
 <BaseLayout>
-  <BlogTagList />
+  <BlogTagList activeTag={""} />
   {allBlogPosts.map((post) => <BlogPostCard post={post} />)}
 </BaseLayout>

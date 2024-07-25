@@ -4,10 +4,20 @@ import Tags from "./Tags.astro";
 const allBlogPosts = await getCollection("blog");
 const blogTags = allBlogPosts.map((post) => post.data.tags).flat();
 const uniqueTags = [...new Set(blogTags)];
+
+interface Props {
+	activeTag: string;
+}
+
+const { activeTag } = Astro.props;
 ---
 
 <div class="flex">
-  <Tags tags={uniqueTags} path={(tag) => `/blog/tags/${tag}`} />
+	<Tags
+		tags={uniqueTags}
+		path={(tag) => `/blog/tags/${tag}`}
+		taggedCount={(tag: string) =>
+			allBlogPosts.filter((post) => post.data.tags.includes(tag)).length}
+		activeTag={activeTag}
+	/>
 </div>
-
-<h2>Tags</h2>
