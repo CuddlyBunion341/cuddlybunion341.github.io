@@ -21,7 +21,7 @@ import { ViewTransitions } from "astro:transitions";
       <div class="container">
         <nav class="text-center my-2">
           <a
-            class={`underline ml-2 font-bold ${Astro.url.pathname == "/" ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
+            class={`underline ml-2 font-bold hidden sm:inline-block ${Astro.url.pathname == "/" ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/">Home</a
           >
           <a
@@ -35,6 +35,10 @@ import { ViewTransitions } from "astro:transitions";
           <a
             class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/tags") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/tags">Tags</a
+          >
+          <a
+            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/til") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
+            href="/til">TIL</a
           >
           <a
             class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/blog") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
