@@ -12,33 +12,59 @@ const olderPosts = sortedPosts.slice(1);
 ---
 
 <BaseLayout>
-  <section class="latest-post mb-12">
-    <h2 class="text-3xl font-bold mb-6">Latest Post</h2>
-    <article class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
-      <a href={`/blog/${latestPost.slug}`} class="text-primary">
-        <Image
-          class="rounded-xl w-full mb-6"
-          src={latestPost.data.heroImage}
-          inferSize={true}
-          alt={latestPost.data.title}
-        />
-      </a>
-      <h1 class="text-2xl font-bold mb-2">{latestPost.data.title}</h1>
-      <div class="flex items-center mb-4">
-        <span class="text-sm mr-4">
-          📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
-        </span>
-        <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-6 leading-tight">Blog</h1>
+    
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 leading-tight">Latest Post</h2>
+      
+      <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div class="md:flex">
+          <div class="md:w-1/2 overflow-hidden">
+            <a href={`/blog/${latestPost.slug}`} class="block">
+              <Image
+                class="w-full h-full object-cover"
+                src={latestPost.data.heroImage}
+                inferSize={true}
+                alt={latestPost.data.title}
+              />
+            </a>
+          </div>
+          
+          <div class="p-6 md:w-1/2">
+            <a href={`/blog/${latestPost.slug}`} class="block mb-2">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white leading-tight">{latestPost.data.title}</h3>
+            </a>
+            
+            <div class="flex items-center mb-4">
+              <span class="text-sm text-gray-500 dark:text-gray-400 mr-4">
+                📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
+              </span>
+              <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
+            </div>
+            
+            <p class="text-gray-600 dark:text-gray-300 mb-4">{latestPost.data.description}</p>
+            
+            <a 
+              href={`/blog/${latestPost.slug}`} 
+              class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+            >
+              Read more
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+    
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-6 leading-tight">More Posts</h2>
+      
+      <div class="space-y-8">
+        {olderPosts.map((post) => <BlogPostCard post={post} />)}
       </div>
-      <p class="mb-4">{latestPost.data.description}</p>
-      <a href={`/blog/${latestPost.slug}`} class="text-primary font-medium">
-        Read more →
-      </a>
-    </article>
-  </section>
-  
-  <section class="older-posts">
-    <h2 class="text-2xl font-bold mb-6">More Posts</h2>
-    {olderPosts.map((post) => <BlogPostCard post={post} />)}
-  </section>
+    </section>
+  </div>
 </BaseLayout>

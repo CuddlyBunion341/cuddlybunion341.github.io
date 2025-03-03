@@ -52,27 +52,55 @@ const { tag, projects, blogPosts } = Astro.props;
 ---
 
 <BaseLayout>
-	<div
-		class="border border-gray-200 hover:border-blue-500 transition-colors duration-200 rounded p-4 flex flex-col items-start"
-	>
-		<div class="mb-2 flex items-center">
-			<div>
-				<h2 class="text-2xl">{tag.name}</h2>
-				<p>
-					{tag.description}
-				</p>
+	<div class="container mx-auto px-4">
+		<h1 class="text-3xl font-bold mb-6 leading-tight">
+			#{tag.slug}
+		</h1>
+		
+		<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+			<div class="flex items-center justify-between mb-4">
+				<div>
+					<h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">{tag.name}</h2>
+					{tag.description && (
+						<p class="text-gray-600 dark:text-gray-300">{tag.description}</p>
+					)}
+				</div>
+				{tag.icon && <i class={`${tag.icon} text-4xl text-blue-500`} />}
 			</div>
-			{tag.icon && <i class={`${tag.icon} text-4xl mr-2`} />}
+		</div>
+
+		{projects.length > 0 && (
+			<div class="mb-8">
+				<h2 class="text-2xl font-bold mb-6 leading-tight">Projects</h2>
+				<div class="flex flex-col gap-6">
+					{projects.map((project) => (
+						<ProjectCard project={project} key={project.slug} />
+					))}
+				</div>
+			</div>
+		)}
+
+		{blogPosts.length > 0 && (
+			<div class="mb-8">
+				<h2 class="text-2xl font-bold mb-6 leading-tight">Blog Posts</h2>
+				<div class="space-y-8">
+					{blogPosts.map((post) => (
+						<BlogPostCard post={post} key={post.slug} />
+					))}
+				</div>
+			</div>
+		)}
+		
+		<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8 text-center">
+			<a 
+				href="/tags" 
+				class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+				</svg>
+				Back to all tags
+			</a>
 		</div>
 	</div>
-
-	{projects.length > 0 && <h1>Projects tagged with #{tag.slug}:</h1>}
-	{
-		projects.map((project) => (
-			<ProjectCard project={project} key={project.slug} />
-		))
-	}
-
-	{blogPosts.length > 0 && <h1>Blog posts tagged with #{tag.slug}:</h1>}
-	{blogPosts.map((post) => <BlogPostCard post={post} key={post.slug} />)}
 </BaseLayout>
