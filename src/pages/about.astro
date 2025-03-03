@@ -7,8 +7,23 @@ import SectionContact from "@components/SectionContact.astro";
 ---
 
 <BaseLayout>
-  <SectionIntro />
-  <SectionEducation />
-  <SectionQA />
-  <SectionContact />
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-6 leading-tight">About Me</h1>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+      <SectionIntro />
+    </div>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+      <SectionEducation />
+    </div>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+      <SectionQA />
+    </div>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+      <SectionContact />
+    </div>
+  </div>
 </BaseLayout>

@@ -2,11 +2,76 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import BlogPostCard from "@components/BlogPostCard.astro";
-import BlogTagList from "@components/BlogTagList.astro";
+import { Image } from "astro:assets";
+import Tags from "@components/Tags.astro";
+
 const allBlogPosts = await getCollection("blog");
+const sortedPosts = allBlogPosts.sort((a, b) => new Date(b.data.publishedAt) > new Date(a.data.publishedAt) ? 1 : -1);
+const latestPost = sortedPosts[0] || {
+  slug: "",
+  data: {
+    title: "",
+    description: "",
+    heroImage: "",
+    publishedAt: "",
+    tags: [],
+  }
+};
+const olderPosts = sortedPosts.slice(1);
 ---
 
 <BaseLayout>
-  <BlogTagList activeTag={""} />
-  {allBlogPosts.map((post) => <BlogPostCard post={post} />)}
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-6 leading-tight">Latest Blog Post</h1>
+    
+    <section class="mb-12">
+      <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div>
+          <div class="md:w-full overflow-hidden">
+            <a href={`/blog/${latestPost.slug}`} class="block">
+              <Image
+                class="w-full h-full object-cover"
+                src={latestPost.data.heroImage}
+                inferSize={true}
+                alt={latestPost.data.title}
+              />
+            </a>
+          </div>
+          
+          <div class="p-6 w-full">
+            <a href={`/blog/${latestPost.slug}`} class="block mb-2">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white leading-tight">{latestPost.data.title}</h3>
+            </a>
+            
+            <div class="flex items-center mb-4">
+              <span class="text-sm text-gray-500 dark:text-gray-400 mr-4">
+                📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
+              </span>
+              <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
+            </div>
+            
+            <p class="text-gray-600 dark:text-gray-300 mb-4">{latestPost.data.description}</p>
+            
+            <a 
+              href={`/blog/${latestPost.slug}`} 
+              class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+            >
+              Read more
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+    
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-6 leading-tight">More Posts</h2>
+      
+      <div class="space-y-8">
+        {olderPosts.map((post) => <BlogPostCard post={post} />)}
+      </div>
+    </section>
+  </div>
 </BaseLayout>

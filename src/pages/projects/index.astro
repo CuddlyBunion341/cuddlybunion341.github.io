@@ -7,9 +7,16 @@ import ProjectCard from "../../components/ProjectCard.astro";
 ---
 
 <BaseLayout>
-  {
-    allProjects.map((project) => (
-      <ProjectCard project={project} key={project.slug} />
-    ))
-  }
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-6 leading-tight">Projects</h1>
+    <p class="mb-8">A collection of personal projects I've worked on.</p>
+    
+    <div class="flex flex-col gap-6 mb-8">
+      {
+        allProjects.map((project) => (
+          <ProjectCard project={project} key={project.slug} />
+        ))
+      }
+    </div>
+  </div>
 </BaseLayout>

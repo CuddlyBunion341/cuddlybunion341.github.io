@@ -1,9 +1,10 @@
 ---
 const { title } = Astro.props.frontmatter || Astro.props;
 import { ViewTransitions } from "astro:transitions";
+import Footer from "../components/Footer.astro";
 ---
 
-<html lang="en">
+<html lang="en" class="min-h-screen">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,10 +16,25 @@ import { ViewTransitions } from "astro:transitions";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <style is:global>
+      h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+      }
+      
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      
+      main {
+        flex: 1;
+      }
+    </style>
   </head>
   <body id="top">
     <header class="mb-5">
-      <div class="container">
+      <div class="container mx-auto px-4">
         <nav class="text-center my-2">
           <a
             class={`underline ml-2 font-bold hidden sm:inline-block ${Astro.url.pathname == "/" ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
@@ -82,11 +98,10 @@ import { ViewTransitions } from "astro:transitions";
         </nav>
       </div>
     </header>
-    <div class="flex my-5">
-      <main class="container mx-auto">
-        <slot />
-      </main>
-    </div>
+    <main>
+      <slot />
+    </main>
+    <Footer />
     <slot name="after-main" />
   </body>
 </html>

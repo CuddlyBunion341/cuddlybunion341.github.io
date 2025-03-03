@@ -10,15 +10,15 @@ let { tag, path, count, active } = Astro.props;
 path = path ?? ((tag: string) => `/tags/${tag}`);
 
 const baseClasses =
-	"text-sm rounded-full py-0.5 px-2 mr-2 my-1 whitespace-nowrap flex items-center";
+	"text-sm rounded py-1 px-3 mr-2 my-1 whitespace-nowrap flex items-center transition-colors";
 const variants = {
 	enabled: {
-		active: `${baseClasses} bg-blue-500 text-white border-blue-500`,
-		inactive: `${baseClasses} bg-blue-500 text-white border-blue-800`,
+		active: `${baseClasses} bg-blue-500 text-white hover:bg-blue-600`,
+		inactive: `${baseClasses} bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600`,
 	},
 	disabled: {
-		active: `${baseClasses} bg-gray-700 text-gray-400 cursor-not-allowed border-blue-500`,
-		inactive: `${baseClasses} bg-gray-700 text-gray-400 cursor-not-allowed border-blue-800`,
+		active: `${baseClasses} bg-gray-200 text-gray-500 cursor-not-allowed opacity-60`,
+		inactive: `${baseClasses} bg-gray-200 text-gray-500 cursor-not-allowed opacity-60`,
 	},
 };
 
@@ -33,7 +33,7 @@ const tagClasses = (disabled: boolean, active: boolean) => {
 	{tag}
 	{
 		count !== undefined && count > 0 && (
-			<span class="text-xs ml-1">{count}</span>
+			<span class="text-xs ml-2 bg-white text-blue-700 dark:bg-gray-800 dark:text-gray-200 rounded-full px-1.5 py-0.5 min-w-[20px] text-center">{count}</span>
 		)
 	}
 </a>

@@ -3,38 +3,50 @@ import EducationElement from "./EducationElement.astro";
 ---
 
 <section>
-  <h2>Education</h2>
+  <h2 class="text-2xl font-bold mb-6 leading-tight">Education & Experience</h2>
 
-  <ul>
-    <EducationElement
-      year="2019"
-      title="Startup Bootcamp"
-      tags={["Native", "Kotlin", "Java", "Json"]}
-      >Attended a 2 week Universum Startup Bootcamp in Munich with folks from
-      Russia organized by Google engineers. In a small team we quickly
-      prototyped a android application for procrastinators. The project never
-      went live.
-    </EducationElement>
+  <div class="relative ml-2">
+    <div class="absolute left-0 top-0 h-full w-0.5 bg-blue-200 dark:bg-blue-800"></div>
+    
+    <ul class="space-y-8">
+      <EducationElement
+        year="2019"
+        title="Startup Bootcamp"
+        tags={["Native", "Kotlin", "Java", "Json"]}
+        >
+        <p class="mb-3 text-gray-600 dark:text-gray-300">
+          Attended a 2 week Universum Startup Bootcamp in Munich with folks from
+          Russia organized by Google engineers. In a small team we quickly
+          prototyped a android application for procrastinators. The project never
+          went live.
+        </p>
+      </EducationElement>
 
-    <EducationElement
-      year="2019 - 2023"
-      title="Software Engineer EFZ"
-      tags={["Java"]}
-    >
-      Economics / Software Enginnering high school in Zurich. Learning weeks in
-      ZLI, IT lessons at BZZ
-      <ul>
-        <li>Grade average 4.9</li>
-        <li>Engineering average 5.4</li>
-      </ul>
-    </EducationElement>
+      <EducationElement
+        year="2019 - 2023"
+        title="Software Engineer EFZ"
+        tags={["Java"]}
+      >
+        <p class="mb-3 text-gray-600 dark:text-gray-300">
+          Economics / Software Engineering high school in Zurich. Learning weeks in
+          ZLI, IT lessons at BZZ
+        </p>
+        <ul class="list-disc pl-5 mb-3 text-gray-600 dark:text-gray-300">
+          <li>Grade average 4.9</li>
+          <li>Engineering average 5.4</li>
+        </ul>
+      </EducationElement>
 
-    <EducationElement
-      year="2023 - 2024"
-      title="Software Engineering Internship at Renuo"
-      tags={["Ruby on Rails", "React", "Bootstrap", "Stimulus", "Turbo"]}
-      >Spezialized Web development, Ruby on Rails. Various smaller client
-      projects. Attended conferences.
-    </EducationElement>
-  </ul>
+      <EducationElement
+        year="2023 - 2024"
+        title="Software Engineering Internship at Renuo"
+        tags={["Ruby on Rails", "React", "Bootstrap", "Stimulus", "Turbo"]}
+        >
+        <p class="mb-3 text-gray-600 dark:text-gray-300">
+          Specialized Web development, Ruby on Rails. Various smaller client
+          projects. Attended conferences.
+        </p>
+      </EducationElement>
+    </ul>
+  </div>
 </section>
