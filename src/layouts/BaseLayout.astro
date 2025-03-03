@@ -15,6 +15,11 @@ import { ViewTransitions } from "astro:transitions";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <style is:global>
+      h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+      }
+    </style>
   </head>
   <body id="top">
     <header class="mb-5">
