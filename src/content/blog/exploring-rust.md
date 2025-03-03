@@ -54,7 +54,7 @@ In `Cargo.toml`, you can define feature flags like this:
 [features] 
 egui_layer = []
 terrain_visualizer = ["egui_layer"]
-renet_visualizer = ["egui_layer"]`
+renet_visualizer = ["egui_layer"]
 ```
   
 
