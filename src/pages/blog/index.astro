@@ -2,11 +2,43 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import BlogPostCard from "@components/BlogPostCard.astro";
-import BlogTagList from "@components/BlogTagList.astro";
+import { Image } from "astro:assets";
+import Tags from "@components/Tags.astro";
+
 const allBlogPosts = await getCollection("blog");
+const sortedPosts = allBlogPosts.sort((a, b) => new Date(b.data.publishedAt) > new Date(a.data.publishedAt) ? 1 : -1);
+const latestPost = sortedPosts[0];
+const olderPosts = sortedPosts.slice(1);
 ---
 
 <BaseLayout>
-  <BlogTagList activeTag={""} />
-  {allBlogPosts.map((post) => <BlogPostCard post={post} />)}
+  <section class="latest-post mb-12">
+    <h2 class="text-3xl font-bold mb-6">Latest Post</h2>
+    <article class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+      <a href={`/blog/${latestPost.slug}`} class="text-primary">
+        <Image
+          class="rounded-xl w-full mb-6"
+          src={latestPost.data.heroImage}
+          inferSize={true}
+          alt={latestPost.data.title}
+        />
+      </a>
+      <h1 class="text-2xl font-bold mb-2">{latestPost.data.title}</h1>
+      <div class="flex items-center mb-4">
+        <span class="text-sm mr-4">
+          📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
+        </span>
+        <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
+      </div>
+      <p class="mb-4">{latestPost.data.description}</p>
+      <a href={`/blog/${latestPost.slug}`} class="text-primary font-medium">
+        Read more →
+      </a>
+    </article>
+  </section>
+  
+  <section class="older-posts">
+    <h2 class="text-2xl font-bold mb-6">More Posts</h2>
+    {olderPosts.map((post) => <BlogPostCard post={post} />)}
+  </section>
 </BaseLayout>
