@@ -3,9 +3,9 @@ import QA from "./QA.astro";
 ---
 
 <section>
-  <h2>FAQ</h2>
+  <h2 class="text-2xl font-bold mb-6 leading-tight">Frequently Asked Questions</h2>
 
-  <ul>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <QA
       question="Random tip?"
       answer="Remap capslock to escape, it's a game changer for vim users."
@@ -26,5 +26,5 @@ import QA from "./QA.astro";
       question="What is the best game of all time?"
       answer="Minecraft without hesitation. You really gotta try it."
     />
-  </ul>
+  </div>
 </section>
