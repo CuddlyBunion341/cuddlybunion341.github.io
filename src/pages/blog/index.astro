@@ -7,7 +7,16 @@ import Tags from "@components/Tags.astro";
 
 const allBlogPosts = await getCollection("blog");
 const sortedPosts = allBlogPosts.sort((a, b) => new Date(b.data.publishedAt) > new Date(a.data.publishedAt) ? 1 : -1);
-const latestPost = sortedPosts[0];
+const latestPost = sortedPosts[0] || {
+  slug: "",
+  data: {
+    title: "",
+    description: "",
+    heroImage: "",
+    publishedAt: "",
+    tags: [],
+  }
+};
 const olderPosts = sortedPosts.slice(1);
 ---
 
