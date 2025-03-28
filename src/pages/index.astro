@@ -2,7 +2,6 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import ProjectCard from "@components/ProjectCard.astro";
-import BlogPostCard from "@components/BlogPostCard.astro";
 import { Image } from "astro:assets";
 
 const posts = await getCollection("blog");
