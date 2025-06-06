@@ -1,26 +1,21 @@
 ---
-import Tags from "./Tags.astro";
-
 interface Props {
   year: string;
   title: string;
-  tags: string[];
 }
 
-const { year, title, tags } = Astro.props;
+const { year, title } = Astro.props;
 ---
 
-<li class="pl-6 py-2 relative">
-  <span class="absolute w-5 h-5 bg-blue-500 rounded-full -left-2.5 border-4 border-white dark:border-gray-800 z-10"></span>
+<li>
+  <span></span>
   
-  <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm">
-    <span class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 block">{year}</span>
-    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{title}</h3>
+  <div>
+    <span>{year}</span>
+    <h3>{title}</h3>
     
-    <div class="mb-4">
+    <div>
       <slot />
     </div>
-    
-    <Tags tags={tags} path={(tag) => `/tags/${tag}`} />
   </div>
 </li>

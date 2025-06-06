@@ -1,22 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCardGrid from "../../components/ProjectCardGrid.astro";
 import { getCollection } from "astro:content";
-const allProjects = await getCollection("projects");
 
-import ProjectCard from "../../components/ProjectCard.astro";
+const projects = await getCollection("projects");
 ---
 
-<BaseLayout>
-  <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold mb-6 leading-tight">Projects</h1>
-    <p class="mb-8">A collection of personal projects I've worked on.</p>
+<BaseLayout title="Projects">
+  <div>
+    <h1>Projects</h1>
+    <p>A collection of personal projects I've worked on.</p>
     
-    <div class="flex flex-col gap-6 mb-8">
-      {
-        allProjects.map((project) => (
-          <ProjectCard project={project} key={project.slug} />
-        ))
-      }
+    <div>
+      {projects.map((project) => (
+        <ProjectCardGrid project={project} />
+      ))}
     </div>
   </div>
 </BaseLayout>

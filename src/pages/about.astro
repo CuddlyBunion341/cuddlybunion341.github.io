@@ -1,29 +1,29 @@
 ---
-import BaseLayout from "src/layouts/BaseLayout.astro";
-import SectionEducation from "@components/SectionEducation.astro";
-import SectionQA from "@components/SectionQA.astro";
-import SectionIntro from "@components/SectionIntro.astro";
-import SectionContact from "@components/SectionContact.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
-  <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold mb-6 leading-tight">About Me</h1>
+<BaseLayout title="About">
+  <div>
+    <h1>About Me</h1>
     
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-      <SectionIntro />
+    <div>
+      <h2>Background</h2>
+      <p>Information about my background and experience.</p>
     </div>
     
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-      <SectionEducation />
+    <div>
+      <h2>Skills</h2>
+      <p>My technical skills and competencies.</p>
     </div>
     
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-      <SectionQA />
+    <div>
+      <h2>Education</h2>
+      <p>My educational background.</p>
     </div>
     
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-      <SectionContact />
+    <div>
+      <h2>Interests</h2>
+      <p>My personal interests and hobbies.</p>
     </div>
   </div>
 </BaseLayout>

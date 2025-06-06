@@ -1,25 +1,25 @@
 ---
-import { getCollection } from "astro:content";
-import HeroImage from "./HeroImage.astro";
-const allProjectTiles = await getCollection("projects");
+const { project } = Astro.props;
 ---
 
-{
-  allProjectTiles.map(async (project) => (
-    <article class="project-tile border p-5 my-5 rounded-xl">
-      <h3>{project.data.name}</h3>
-      <p>{project.data.description}</p>
-      <ul>
-        {project.data.tags.map((tag: string) => (
-          <li>{tag}</li>
-        ))}
-      </ul>
-      <a href={`/projects/${project.slug}`} class="w-[50%]">
-        <HeroImage
-          imagePath={project.data.heroImage}
-          altText={project.data.name}
-        />
-      </a>
-    </article>
-  ))
-}
+<article>
+  <h3>{project.data.name}</h3>
+  
+  <p>{project.data.description}</p>
+  
+  {project.data.demo && (
+    <a href={project.data.demo} target="_blank" rel="noopener noreferrer">
+      Live Demo
+    </a>
+  )}
+  
+  {project.data.github && (
+    <a href={project.data.github} target="_blank" rel="noopener noreferrer">
+      GitHub
+    </a>
+  )}
+  
+  <a href={`/projects/${project.slug}`}>
+    Read More
+  </a>
+</article>

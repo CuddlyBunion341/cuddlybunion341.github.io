@@ -4,95 +4,54 @@ import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 ---
 
-<html lang="en" class="min-h-screen">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
-    <style is:global>
-      h1, h2, h3, h4, h5, h6 {
-        line-height: 1.2;
-      }
-      
-      body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      
-      main {
-        flex: 1;
-      }
-    </style>
   </head>
   <body id="top">
-    <header class="mb-5">
-      <div class="container mx-auto px-4">
-        <nav class="text-center my-2">
+    <header>
+      <div>
+        <nav>
           <a
-            class={`underline ml-2 font-bold hidden sm:inline-block ${Astro.url.pathname == "/" ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/">Home</a
           >
           <a
-            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/about") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/about">About</a
           >
           <a
-            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/uses") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/uses">Uses</a
           >
           <a
-            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/tags") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/tags">Tags</a
           >
           <a
-            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/til") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/til">TIL</a
           >
           <a
-            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/blog") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/blog">Blog</a
           >
           <a
-            class={`underline ml-2 font-bold ${Astro.url.pathname.startsWith("/projects") ? "text-blue-500 decoration-blue-500" : "decoration-white"}`}
             href="/projects">Projects</a
           >
         </nav>
-        <nav class="py-2 border-y text-lg">
-          <a href="/" class="font-bold">
-            <i class="devicon-astro-plain"></i>
+        <nav>
+          <a href="/">
             CB341.DEV</a
           >
-          <div class="float-right">
+          <div>
             <a href="https://www.codewars.com/users/CuddlyBunion341">
-              <!-- prettier-ignore -->
-              <svg class="inline" width="28" height="28.5" viewBox="0 0 30 32" xmlns="http://www.w3.org/2000/svg" style="top: -5px; position: relative;">
-                <g id="Group">
-                    <g id="g1">
-                        <path id="Path" fill="none" stroke="none" d="M 30.999973 33.999973 L -1.000005 33.999973 C -2.105004 33.999973 -3.000004 33.104973 -3.000004 31.999975 L -3.000004 -4e-06 C -3.000004 -1.105003 -2.105004 -2.000004 -1.000005 -2.000004 L 30.999973 -2.000004 C 32.104973 -2.000004 32.999973 -1.105003 32.999973 -4e-06 L 32.999973 31.999975 C 32.999973 33.104973 32.104973 33.999973 30.999973 33.999973 Z"/>
-                        <path id="path1" fill="#ffffff" stroke="none" d="M 16.999983 15.999985 C 16.999983 17.104555 16.104555 17.999983 14.999985 17.999983 C 13.895414 17.999983 12.999987 17.104555 12.999987 15.999985 C 12.999987 14.895414 13.895414 13.999987 14.999985 13.999987 C 16.104555 13.999987 16.999983 14.895414 16.999983 15.999985 Z"/>
-                        <path id="path2" fill="#ffffff" stroke="none" d="M 14.566984 16.249985 C 12.851986 14.207987 12.487988 10.921989 13.870987 8.348991 C 14.518984 7.046989 15.585985 5.950993 16.830984 5.17099 C 18.102983 4.446991 19.575983 3.970993 21.062981 4.015991 C 24.040981 3.985992 26.917976 5.783993 28.208977 8.37499 C 29.559978 10.940989 29.245975 14.185987 27.557976 16.249985 L 26.691978 15.750984 C 27.488976 13.583986 27.183975 11.289989 26.039978 9.626989 C 24.891975 7.974991 23.00198 6.951992 21.060982 6.994991 C 19.141983 6.99799 17.242983 7.999989 16.137985 9.654989 C 14.998985 11.304989 14.692986 13.557987 15.431984 15.749985 Z"/>
-                        <path id="path3" fill="#ffffff" stroke="none" d="M 14.999985 16.499985 C 12.373987 16.963985 9.345989 15.636984 7.809988 13.151987 C 7.005991 11.939987 6.59099 10.466988 6.537991 8.998989 C 6.54699 7.534988 6.870991 6.021992 7.65399 4.755993 C 9.116989 2.161995 12.112988 0.569996 15.001986 0.746994 C 17.899982 0.859993 20.55298 2.753994 21.496981 5.248993 L 20.62998 5.749992 C 19.151983 3.976994 17.012983 3.092995 15.000984 3.252995 C 12.995987 3.420994 11.164988 4.54599 10.231989 6.24799 C 9.274988 7.911991 9.193989 10.056988 10.074989 11.840986 C 10.933987 13.651987 12.732986 15.043985 14.999985 15.498985 Z"/>
-                        <path id="path4" fill="#ffffff" stroke="none" d="M 15.432985 16.249985 C 14.521984 18.755983 11.858986 20.713984 8.937988 20.802982 C 7.48699 20.892982 6.002991 20.516983 4.705992 19.827982 C 3.442992 19.087982 2.293993 18.050983 1.588993 16.739985 C 0.074994 14.175987 0.192994 10.784988 1.790994 8.37199 C 3.337993 5.918991 6.304991 4.567993 8.936989 4.997993 L 8.937988 5.99799 C 6.662991 6.390991 4.827991 7.801991 3.960993 9.624989 C 3.103992 11.444988 3.162992 13.592987 4.170991 15.252985 C 5.133991 16.913984 6.94999 18.056982 8.935989 18.185984 C 10.933987 18.347982 13.038986 17.485985 14.566984 15.749985 Z"/>
-                        <path id="path5" fill="#ffffff" stroke="none" d="M 15.432985 15.749985 C 17.147984 17.791985 17.511982 21.07798 16.128984 23.65098 C 15.480986 24.952978 14.413984 26.048979 13.168987 26.828976 C 11.896986 27.552979 10.423988 28.028976 8.936989 27.983978 C 5.95899 28.013977 3.081992 26.215979 1.790994 23.624981 C 0.439994 21.058981 0.753994 17.813984 2.441994 15.749985 L 3.307992 16.248985 C 2.510992 18.415983 2.815992 20.709982 3.959992 22.37298 C 5.107991 24.024982 6.997991 25.047979 8.938988 25.00498 C 10.857986 25.001978 12.756987 23.999981 13.861986 22.34498 C 15.000984 20.694983 15.306984 18.441982 14.567986 16.249985 Z"/>
-                        <path id="path6" fill="#ffffff" stroke="none" d="M 14.999985 15.499985 C 17.625982 15.035984 20.65398 16.362986 22.189981 18.847982 C 22.99398 20.059982 23.408981 21.532982 23.461983 23.00098 C 23.45298 24.464981 23.128983 25.97798 22.345982 27.243977 C 20.88298 29.837978 17.886982 31.429976 14.997984 31.252974 C 12.099987 31.139975 9.446989 29.245975 8.502989 26.750977 L 9.368988 26.249979 C 10.846987 28.022976 12.985987 28.906979 14.997984 28.746979 C 17.002983 28.578976 18.833982 27.453976 19.766983 25.751978 C 20.723982 24.087982 20.804981 21.942982 19.923983 20.158983 C 19.065983 18.346983 17.266983 16.954985 14.999985 16.499985 Z"/>
-                        <path id="path7" fill="#ffffff" stroke="none" d="M 14.566984 15.749985 C 15.477985 13.243986 18.140984 11.285988 21.061981 11.196989 C 22.512981 11.106989 23.996983 11.482988 25.293976 12.171988 C 26.556976 12.911987 27.705978 13.948986 28.410976 15.259985 C 29.924976 17.823984 29.806976 21.214981 28.208977 23.627981 C 26.661976 26.08098 23.694981 27.431976 21.062981 27.001976 L 21.061981 26.001978 C 23.336983 25.60898 25.171978 24.197983 26.038979 22.374981 C 26.895977 20.554983 26.836979 18.406982 25.828976 16.746984 C 24.865978 15.085985 23.04998 13.942987 21.06398 13.813986 C 19.065983 13.651987 16.960983 14.513987 15.432985 16.249985 Z"/>
-                    </g>
-                </g>
-            </svg>
+              Codewars
             </a>
             <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/">
-              <i class="devicon-linkedin-plain"></i>
+              LinkedIn
             </a>
             <a href="https://github.com/CuddlyBunion341">
-              <i class="devicon-github-original"></i></a
+              GitHub</a
             >
           </div>
         </nav>
