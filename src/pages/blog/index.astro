@@ -19,43 +19,37 @@ const olderPosts = sortedPosts.slice(1);
 ---
 
 <BaseLayout title="Blog">
-  <div>
-    <h1>Latest Blog Post</h1>
-    
-    <section>
-      <article>
-        <div>
-          <a href={`/blog/${latestPost.slug}`}>
-            <h3>{latestPost.data.title}</h3>
-          </a>
-          
-          <div>
-            <span>
-              📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
-            </span>
-            <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
-          </div>
-          
-          <p>{latestPost.data.description}</p>
-          
-          <a 
-            href={`/blog/${latestPost.slug}`}
-          >
-            Read more
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-      </article>
-    </section>
-    
-    <section>
-      <h2>More Posts</h2>
+  <h1>Latest Blog Post</h1>
+  
+  <section>
+    <article>
+      <a href={`/blog/${latestPost.slug}`}>
+        <h3>{latestPost.data.title}</h3>
+      </a>
       
-      <div>
-        {olderPosts.map((post) => <BlogPostCard post={post} />)}
+      <div class="meta">
+        <span>
+          📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
+        </span>
+        <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
       </div>
-    </section>
-  </div>
+      
+      <p>{latestPost.data.description}</p>
+      
+      <a href={`/blog/${latestPost.slug}`} class="action-link">
+        Read more
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </article>
+  </section>
+  
+  <section>
+    <h2>More Posts</h2>
+    
+    <div>
+      {olderPosts.map((post) => <BlogPostCard post={post} />)}
+    </div>
+  </section>
 </BaseLayout>

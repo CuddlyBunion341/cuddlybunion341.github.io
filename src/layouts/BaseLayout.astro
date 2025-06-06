@@ -12,55 +12,371 @@ import Footer from "../components/Footer.astro";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Georgia, 'Times New Roman', serif;
+        line-height: 1.65;
+        color: #222;
+        background: #fff;
+        font-size: 18px;
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      /* Typography */
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: #000;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 3rem 0 1.5rem 0;
+        color: #000;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 2rem 0 1rem 0;
+        color: #000;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+
+      /* Header and Navigation */
+      header {
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+
+      .site-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #000;
+        text-decoration: none;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .site-title:hover {
+        color: #e74c3c;
+      }
+
+      .main-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .main-nav a {
+        text-decoration: none;
+        color: #666;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.2s;
+      }
+
+      .main-nav a:hover {
+        color: #e74c3c;
+      }
+
+      .social-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .social-nav a {
+        color: #999;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .social-nav a:hover {
+        color: #e74c3c;
+      }
+
+      /* Links */
+      a {
+        color: #e74c3c;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* Content sections */
+      section {
+        margin-bottom: 4rem;
+      }
+
+      /* Articles and posts */
+      article {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      article:last-child {
+        border-bottom: none;
+      }
+
+      article h3 a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      article h3 a:hover {
+        color: #e74c3c;
+      }
+
+      /* Meta information */
+      .meta {
+        color: #999;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+
+      /* Tags */
+      .tags {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-left: 1rem;
+      }
+
+      .tag {
+        background: #f8f8f8;
+        color: #666;
+        padding: 0.2rem 0.6rem;
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-style: normal;
+        border-radius: 3px;
+        transition: all 0.2s;
+      }
+
+      .tag:hover {
+        background: #e74c3c;
+        color: #fff;
+      }
+
+      /* Buttons and action links */
+      .button, .action-link {
+        display: inline-block;
+        background: #000;
+        color: #fff;
+        padding: 0.8rem 1.5rem;
+        text-decoration: none;
+        font-weight: 500;
+        margin: 0.5rem 0.5rem 0.5rem 0;
+        transition: background-color 0.2s;
+        font-size: 0.9rem;
+      }
+
+      .button:hover, .action-link:hover {
+        background: #e74c3c;
+        text-decoration: none;
+      }
+
+      /* Hero section */
+      .hero {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Action buttons container */
+      .actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      /* Hide SVG icons for cleaner look */
+      svg {
+        display: none;
+      }
+
+      /* Project cards and content grids */
+      .project-grid, .blog-grid {
+        display: grid;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      /* Skills and tech sections */
+      .skills-section {
+        margin: 3rem 0;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .skill-item {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .skill-item h4 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+
+      /* Education and experience */
+      .education-item {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .education-item:last-child {
+        border-bottom: none;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid #eee;
+        text-align: center;
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive design */
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px 15px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .site-title {
+          font-size: 2rem;
+        }
+
+        .main-nav {
+          gap: 1rem;
+        }
+
+        .actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .button, .action-link {
+          width: 200px;
+          text-align: center;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Clean list styles */
+      ul, ol {
+        margin: 1rem 0;
+        padding-left: 2rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Code and technical content */
+      code {
+        background: #f8f8f8;
+        padding: 0.2rem 0.4rem;
+        font-family: 'Monaco', 'Consolas', monospace;
+        font-size: 0.9em;
+      }
+
+      pre {
+        background: #f8f8f8;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+    </style>
   </head>
-  <body id="top">
-    <header>
-      <div>
-        <nav>
-          <a
-            href="/">Home</a
-          >
-          <a
-            href="/about">About</a
-          >
-          <a
-            href="/uses">Uses</a
-          >
-          <a
-            href="/tags">Tags</a
-          >
-          <a
-            href="/til">TIL</a
-          >
-          <a
-            href="/blog">Blog</a
-          >
-          <a
-            href="/projects">Projects</a
-          >
+  <body>
+    <div class="container">
+      <header>
+        <a href="/" class="site-title">CB341.DEV</a>
+        <nav class="main-nav">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/uses">Uses</a>
+          <a href="/tags">Tags</a>
+          <a href="/til">TIL</a>
+          <a href="/blog">Blog</a>
+          <a href="/projects">Projects</a>
         </nav>
-        <nav>
-          <a href="/">
-            CB341.DEV</a
-          >
-          <div>
-            <a href="https://www.codewars.com/users/CuddlyBunion341">
-              Codewars
-            </a>
-            <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/">
-              LinkedIn
-            </a>
-            <a href="https://github.com/CuddlyBunion341">
-              GitHub</a
-            >
-          </div>
+        <nav class="social-nav">
+          <a href="https://www.codewars.com/users/CuddlyBunion341">Codewars</a>
+          <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/">LinkedIn</a>
+          <a href="https://github.com/CuddlyBunion341">GitHub</a>
         </nav>
-      </div>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <Footer />
-    <slot name="after-main" />
+      </header>
+      <main>
+        <slot />
+      </main>
+      <Footer />
+      <slot name="after-main" />
+    </div>
   </body>
 </html>

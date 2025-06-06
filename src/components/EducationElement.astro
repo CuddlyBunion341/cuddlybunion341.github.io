@@ -7,15 +7,11 @@ interface Props {
 const { year, title } = Astro.props;
 ---
 
-<li>
-  <span></span>
+<div class="education-item">
+  <div class="meta">{year}</div>
+  <h3>{title}</h3>
   
   <div>
-    <span>{year}</span>
-    <h3>{title}</h3>
-    
-    <div>
-      <slot />
-    </div>
+    <slot />
   </div>
-</li>
+</div>

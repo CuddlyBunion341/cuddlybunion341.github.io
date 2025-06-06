@@ -7,19 +7,21 @@ const { project } = Astro.props;
   
   <p>{project.data.description}</p>
   
-  {project.data.demo && (
-    <a href={project.data.demo} target="_blank" rel="noopener noreferrer">
-      Live Demo
+  <div>
+    {project.data.demo && (
+      <a href={project.data.demo} target="_blank" rel="noopener noreferrer" class="action-link">
+        Live Demo
+      </a>
+    )}
+    
+    {project.data.github && (
+      <a href={project.data.github} target="_blank" rel="noopener noreferrer" class="action-link">
+        GitHub
+      </a>
+    )}
+    
+    <a href={`/projects/${project.slug}`} class="action-link">
+      Read More
     </a>
-  )}
-  
-  {project.data.github && (
-    <a href={project.data.github} target="_blank" rel="noopener noreferrer">
-      GitHub
-    </a>
-  )}
-  
-  <a href={`/projects/${project.slug}`}>
-    Read More
-  </a>
+  </div>
 </article>

@@ -9,9 +9,9 @@ const { tags, path } = Astro.props;
 
 {
   tags.length > 0 && (
-    <nav>
+    <nav class="tags">
       {tags.map((tag) => (
-        <a href={path(tag)}>
+        <a href={path(tag)} class="tag">
           {tag}
         </a>
       ))}
