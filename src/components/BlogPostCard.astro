@@ -5,15 +5,6 @@ const { post } = Astro.props;
 <article>
   <div>
     <a href={`/blog/${post.slug}`}>
-      <img
-        src={post.data.heroImage}
-        alt={post.data.title}
-      />
-    </a>
-  </div>
-  
-  <div>
-    <a href={`/blog/${post.slug}`}>
       <h3>{post.data.title}</h3>
     </a>
     

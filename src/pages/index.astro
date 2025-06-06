@@ -63,15 +63,6 @@ const projects = await getCollection("project");
         <article>
           <div>
             <a href={`/blog/${latestPost.slug}`}>
-              <img
-                src={latestPost.data.heroImage}
-                alt={latestPost.data.title}
-              />
-            </a>
-          </div>
-          
-          <div>
-            <a href={`/blog/${latestPost.slug}`}>
               <h3>{latestPost.data.title}</h3>
             </a>
             

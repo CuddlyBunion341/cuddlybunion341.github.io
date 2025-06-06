@@ -11,7 +11,6 @@ const latestPost = sortedPosts[0] || {
   data: {
     title: "",
     description: "",
-    heroImage: "",
     publishedAt: "",
     tags: [],
   }
@@ -26,38 +25,27 @@ const olderPosts = sortedPosts.slice(1);
     <section>
       <article>
         <div>
-          <div>
-            <a href={`/blog/${latestPost.slug}`}>
-              <img
-                src={latestPost.data.heroImage}
-                alt={latestPost.data.title}
-              />
-            </a>
-          </div>
+          <a href={`/blog/${latestPost.slug}`}>
+            <h3>{latestPost.data.title}</h3>
+          </a>
           
           <div>
-            <a href={`/blog/${latestPost.slug}`}>
-              <h3>{latestPost.data.title}</h3>
-            </a>
-            
-            <div>
-              <span>
-                📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
-              </span>
-              <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
-            </div>
-            
-            <p>{latestPost.data.description}</p>
-            
-            <a 
-              href={`/blog/${latestPost.slug}`}
-            >
-              Read more
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
+            <span>
+              📅 {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
+            </span>
+            <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
           </div>
+          
+          <p>{latestPost.data.description}</p>
+          
+          <a 
+            href={`/blog/${latestPost.slug}`}
+          >
+            Read more
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
       </article>
     </section>

@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCardGrid from "../../components/ProjectCardGrid.astro";
 import { getCollection } from "astro:content";
 
-const projects = await getCollection("projects");
+const projects = await getCollection("project");
 ---
 
 <BaseLayout title="Projects">

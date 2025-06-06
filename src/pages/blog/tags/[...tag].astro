@@ -1,9 +1,8 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import Tags from "@components/Tags.astro";
-import BlogTagList from "@components/BlogTagList.astro";
+import Tags from "../../../components/Tags.astro";
+import BlogTagList from "../../../components/BlogTagList.astro";
 
 export async function getStaticPaths() {
 	const allBlogPosts = await getCollection("blog");
@@ -25,22 +24,16 @@ const { tag } = Astro.params;
 const { taggedBlogPosts } = Astro.props;
 ---
 
-<BaseLayout>
-  <div class="container">
+<BaseLayout title={`Posts tagged with ${tag}`}>
+  <div>
     <BlogTagList activeTag={tag} />
     {
     taggedBlogPosts.map((post) => (
-    <article class="rounded-xl my-5 first:mt-0">
-      <a href={`/blog/${post.slug}`} class="text-primary underline">
-        <Image
-            class="rounded-xl mt-5"
-            src={post.data.heroImage}
-            inferSize={true}
-            alt={post.data.title}
-            />
+    <article>
+      <a href={`/blog/${post.slug}`}>
+        <h1>{post.data.title}</h1>
       </a>
-      <h1 class="font-bold leading-tight">{post.data.title}</h1>
-      <span class="text-sm">
+      <span>
         📅
         {new Date(post.data.publishedAt)
         .toLocaleDateString("en-GB")
