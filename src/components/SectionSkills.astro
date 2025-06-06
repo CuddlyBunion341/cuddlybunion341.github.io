@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-const projects = await getCollection("project");
+const projects = await getCollection("projects");
 const languages = [...new Set(projects.flatMap((p) => p.data.tags))];
 ---
 

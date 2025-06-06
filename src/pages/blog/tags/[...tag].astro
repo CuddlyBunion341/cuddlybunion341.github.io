@@ -34,7 +34,6 @@ const { taggedBlogPosts } = Astro.props;
         <h1>{post.data.title}</h1>
       </a>
       <span>
-        📅
         {new Date(post.data.publishedAt)
         .toLocaleDateString("en-GB")
         .split("/")

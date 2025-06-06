@@ -1,7 +1,7 @@
 ---
 title: "Extending Hotwire beyond Ruby on Rails"
 publishedAt: 2024-08-03
-description: "Implementing Turbo Streams in a BunJS application"
+description: "Discover how to implement Hotwire's Turbo Streams and Stimulus in a BunJS application, proving that reactive web development isn't exclusive to Rails. Learn to build real-time chat functionality using WebSockets, Turbo Streams for DOM updates, and Stimulus controllers for interactive behavior. A practical guide that demonstrates the versatility of Hotwire technologies beyond the Ruby ecosystem."
 heroImage: "https://images.unsplash.com/photo-1541358150975-668b4a0531c4?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 tags: ["bunjs", "hotwire", "websockets"]
 ---
@@ -10,13 +10,13 @@ tags: ["bunjs", "hotwire", "websockets"]
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/07t16uvg252gn2vhn6ox.gif)
 
 
-This blog article is inspired by a [Hotwire Turbo streams tutorial for Sinatra](https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/ "https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/").
+This blog article is inspired by a [Hotwire Turbo streams tutorial for Sinatra](https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/ "https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/").
 
-When you search for Hotwire tutorials on Google, you’ll find that most of the results are related to Ruby on Rails. Even the Hotwire guides predominantly use Ruby on Rails as an example for implementing Turbo Streams.
+When you search for Hotwire tutorials on Google, you'll find that most of the results are related to Ruby on Rails. Even the Hotwire guides predominantly use Ruby on Rails as an example for implementing Turbo Streams.
 
 This does not really come as a surprise, as the framework has been created by the same company behind the Ruby on Rails framework.
 
-However, it’s important to recognize that Hotwire is not exclusively a Rails framework. In this blog article, I aim to convince you that Hotwire can be used beyond the Rails context, especially Turbo, its core feature.
+However, it's important to recognize that Hotwire is not exclusively a Rails framework. In this blog article, I aim to convince you that Hotwire can be used beyond the Rails context, especially Turbo, its core feature.
 
 ## Goals
 
@@ -32,7 +32,7 @@ In this blog article, I will explain:
 
 Initially, I considered using Java Spring for this blog, but I encountered challenges with Web Sockets. Instead, I opted for a much simpler TypeScript application.
 
-Let’s start by initializing a new BunJS application:
+Let's start by initializing a new BunJS application:
 
 ```bash
 mkdir bunjs-turbo-demo
@@ -40,7 +40,7 @@ cd bunjs-turbo-demo
 bun init
 ```
 
-Now, let’s run the application:
+Now, let's run the application:
 
 ```bash
 bun run index.ts
@@ -49,11 +49,11 @@ Hello via Bun!
 
 ## Step 2: Implement a Simple Web Socket / HTTP Server with BunJS
 
-Web Sockets serve as the backbone for real-time communication in our project. In this step, we’ll create a basic Web socket HTTP server using Bun. Web Sockets are essential for enabling bidirectional communication between clients (such as web browsers) and the server.
+Web Sockets serve as the backbone for real-time communication in our project. In this step, we'll create a basic Web socket HTTP server using Bun. Web Sockets are essential for enabling bidirectional communication between clients (such as web browsers) and the server.
 
 ### The Multiple Publisher - Multiple Subscriber Pattern
 
-Our approach involves implementing the **multiple publisher - multiple subscriber pattern**. Here’s how it works:
+Our approach involves implementing the **multiple publisher - multiple subscriber pattern**. Here's how it works:
 
 1. **Client Interaction**:
     * Clients (users' web browsers) initiate actions, such as sending chat messages or requesting updates.   
@@ -78,7 +78,7 @@ Here is a simple sequence diagram showing the core idea of this project:
 
 ### Implement the server
 
-For brevity, I’ve omitted the code for view helpers such as `layoutHTML` and `chatRoomHTML`. These helpers handle rendering HTML components and chat room layouts. While important, their details won’t significantly impact the core concepts discussed in this blog.
+For brevity, I've omitted the code for view helpers such as `layoutHTML` and `chatRoomHTML`. These helpers handle rendering HTML components and chat room layouts. While important, their details won't significantly impact the core concepts discussed in this blog.
 
 ```ts
 const topic = "chatroom";
@@ -150,7 +150,7 @@ As you can see here, every change in UI needs to be manually implemented. At the
 
 ### Step 3: Implement Turbo streams
 
-[Turbo](https://turbo.hotwired.dev/ "https://turbo.hotwired.dev/") is a vital part of the Hotwire Framework. It enables you to dramatically reduce the amount of custom JavaScript you need to write.
+[Turbo](https://turbo.hotwired.dev/ "https://turbo.hotwired.dev/") is a vital part of the Hotwire Framework. It enables you to dramatically reduce the amount of custom JavaScript you need to write.
 
 The most relevant feature for this application are the turbo streams. They enable us to deliver page changes in the form of HTML over the wire.
 
@@ -162,7 +162,7 @@ Importing Turbo is as simple as including this snippet of code inside our layout
 </script>
 ```
 
-In order to use Web Sockets for Turbo streams in the frontend, we can use the following snippet from the [stream documentation](https://turbo.hotwired.dev/handbook/streams "https://turbo.hotwired.dev/handbook/streams"):
+In order to use Web Sockets for Turbo streams in the frontend, we can use the following snippet from the [stream documentation](https://turbo.hotwired.dev/handbook/streams "https://turbo.hotwired.dev/handbook/streams"):
 
 ```html
 <turbo-stream-source src="ws://localhost:8080/subscribe" />
@@ -180,13 +180,13 @@ In order to update the UI when a message is sent, we broadcast the following HTM
 </turbo-stream>
 ```
 
-This method of HTML updates stands out for its transparency and simplicity. Firstly, we select an element with the `#chat-feed` selector and then `append` to it the contents of the broadcasted template. In this case, a paragraph containing the user message. This also eliminates _almost_ all the client-side JavaScript needed for page update.
+This method of HTML updates stands out for its transparency and simplicity. Firstly, we select an element with the `#chat-feed` selector and then `append` to it the contents of the broadcasted template. In this case, a paragraph containing the user message. This also eliminates _almost_ all the client-side JavaScript needed for page update.
 
 #### Step 4: Implement Form Controller
 
 Before introducing turbo, we added a simple event listener to reset the Form after the data has been sent to the server. We now need to bring the functionality back, but without reusing the old code. We could use a turbo-stream to reset the form or even a turbo-frame, but rather than using that, I decided to use another library of the Hotwire framework, namely Stimulus:
 
-> Stimulus is a JavaScript framework with modest ambitions. It doesn’t seek to take over your entire front-end—in fact, it’s not concerned with rendering HTML at all. Instead, it’s designed to augment your HTML with just enough behavior to make it shine. 
+> Stimulus is a JavaScript framework with modest ambitions. It doesn't seek to take over your entire front-end—in fact, it's not concerned with rendering HTML at all. Instead, it's designed to augment your HTML with just enough behavior to make it shine. 
 > 
 > [https://stimulus.hotwired.dev/](https://stimulus.hotwired.dev/ "https://stimulus.hotwired.dev/")
 
@@ -216,7 +216,7 @@ This is what the form HTML looks like, with data attributes used to attach the c
   </form>
 ```
 
-The event that works best for form submission in that case is [turbo:submit-end](https://turbo.hotwired.dev/reference/events#turbo%3Asubmit-end "https://turbo.hotwired.dev/reference/events#turbo%3Asubmit-end"). Following the documentation of [Stimulus descriptors,](https://stimulus.hotwired.dev/reference/actions#descriptors "https://stimulus.hotwired.dev/reference/actions#descriptors") we can call the `#clear()` method after the form submission event. We are not using the `submit` event because this would clear the form prematurely.
+The event that works best for form submission in that case is [turbo:submit-end](https://turbo.hotwired.dev/reference/events#turbo%3Asubmit-end "https://turbo.hotwired.dev/reference/events#turbo%3Asubmit-end"). Following the documentation of [Stimulus descriptors,](https://stimulus.hotwired.dev/reference/actions#descriptors "https://stimulus.hotwired.dev/reference/actions#descriptors") we can call the `#clear()` method after the form submission event. We are not using the `submit` event because this would clear the form prematurely.
 
 #### Conclusion
 
@@ -224,7 +224,7 @@ The event that works best for form submission in that case is [turbo:submit-end
     
 - Turbo streams enable us to update client user interfaces asynchronously without the need for any (in some cases, just very little) frontend code.
     
-- Stimulus enables us to add simple JavaScript behavior to our HTML with the use of Stimulus Controllers and data-attributes.
+- Stimulus enables us to add simple JavaScript behavior to our HTML with the use of Stimulus Controllers and data-attributes.
     
 
 #### Where can I find the source?
@@ -236,4 +236,4 @@ You can find the complete chatting application with additional features such as:
 - Real-time user list
     
 
-The GitHub Repository for this project can be found here: [https://github.com/CuddlyBunion341/bunjs-turbo-demo](https://github.com/CuddlyBunion341/bunjs-turbo-demo "https://github.com/CuddlyBunion341/bunjs-turbo-demo")
+The GitHub Repository for this project can be found here: [https://github.com/CuddlyBunion341/bunjs-turbo-demo](https://github.com/CuddlyBunion341/bunjs-turbo-demo "https://github.com/CuddlyBunion341/bunjs-turbo-demo")

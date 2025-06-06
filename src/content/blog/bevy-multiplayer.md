@@ -1,14 +1,14 @@
 ---
 title: "Multiplayer in Rust using Renet and Bevy"
 publishedAt: 2024-03-07
-description: "This is the first post of my new Astro blog."
+description: "A comprehensive guide to building multiplayer games in Rust using the Bevy game engine and Renet networking library. Learn about Entity-Component-System architecture, client-server synchronization, input handling strategies, and practical implementation of real-time multiplayer features. Perfect for developers wanting to explore game development beyond traditional web technologies."
 heroImage: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 tags: ["rust", "bevy", "multiplayer", "game"]
 ---
 
 Here at Renuo, we specialize in web technologies such as Ruby on Rails, React, Angular, and Spring. One of our core company values is continuous learning: we love exploring new technologies even beyond our usual scope of expertise.
 
-Inspired by Michael’s Unity Powerday, I decided to delve into how multiplayer games operate. As a team, we held a competition to implement FPS (First-Person Shooter) games using C# boilerplate. Initially, the sheer amount of boilerplate required felt overwhelming. Beyond that, I wanted to understand client/server data synchronization at a lower level of abstraction.
+Inspired by Michael's Unity Powerday, I decided to delve into how multiplayer games operate. As a team, we held a competition to implement FPS (First-Person Shooter) games using C# boilerplate. Initially, the sheer amount of boilerplate required felt overwhelming. Beyond that, I wanted to understand client/server data synchronization at a lower level of abstraction.
 
 My recent experiences with [Rust](https://rustlang.org/) and [Bevy](https://bevyengine.org/) convinced me to write this blog article to share my newfound learnings of game development.
 
@@ -162,11 +162,11 @@ I separated the ECS components into specific modules to structure the Bevy proje
 ```
 src
 ├── client
-│   ├── components.rs
-│   ├── events.rs
-│   ├── main.rs
-│   ├── resources.rs
-│   └── systems.rs
+│   ├── components.rs
+│   ├── events.rs
+│   ├── main.rs
+│   ├── resources.rs
+│   └── systems.rs
 ├── lib.rs
 └── server
     ├── main.rs

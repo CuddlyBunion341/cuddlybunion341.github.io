@@ -1,7 +1,7 @@
 ---
 title: "Exploring Rust: A Rubyist's Perspective"
 publishedAt: 2025-02-28
-description: "Reflecting on my journey learning Rust in my first project."
+description: "A deep dive into learning Rust as a Ruby developer, exploring the journey of building a voxel game engine with Bevy. From understanding the borrow checker to discovering the power of composition over inheritance, feature flags, and macros. Learn about the trade-offs between Ruby's simplicity and Rust's performance, memory safety, and compile-time guarantees."
 heroImage: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F1nsvwti7jyize5ltjx5j.jpg"
 tags: ["rust", "gamedev"]
 ---

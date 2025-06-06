@@ -1,7 +1,7 @@
 ---
 title: "My First Blog Post"
 publishedAt: 2022-07-01
-description: "This is the first post of my new Astro blog."
+description: "A comprehensive demonstration of Markdown syntax and formatting capabilities. This post showcases everything from basic text formatting and lists to advanced features like tables, code blocks, ASCII art, and embedded images. Perfect for testing blog layouts and understanding how different Markdown elements render in practice."
 heroImage: "https://docs.astro.build/assets/rose.webp"
 tags: ["astro", "blogging", "multiplayer"]
 ---
