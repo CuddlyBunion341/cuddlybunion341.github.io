@@ -3,89 +3,100 @@ layout: "src/layouts/BaseLayout.astro"
 title: "Today I Learned"
 ---
 
-<div class="container mx-auto px-4">
-  <h1 class="text-3xl font-bold mb-6 leading-tight">Today I Learned (TIL)</h1>
-  <p class="mb-8 text-gray-600 dark:text-gray-300">A collection of quick notes and snippets that I've learned day to day.</p>
-  
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8 prose dark:prose-invert max-w-none">
+# Today I Learned (TIL)
 
-## 20-03-2025
-- Bevy Material Extensions
-## 25-03-2025
-- Learned about `rails test -p`
+A collection of quick notes and snippets that I've learned day to day. These are small discoveries, tips, and insights that I find worth remembering.
 
-## 19-03-2025
-- Learned about `Brewfile`
+## 2025
 
-## 18-03-2025
-- Learned about `each_cons` on Ruby arrays.
+### March
 
-## 16-03-2025
-- Learned about `retain` on Rust Vectors.
+**25-03-2025**
+- **Rails Testing**: Learned about `rails test -p` for parallel test execution
 
-## 13-02-2025
+**20-03-2025** 
+- **Bevy**: Explored Material Extensions for enhanced rendering capabilities
 
-- Learned that https://css.oddbird.net/ exists.
+**19-03-2025**
+- **Homebrew**: Discovered `Brewfile` for managing package dependencies
 
-## 10-09-2024
-- **dbdiagram.io**: Discovered a tool for designing database diagrams.
-- **Snapplet seed**: Learned about Snapplet, a tool for seeding databases.
+**18-03-2025**
+- **Ruby**: Learned about `each_cons` method on arrays for consecutive element iteration
 
-## 13-09-2024
-- **TMUX**: Learned how to enter copy mode using `CTRL+S + [` in TMUX.
-- **Clipboard**: Found out that using `"+y` yanks text into the system clipboard.
+**16-03-2025**
+- **Rust**: Discovered `retain` method on Vectors for in-place filtering
 
-## 16-09-2024
-- **HTML**: Read about the `<colgroup>` element on [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup).
-- **Rails**: Understood the difference between `validates_presence_of` and `validate :foo, presence: true` in Rails.
+### February
 
-## 18-09-2024
-- **Git**: Realized that during a rebase, deleted lines can cause commits to be dropped.
-- **Ruby**: Noted that `nil.class` returns `NilClass`.
+**13-02-2025**
+- **CSS Tools**: Found [css.oddbird.net](https://css.oddbird.net/) - a great resource for CSS utilities and tools
 
-## 01-10-2024
-- **Google Docs**: Learned how to create collapsible sections using pageless mode.
+## 2024
 
-## 02-10-2024
-- **OP CLI**: Learned how to list and create items using the OP CLI.
-- **SSH**: Explored different SSH key formats.
+### November
 
-## 16-10-2024
-- **Git**: Discovered the use of `!` in `.gitignore` to include specific files.
-  ```plaintext
+**21-11-2024**
+- **LaTeX**: Used SciPoster template for discrete math cheat sheet
+- **LaTeX**: Created Hasse Diagrams with tikzpicture 
+
+**18-11-2024**
+- **GitHub**: Discovered Slash commands for GitHub Pull Requests automation
+
+**12-11-2024**
+- **Vim**: Learned to sort lines and remove duplicates using `sort u`
+- **Bitbucket**: Found the beta syntax highlighting feature
+
+**11-11-2024**
+- **Ruby Documentation**: Learned about the `@see` directive for better docs
+- **Ruby**: Discovered the `.new.tap` method for cleaner object initialization
+- **Vim**: Copy current file path to clipboard: `let @+ = expand("%:p")`
+
+**05-11-2024**
+- **Git**: How to use commit templates for standardized commit messages
+- **Postman**: Import curl commands directly into Postman
+
+### October
+
+**26-10-2024**
+- **Vim**: Mastered folding commands `zo` (open) and `zc` (close)
+
+**23-10-2024**
+- **Ruby**: Explored ECS (Entity Component System) architecture patterns
+
+**16-10-2024**
+- **Git**: Using `!` in `.gitignore` to include specific files:
+  ```
   /.env*
   !/.env*.erb
   !/.env.example
   ```
 
-## 23-10-2024
-- **Ruby**: Learned about ECS (Entity Component System) in Ruby.
+**02-10-2024**
+- **1Password CLI**: How to list and create items using the OP CLI
+- **SSH**: Explored different SSH key formats and their use cases
 
-## 26-10-2024
-- **Vim**: Learned how to use folding commands `zo` and `zc` in Vim.
+**01-10-2024**
+- **Google Docs**: Creating collapsible sections using pageless mode
 
-## 05-11-2024
-- **Git**: Discovered how to use commit templates to standardize commit messages.
-- **Postman**: Learned how to import curl commands into Postman.
+### September
 
-## 11-11-2024
-- **Ruby**: Learned about the `@see` directive for documentation.
-- **Ruby**: Discovered the `.new.tap` method for cleaner object initialization.
-- **Vim**: Found out how to copy the current file path to the clipboard using `let @+ = expand("%:p")`.
+**18-09-2024**
+- **Git**: During rebase, deleted lines can cause commits to be dropped
+- **Ruby**: `nil.class` returns `NilClass` (obvious but good to remember)
 
-## 12-11-2024
-- **Vim**: Learned how to sort lines and remove duplicates using `sort u`.
-- **Bitbucket**: Discovered the beta syntax highlighting feature in Bitbucket.
+**16-09-2024**
+- **HTML**: Deep dive into the `<colgroup>` element ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup))
+- **Rails**: Difference between `validates_presence_of` and `validate :foo, presence: true`
 
-## 18-11-2024
-- **GitHub**: Learned about Slash commands on GitHub Pull Requests
+**13-09-2024**
+- **TMUX**: Enter copy mode with `CTRL+S + [`
+- **Vim/Clipboard**: `"+y` yanks text into the system clipboard
 
-## 21-11-2024
-- **LaTeX**: SciPoster template for diskrete math cheat sheet
-- **LaTeX**: Hasse Diagramms with tikzpicture 
+**10-09-2024**
+- **Database Tools**: [dbdiagram.io](https://dbdiagram.io) for designing database diagrams
+- **Development**: Snapplet seed tool for database seeding
 
-## 03-01-2024
-- **Shell**: ls -Am
+### January
 
-</div>
-</div>
+**03-01-2024**
+- **Shell**: `ls -Am` for comma-separated listing format
