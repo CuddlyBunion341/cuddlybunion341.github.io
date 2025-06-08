@@ -17,10 +17,10 @@ const projects = await getCollection("projects");
   title="Dani Bengl - Portfolio"
   description="Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects."
 >
-  <div class="hero-section">
-    <div class="hero-content">
+  <div class="hero">
+    <div>
       <h1>Hello, I'm Dani!</h1>
-      <p class="pronouns">(they/them)</p>
+      <small>(they/them)</small>
       <p>
         I'm a full-stack software developer at <a
           href="https://www.renuo.ch/"
@@ -40,15 +40,15 @@ const projects = await getCollection("projects");
         <a href="/blog" class="button">Read Blog</a>
       </div>
     </div>
-    <div class="hero-image">
+    <figure>
       <div
-        class="profile-placeholder"
+        class="placeholder"
         role="img"
         aria-label="Profile image placeholder"
       >
         <span>Profile Image</span>
       </div>
-    </div>
+    </figure>
   </div>
 
   {
@@ -57,35 +57,41 @@ const projects = await getCollection("projects");
         <h2 id="latest-post-heading">Latest Blog Post</h2>
 
         <article>
-          <a
-            href={`/blog/${latestPost.slug}`}
-            aria-label={`Read blog post: ${latestPost.data.title}`}
-          >
-            <h3>{latestPost.data.title}</h3>
-          </a>
+          <h3>
+            <a
+              href={`/blog/${latestPost.slug}`}
+              aria-label={`Read blog post: ${latestPost.data.title}`}
+            >
+              {latestPost.data.title}
+            </a>
+          </h3>
 
           <div class="meta">
-            <span>
+            <em>
               Published on{" "}
               <time datetime={latestPost.data.publishedAt.toISOString()}>
                 {latestPost.data.publishedAt.toLocaleDateString()}
               </time>
-            </span>
+            </em>
           </div>
 
           <p>{latestPost.data.description}</p>
 
-          <a
-            href={`/blog/${latestPost.slug}`}
-            aria-label={`Continue reading ${latestPost.data.title}`}
-          >
-            Read more
-          </a>
+          <p>
+            <a
+              href={`/blog/${latestPost.slug}`}
+              aria-label={`Continue reading ${latestPost.data.title}`}
+            >
+              Read more
+            </a>
+          </p>
         </article>
 
-        <a href="/blog" aria-label="View all blog posts">
-          All Posts
-        </a>
+        <p>
+          <a href="/blog" aria-label="View all blog posts">
+            All Posts
+          </a>
+        </p>
       </section>
     )
   }
@@ -95,6 +101,8 @@ const projects = await getCollection("projects");
 
     {projects.length > 0 && <ProjectCardGrid project={projects[0]} />}
 
-    <a href="/projects" aria-label="View all projects">All Projects</a>
+    <p>
+      <a href="/projects" aria-label="View all projects">All Projects</a>
+    </p>
   </section>
 </BaseLayout>

@@ -3,10 +3,17 @@ const { post } = Astro.props;
 ---
 
 <article>
-  <h3>{post.data.title}</h3>
+  <h3>
+    <a
+      href={`/blog/${post.slug}`}
+      aria-label={`Read blog post: ${post.data.title}`}
+    >
+      {post.data.title}
+    </a>
+  </h3>
 
   <div class="meta">
-    <span>
+    <em>
       Published on <time datetime={post.data.publishedAt.toISOString()}>
         {
           new Date(post.data.publishedAt)
@@ -15,16 +22,19 @@ const { post } = Astro.props;
             .join(".")
         }
       </time>
-    </span>
+    </em>
   </div>
 
   <p>{post.data.description}</p>
 
-  <a
-    href={`/blog/${post.slug}`}
-    aria-label={`Continue reading ${post.data.title}`}
-    tabindex="0">Read more</a
-  >
+  <p>
+    <a
+      href={`/blog/${post.slug}`}
+      aria-label={`Continue reading ${post.data.title}`}
+    >
+      Read more
+    </a>
+  </p>
 </article>
 
 <style>

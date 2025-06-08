@@ -20,24 +20,26 @@ const { Content } = await entry.render();
     <h1>{entry.data.title}</h1>
 
     <div class="meta">
-      <span>
-        {
-          new Date(entry.data.publishedAt)
-            .toLocaleDateString("en-GB")
-            .split("/")
-            .join(".")
-        }
-      </span>
+      <em>
+        <time datetime={new Date(entry.data.publishedAt).toISOString()}>
+          {
+            new Date(entry.data.publishedAt)
+              .toLocaleDateString("en-GB")
+              .split("/")
+              .join(".")
+          }
+        </time>
+      </em>
       <Tags tags={entry.data.tags} path={(tag) => `/blog/tags/${tag}`} />
     </div>
 
-    <div class="blog-content">
+    <div>
       <Content />
     </div>
 
-    <div class="blog-nav">
+    <nav class="nav-links" aria-label="Blog navigation">
       <a href="/blog">Back to Blog</a>
       <a href="#top">Top</a>
-    </div>
+    </nav>
   </article>
 </BaseLayout>

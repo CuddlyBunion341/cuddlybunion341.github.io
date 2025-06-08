@@ -5,7 +5,7 @@ const projects = await getCollection("projects");
 const languages = [...new Set(projects.flatMap((p) => p.data.tags))];
 ---
 
-<section class="skills-section">
+<section>
   <h2>Tech</h2>
 
   <div class="skills-grid">

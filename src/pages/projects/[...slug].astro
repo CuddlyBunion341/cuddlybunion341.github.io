@@ -18,7 +18,7 @@ const { Content } = await entry.render();
   <article>
     <h1>{entry.data.name}</h1>
 
-    <div class="project-links">
+    <div class="actions">
       {
         entry.data.github && (
           <a
@@ -46,12 +46,12 @@ const { Content } = await entry.render();
       }
     </div>
 
-    <div class="project-content">
+    <div>
       <Content />
     </div>
 
-    <div class="blog-nav">
+    <nav class="nav-links" aria-label="Project navigation">
       <a href="/projects">Back to Projects</a>
-    </div>
+    </nav>
   </article>
 </BaseLayout>
