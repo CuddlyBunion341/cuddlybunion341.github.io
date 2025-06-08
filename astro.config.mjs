@@ -2,6 +2,7 @@ import { defineConfig, sharpImageService } from "astro/config";
 import markdownConfig from "./markdown.config";
 import mdx from "@astrojs/mdx";
 import htmlBeautifier from 'astro-html-beautifier';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,7 +31,8 @@ export default defineConfig({
       comma_first: false,
       e4x: false,
       indent_empty_lines: false
-    })
+    }),
+    sitemap()
   ],
   site: "https://cuddlybunion341.github.io",
   image: {
