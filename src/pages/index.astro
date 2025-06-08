@@ -20,7 +20,14 @@ const projects = await getCollection("projects");
   <div class="hero">
     <div>
       <h1>Hello, I'm Dani!</h1>
-      <small>(they/them)</small>
+      <small>
+        <a
+          href="https://en.pronouns.page/@CuddlyBunion341"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Learn about pronouns (opens in new tab)">(they/them)</a
+        >
+      </small>
       <p>
         I'm a full-stack software developer at <a
           href="https://www.renuo.ch/"
@@ -34,21 +41,14 @@ const projects = await getCollection("projects");
         productivity that Rails brings to development.
       </p>
 
-      <div class="actions" role="group" aria-label="Quick navigation">
-        <a href="/about" class="button">About Me</a>
-        <a href="/projects" class="button">View Projects</a>
-        <a href="/blog" class="button">Read Blog</a>
-      </div>
+      <nav class="actions" aria-label="Quick navigation">
+        <ul>
+          <li><a href="/about" class="button">About Me</a></li>
+          <li><a href="/projects" class="button">View Projects</a></li>
+          <li><a href="/blog" class="button">Read Blog</a></li>
+        </ul>
+      </nav>
     </div>
-    <figure>
-      <div
-        class="placeholder"
-        role="img"
-        aria-label="Profile image placeholder"
-      >
-        <span>Profile Image</span>
-      </div>
-    </figure>
   </div>
 
   {
