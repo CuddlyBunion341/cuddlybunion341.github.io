@@ -3,92 +3,16 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer role="contentinfo">
-  <hr />
-  <p><small>© {currentYear} CuddlyBunion341. All rights reserved.</small></p>
+  <center>
+    <hr />
+    <p><small>© {currentYear} CuddlyBunion341. All rights reserved.</small></p>
 
-  <nav aria-label="Footer social links">
-    <ul>
-      <li>
-        <a
-          href="https://github.com/CuddlyBunion341"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub profile (opens in new tab)"
-        >
-          GitHub
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://www.linkedin.com/in/daniel-bengl-aa5225221/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn profile (opens in new tab)"
-        >
-          LinkedIn
-        </a>
-      </li>
-      <li>
-        <a
-          href="/rss.xml"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="RSS Feed (opens in new tab)"
-        >
-          RSS Feed
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <a href="https://github.com/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a> | 
+    <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a> | 
+    <a href="/rss.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS Feed (opens in new tab)">RSS Feed</a>
+  </center>
 </footer>
 
 <style>
-  footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid #eee;
-    color: #999;
-    font-size: 0.9rem;
-    text-align: center;
-  }
-
-  footer nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin: 1rem 0 0 0;
-  }
-
-  footer nav ul li::after {
-    content: " | ";
-    margin-left: 1rem;
-    color: #ccc;
-  }
-
-  footer nav ul li:last-child::after {
-    content: "";
-  }
-
-  footer a {
-    color: #999;
-    text-decoration: none;
-  }
-
-  footer a:hover,
-  footer a:focus {
-    color: #e74c3c;
-  }
-
-  @media (max-width: 37.5rem) {
-    footer nav ul {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    footer nav ul li::after {
-      content: "";
-    }
-  }
+  footer a:hover { color: #e74c3c; }
 </style>
