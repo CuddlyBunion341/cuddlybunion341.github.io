@@ -23,6 +23,7 @@
     "typescript": "^5.5.3"
   },
   "devDependencies": {
+    "astro-html-beautifier": "^1.0.4",
     "astro-toc": "^0.1.3"
   }
 }
