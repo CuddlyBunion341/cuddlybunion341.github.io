@@ -2,7 +2,6 @@
 title: "My First Blog Post"
 publishedAt: 2022-07-01
 description: "A comprehensive demonstration of Markdown syntax and formatting capabilities. This post showcases everything from basic text formatting and lists to advanced features like tables, code blocks, ASCII art, and embedded images. Perfect for testing blog layouts and understanding how different Markdown elements render in practice."
-heroImage: "../../assets/blog/rose.webp"
 tags: ["astro", "blogging", "multiplayer"]
 ---
 

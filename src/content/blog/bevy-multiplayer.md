@@ -2,7 +2,6 @@
 title: "Multiplayer in Rust using Renet and Bevy"
 publishedAt: 2024-03-07
 description: "A comprehensive guide to building multiplayer games in Rust using the Bevy game engine and Renet networking library. Learn about Entity-Component-System architecture, client-server synchronization, input handling strategies, and practical implementation of real-time multiplayer features. Perfect for developers wanting to explore game development beyond traditional web technologies."
-heroImage: "../../assets/blog/bevy-multiplayer-hero.webp"
 tags: ["rust", "bevy", "multiplayer", "game"]
 ---
 

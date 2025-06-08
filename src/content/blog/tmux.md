@@ -2,7 +2,6 @@
 title: "2 Simple Configurations to Supercharge your TMUX Setup!"
 publishedAt: 2024-04-14
 description: "Transform your terminal workflow with these two game-changing tmux configurations: automatic pane resizing and intelligent dimming of inactive panes. Learn how to use tmux hooks and commands to create a seamless, modern terminal multiplexer experience that rivals integrated solutions like iTerm2 and Warp. Includes practical examples, configuration snippets, and tips for optimizing your development environment."
-heroImage: "../../assets/blog/tmux-hero.webp"
 tags: ["tmux", "terminal"]
 ---
 
