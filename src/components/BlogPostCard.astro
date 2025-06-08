@@ -3,17 +3,34 @@ const { post } = Astro.props;
 ---
 
 <article>
-  <h3>{post.data.title}</h3>
+	<h3>{post.data.title}</h3>
 
-  <div class="meta">
-    <span>
-      Published on <time datetime={post.data.publishedAt.toISOString()}>
-        {new Date(post.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
-      </time>
-    </span>
-  </div>
+	<div class="meta">
+		<span>
+			Published on <time
+				datetime={post.data.publishedAt.toISOString()}
+			>
+				{
+					new Date(post.data.publishedAt)
+						.toLocaleDateString("en-GB")
+						.split("/")
+						.join(".")
+				}
+			</time>
+		</span>
+	</div>
 
-  <p>{post.data.description}</p>
+	<p>{post.data.description}</p>
 
-  <a href={`/blog/${post.slug}`} aria-label={`Continue reading ${post.data.title}`}>Read more</a>
+	<a href={`/blog/${post.slug}`} aria-label={`Continue reading ${post.data.title}`} tabindex="0">Read more</a>
 </article>
+
+<style>
+	article:has(a:focus) {
+		outline: 2px solid blue;
+	}
+
+  a:focus {
+    outline: 0;
+  }
+</style>
