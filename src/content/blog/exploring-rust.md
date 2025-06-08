@@ -11,17 +11,16 @@ Over the last couple of months, I've been exploring low-level programming, hopin
 
 ![Early stage of development in RSMC. Renet visualiser for simultanous client/server connections.](../../assets/blog/rsmc-early-development.webp)
 
-
 ## Why Rust?
 
 Rust is one of the most appreciated programming languages, as highlighted in the [GitHub Octoverse Survey](https://octoverse.github.com/). It offers memory safety, high performance, and strong tooling, making it a solid choice for both small utilities and large-scale applications. Many of the tools I use daily, like [Alacritty](https://github.com/alacritty/alacritty) and [1Password](https://1password.com/), benefit from Rust's speed and reliability.
 
 ### Key Benefits
 
-*   **Performance:** Comparable to C and C++, but with safety mechanisms that prevent common errors.
-*   **Memory safety:** Eliminates null pointer dereferences, segmentation faults, and data races.
-*   **Modern syntax:** Readable and expressive, making it accessible despite its low-level capabilities.
-*   **Powerful tooling:** [Cargo](https://doc.rust-lang.org/cargo/) simplifies dependency management, builds, and testing.
+- **Performance:** Comparable to C and C++, but with safety mechanisms that prevent common errors.
+- **Memory safety:** Eliminates null pointer dereferences, segmentation faults, and data races.
+- **Modern syntax:** Readable and expressive, making it accessible despite its low-level capabilities.
+- **Powerful tooling:** [Cargo](https://doc.rust-lang.org/cargo/) simplifies dependency management, builds, and testing.
 
 For my voxel game, Rust's speed and safety make it an excellent choice for terrain generation, networking, and real-time interactions. Unlike dynamically typed languages such as Ruby, Rust catches entire categories of bugs at compile time, improving maintainability.
 
@@ -33,11 +32,10 @@ Since my project is built with [Bevy](https://bevyengine.org/), understanding it
 
 Some of my favorite takeaways:
 
-*   **Systems:** Keep them small and focused on one task. This way they are easier to test and extend.
-*   **Plugins:** Encapsulate resources, systems, and components into distinguishable modules.
-*   **Events:** Use events to the fullest extent to decouple systems and keep code modular.
-*   **States:** Run systems only when they are relevant (e.g., Menu, Playing). This helps with UI and logic separation. In particular this PR: [#32](https://github.com/CuddlyBunion341/rsmc/pull/32)
-    
+- **Systems:** Keep them small and focused on one task. This way they are easier to test and extend.
+- **Plugins:** Encapsulate resources, systems, and components into distinguishable modules.
+- **Events:** Use events to the fullest extent to decouple systems and keep code modular.
+- **States:** Run systems only when they are relevant (e.g., Menu, Playing). This helps with UI and logic separation. In particular this PR: [#32](https://github.com/CuddlyBunion341/rsmc/pull/32)
 
 Bevy makes structuring a game engine intuitive, and its Rust-first approach ensures safety and performance while keeping things flexible. If you're interested in learning more about the ECS approach to game development, I wrote a blog article about planning an ECS: [Multiplayer in Rust Using Renet and Bevy](https://dev.to/renuo/multiplayer-in-rust-using-renet-and-bevy-17p6).
 
@@ -50,17 +48,16 @@ In my voxel game, feature flags help manage debugging tools like wireframe rende
 In `Cargo.toml`, you can define feature flags like this:
 
 ```toml
-[features] 
+[features]
 egui_layer = []
 terrain_visualizer = ["egui_layer"]
 renet_visualizer = ["egui_layer"]
 ```
-  
 
 And then use them in your code:
 
 ```rust
-#[cfg(feature = "egui_layer")] {   
+#[cfg(feature = "egui_layer")] {
 use bevy_inspector_egui::bevy_egui::EguiPlugin;
 	app.add_plugins(DefaultPlugins);
 	app.add_plugins(EguiPlugin);
@@ -89,10 +86,10 @@ Here's an example from my terrain generator:
 pub struct NoiseFunctionParams {
   pub octaves: u32,
   pub height: f64,
-  // ... 
-}  
+  // ...
+}
 
-pub struct HeightParams {     
+pub struct HeightParams {
   pub noise: NoiseFunctionParams, // Composition!
   pub splines: Vec<Vec2>
 }
@@ -131,9 +128,7 @@ Rust isn't the easiest language to pick up. The borrow checker takes time to und
 
 One of the biggest disadvantages to me is compile times. They can be frustrating since Rust enforces strict checks, but this reduces runtime errors. There's even an [XKCD comic](https://xkcd.com/303/) about it.
 
-  ![XKCD 303 - The #1 programmer excuse for legitimately slacking off: "My code's compiling"](../../assets/blog/xkcd-compiling.webp)
-
-
+![XKCD 303 - The #1 programmer excuse for legitimately slacking off: "My code's compiling"](../../assets/blog/xkcd-compiling.webp)
 
 From my experience, Rust has its trade-offs. Catching many errors at compile time reduces debugging effort, but the strict rules and verbosity make writing new code slower compared to Ruby. That said, Rust's language servers provide excellent refactoring support, which makes working with larger projects easier.
 

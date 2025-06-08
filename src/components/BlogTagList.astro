@@ -6,24 +6,24 @@ const blogTags = allBlogPosts.map((post) => post.data.tags).flat();
 const uniqueTags = [...new Set(blogTags)];
 
 interface Props {
-	activeTag: string;
+  activeTag: string;
 }
 
 const { activeTag } = Astro.props;
 ---
 
 <div class="tag-list-container">
-	<Tags
-		tags={uniqueTags}
-		path={(tag) => `/blog/tags/${tag}`}
-		taggedCount={(tag: string) =>
-			allBlogPosts.filter((post) => post.data.tags.includes(tag)).length}
-		activeTag={activeTag}
-	/>
+  <Tags
+    tags={uniqueTags}
+    path={(tag) => `/blog/tags/${tag}`}
+    taggedCount={(tag: string) =>
+      allBlogPosts.filter((post) => post.data.tags.includes(tag)).length}
+    activeTag={activeTag}
+  />
 </div>
 
 <style>
-	.tag-list-container {
-		margin-bottom: 2rem;
-	}
+  .tag-list-container {
+    margin-bottom: 2rem;
+  }
 </style>

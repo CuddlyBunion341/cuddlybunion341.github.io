@@ -5,7 +5,9 @@ import BlogPostCard from "../../components/BlogPostCard.astro";
 import Tags from "../../components/Tags.astro";
 
 const allBlogPosts = await getCollection("blog");
-const sortedPosts = allBlogPosts.sort((a, b) => new Date(b.data.publishedAt) > new Date(a.data.publishedAt) ? 1 : -1);
+const sortedPosts = allBlogPosts.sort((a, b) =>
+  new Date(b.data.publishedAt) > new Date(a.data.publishedAt) ? 1 : -1,
+);
 const latestPost = sortedPosts[0] || {
   slug: "",
   data: {
@@ -13,45 +15,55 @@ const latestPost = sortedPosts[0] || {
     description: "",
     publishedAt: "",
     tags: [],
-  }
+  },
 };
 const olderPosts = sortedPosts.slice(1);
 ---
 
 <BaseLayout title="Blog">
   <h1>Blog</h1>
-  
-  {sortedPosts.length > 0 ? (
-    <>
-      <section>
-        <h2>Latest Post</h2>
-        <article>
-          <h3>{latestPost.data.title}</h3>
-          
-          <div class="meta">
-            <span>
-              {new Date(latestPost.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
-            </span>
-            <Tags tags={latestPost.data.tags} path={(tag) => `/blog/tags/${tag}`} />
-          </div>
-          
-          <p>{latestPost.data.description}</p>
-          
-          <a href={`/blog/${latestPost.slug}`}>Read more</a>
-        </article>
-      </section>
-      
-      {olderPosts.length > 0 && (
+
+  {
+    sortedPosts.length > 0 ? (
+      <>
         <section>
-          <h2>More Posts</h2>
-          
-          <div class="blog-grid">
-            {olderPosts.map((post) => <BlogPostCard post={post} />)}
-          </div>
+          <h2>Latest Post</h2>
+          <article>
+            <h3>{latestPost.data.title}</h3>
+
+            <div class="meta">
+              <span>
+                {new Date(latestPost.data.publishedAt)
+                  .toLocaleDateString("en-GB")
+                  .split("/")
+                  .join(".")}
+              </span>
+              <Tags
+                tags={latestPost.data.tags}
+                path={(tag) => `/blog/tags/${tag}`}
+              />
+            </div>
+
+            <p>{latestPost.data.description}</p>
+
+            <a href={`/blog/${latestPost.slug}`}>Read more</a>
+          </article>
         </section>
-      )}
-    </>
-  ) : (
-    <p>No blog posts available yet.</p>
-  )}
+
+        {olderPosts.length > 0 && (
+          <section>
+            <h2>More Posts</h2>
+
+            <div class="blog-grid">
+              {olderPosts.map((post) => (
+                <BlogPostCard post={post} />
+              ))}
+            </div>
+          </section>
+        )}
+      </>
+    ) : (
+      <p>No blog posts available yet.</p>
+    )
+  }
 </BaseLayout>

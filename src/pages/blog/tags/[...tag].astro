@@ -5,19 +5,19 @@ import Tags from "../../../components/Tags.astro";
 import BlogTagList from "../../../components/BlogTagList.astro";
 
 export async function getStaticPaths() {
-	const allBlogPosts = await getCollection("blog");
-	const postTags = allBlogPosts.map((post) => post.data.tags).flat();
-	const uniquePostTags = [...new Set(postTags)];
+  const allBlogPosts = await getCollection("blog");
+  const postTags = allBlogPosts.map((post) => post.data.tags).flat();
+  const uniquePostTags = [...new Set(postTags)];
 
-	return uniquePostTags.map((tag) => {
-		const taggedBlogPosts = allBlogPosts.filter((post) =>
-			post.data.tags.includes(tag),
-		);
-		return {
-			params: { tag },
-			props: { taggedBlogPosts },
-		};
-	});
+  return uniquePostTags.map((tag) => {
+    const taggedBlogPosts = allBlogPosts.filter((post) =>
+      post.data.tags.includes(tag),
+    );
+    return {
+      params: { tag },
+      props: { taggedBlogPosts },
+    };
+  });
 }
 
 const { tag } = Astro.params;
@@ -28,23 +28,20 @@ const { taggedBlogPosts } = Astro.props;
   <div>
     <BlogTagList activeTag={tag} />
     {
-    taggedBlogPosts.map((post) => (
-    <article>
-      <a href={`/blog/${post.slug}`}>
-        <h1>{post.data.title}</h1>
-      </a>
-      <span>
-        {new Date(post.data.publishedAt)
-        .toLocaleDateString("en-GB")
-        .split("/")
-        .join(".")}
-      </span>
-      <Tags
-          tags={post.data.tags}
-          path={(tag) => `/blog/tags/${tag}`}
-          />
-    </article>
-    ))
+      taggedBlogPosts.map((post) => (
+        <article>
+          <a href={`/blog/${post.slug}`}>
+            <h1>{post.data.title}</h1>
+          </a>
+          <span>
+            {new Date(post.data.publishedAt)
+              .toLocaleDateString("en-GB")
+              .split("/")
+              .join(".")}
+          </span>
+          <Tags tags={post.data.tags} path={(tag) => `/blog/tags/${tag}`} />
+        </article>
+      ))
     }
   </div>
 </BaseLayout>

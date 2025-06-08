@@ -1,41 +1,52 @@
 ---
-const { title, description, image, type = "website", publishedAt, tags } = Astro.props.frontmatter || Astro.props;
+const {
+  title,
+  description,
+  image,
+  type = "website",
+  publishedAt,
+  tags,
+} = Astro.props.frontmatter || Astro.props;
 import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 
 // SEO defaults
 const defaultTitle = "Dani Bengl - Full-Stack Developer";
-const defaultDescription = "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects.";
+const defaultDescription =
+  "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects.";
 const siteUrl = "https://cuddlybunion341.github.io";
 const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
 const pageTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
 const pageDescription = description || defaultDescription;
-const pageImage = image ? new URL(image, siteUrl).href : `${siteUrl}/og-image.png`;
+const pageImage = image
+  ? new URL(image, siteUrl).href
+  : `${siteUrl}/og-image.png`;
 
 // Structured data for SEO
 const structuredData = {
   "@context": "https://schema.org",
   "@type": type === "article" ? "BlogPosting" : "WebPage",
-  "headline": title || defaultTitle,
-  "description": pageDescription,
-  "url": currentUrl,
-  "author": {
+  headline: title || defaultTitle,
+  description: pageDescription,
+  url: currentUrl,
+  author: {
     "@type": "Person",
-    "name": "Dani Bengl",
-    "url": siteUrl,
-    "sameAs": [
+    name: "Dani Bengl",
+    url: siteUrl,
+    sameAs: [
       "https://github.com/CuddlyBunion341",
       "https://www.linkedin.com/in/daniel-bengl-aa5225221/",
-      "https://www.codewars.com/users/CuddlyBunion341"
-    ]
+      "https://www.codewars.com/users/CuddlyBunion341",
+    ],
   },
-  ...(type === "article" && publishedAt && {
-    "datePublished": publishedAt.toISOString(),
-    "dateModified": publishedAt.toISOString(),
-  }),
+  ...(type === "article" &&
+    publishedAt && {
+      datePublished: publishedAt.toISOString(),
+      dateModified: publishedAt.toISOString(),
+    }),
   ...(tags && {
-    "keywords": tags.join(", ")
-  })
+    keywords: tags.join(", "),
+  }),
 };
 ---
 
@@ -45,14 +56,14 @@ const structuredData = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{pageTitle}</title>
     <meta name="title" content={pageTitle} />
     <meta name="description" content={pageDescription} />
     <meta name="author" content="Dani Bengl" />
     <link rel="canonical" href={currentUrl} />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={currentUrl} />
@@ -61,7 +72,7 @@ const structuredData = {
     <meta property="og:image" content={pageImage} />
     <meta property="og:site_name" content="CB341.DEV" />
     <meta property="og:locale" content="en_US" />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={currentUrl} />
@@ -69,17 +80,25 @@ const structuredData = {
     <meta property="twitter:description" content={pageDescription} />
     <meta property="twitter:image" content={pageImage} />
     <meta property="twitter:creator" content="@cuddlybunion341" />
-    
+
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#e74c3c" />
-    
+
     <!-- RSS Feed -->
-    <link rel="alternate" type="application/rss+xml" title="CB341.DEV RSS Feed" href="/rss.xml" />
-    
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="CB341.DEV RSS Feed"
+      href="/rss.xml"
+    />
+
     <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-    
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+
     <ViewTransitions />
     <style>
       /* Reset and base styles */
@@ -90,7 +109,7 @@ const structuredData = {
       }
 
       body {
-        font-family: Georgia, 'Times New Roman', serif;
+        font-family: Georgia, "Times New Roman", serif;
         line-height: 1.65;
         color: #222;
         background: #fff;
@@ -203,7 +222,7 @@ const structuredData = {
       }
 
       .main-nav a[aria-current="page"]::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -4px;
         left: 0;
@@ -366,7 +385,8 @@ const structuredData = {
       }
 
       /* Buttons and action links */
-      .button, .action-link {
+      .button,
+      .action-link {
         display: inline-block;
         background: #000;
         color: #fff;
@@ -380,7 +400,7 @@ const structuredData = {
         border: 2px solid #000;
       }
 
-      .button:hover, 
+      .button:hover,
       .button:focus,
       .action-link:hover,
       .action-link:focus {
@@ -423,7 +443,9 @@ const structuredData = {
         border-radius: 8px;
         background: #fafafa;
         margin-bottom: 0;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
       .project-grid article:hover,
@@ -528,7 +550,8 @@ const structuredData = {
         font-size: 0.9rem !important;
         line-height: 1.6 !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Ubuntu Mono', monospace !important;
+        font-family: "SF Mono", "Monaco", "Menlo", "Consolas", "Ubuntu Mono",
+          monospace !important;
       }
 
       .astro-code code {
@@ -603,24 +626,29 @@ const structuredData = {
         flex-wrap: wrap;
       }
 
-      .project-content, .blog-content {
+      .project-content,
+      .blog-content {
         margin: 2rem 0;
         line-height: 1.7;
       }
 
-      .blog-content h2, .project-content h2 {
+      .blog-content h2,
+      .project-content h2 {
         margin: 2.5rem 0 1rem 0;
       }
 
-      .blog-content h3, .project-content h3 {
+      .blog-content h3,
+      .project-content h3 {
         margin: 2rem 0 0.5rem 0;
       }
 
-      .blog-content p, .project-content p {
+      .blog-content p,
+      .project-content p {
         margin-bottom: 1.5rem;
       }
 
-      .blog-content ul, .project-content ul {
+      .blog-content ul,
+      .project-content ul {
         margin: 1.5rem 0;
       }
 
@@ -719,7 +747,8 @@ const structuredData = {
           align-items: center;
         }
 
-        .button, .action-link {
+        .button,
+        .action-link {
           width: 200px;
           text-align: center;
         }
@@ -739,8 +768,9 @@ const structuredData = {
         .tag {
           border: 1px solid #666;
         }
-        
-        .button, .action-link {
+
+        .button,
+        .action-link {
           border: 2px solid currentColor;
         }
       }
@@ -757,7 +787,8 @@ const structuredData = {
       }
 
       /* Clean list styles */
-      ul, ol {
+      ul,
+      ol {
         margin: 1rem 0;
         padding-left: 2rem;
       }
@@ -770,7 +801,7 @@ const structuredData = {
       code {
         background: #f8f8f8;
         padding: 0.2rem 0.4rem;
-        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-family: "SF Mono", "Monaco", "Consolas", monospace;
         font-size: 0.9em;
         border-radius: 3px;
         border: 1px solid #e0e0e0;
@@ -807,29 +838,76 @@ const structuredData = {
   </head>
   <body>
     <a href="#main-content" class="skip-nav">Skip to main content</a>
-    
+
     <div class="container">
       <header role="banner">
-        <a href="/" class="site-title" aria-label="CB341.DEV - Home">CB341.DEV</a>
+        <a href="/" class="site-title" aria-label="CB341.DEV - Home"
+          >CB341.DEV</a
+        >
         <nav class="main-nav" role="navigation" aria-label="Main navigation">
-          <a href="/" aria-current={Astro.url.pathname === "/" ? "page" : undefined}>Home</a>
-          <a href="/about" aria-current={Astro.url.pathname === "/about" ? "page" : undefined}>About</a>
-          <a href="/uses" aria-current={Astro.url.pathname === "/uses" ? "page" : undefined}>Uses</a>
-          <a href="/til" aria-current={Astro.url.pathname === "/til" ? "page" : undefined}>TIL</a>
-          <a href="/blog" aria-current={Astro.url.pathname.startsWith("/blog") ? "page" : undefined}>Blog</a>
-          <a href="/projects" aria-current={Astro.url.pathname.startsWith("/projects") ? "page" : undefined}>Projects</a>
+          <a
+            href="/"
+            aria-current={Astro.url.pathname === "/" ? "page" : undefined}
+            >Home</a
+          >
+          <a
+            href="/about"
+            aria-current={Astro.url.pathname === "/about" ? "page" : undefined}
+            >About</a
+          >
+          <a
+            href="/uses"
+            aria-current={Astro.url.pathname === "/uses" ? "page" : undefined}
+            >Uses</a
+          >
+          <a
+            href="/til"
+            aria-current={Astro.url.pathname === "/til" ? "page" : undefined}
+            >TIL</a
+          >
+          <a
+            href="/blog"
+            aria-current={Astro.url.pathname.startsWith("/blog")
+              ? "page"
+              : undefined}>Blog</a
+          >
+          <a
+            href="/projects"
+            aria-current={Astro.url.pathname.startsWith("/projects")
+              ? "page"
+              : undefined}>Projects</a
+          >
         </nav>
-        <nav class="social-nav" role="navigation" aria-label="Social media links">
-          <a href="https://www.codewars.com/users/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="Codewars profile (opens in new tab)">Codewars</a>
-          <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a>
-          <a href="https://github.com/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a>
+        <nav
+          class="social-nav"
+          role="navigation"
+          aria-label="Social media links"
+        >
+          <a
+            href="https://www.codewars.com/users/CuddlyBunion341"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Codewars profile (opens in new tab)">Codewars</a
+          >
+          <a
+            href="https://www.linkedin.com/in/daniel-bengl-aa5225221/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a
+          >
+          <a
+            href="https://github.com/CuddlyBunion341"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile (opens in new tab)">GitHub</a
+          >
         </nav>
       </header>
-      
+
       <main id="main-content" role="main">
         <slot />
       </main>
-      
+
       <Footer />
       <slot name="after-main" />
     </div>
@@ -840,7 +918,7 @@ const structuredData = {
       .code-block-wrapper {
         position: relative;
       }
-      
+
       .copy-button {
         position: absolute;
         top: 8px;
@@ -855,22 +933,23 @@ const structuredData = {
         opacity: 0;
         transition: opacity 0.2s ease;
         z-index: 10;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
       }
-      
+
       .copy-button:hover {
         background: rgba(0, 0, 0, 0.9);
       }
-      
+
       .code-block-wrapper:hover .copy-button {
         opacity: 1;
       }
-      
+
       .copy-button.copied {
         background: #28a745;
         opacity: 1;
       }
-      
+
       /* Ensure code blocks have proper positioning context */
       .astro-code {
         position: relative;
@@ -880,64 +959,65 @@ const structuredData = {
     <script>
       // Add copy buttons to code blocks
       function addCopyButtons() {
-        const codeBlocks = document.querySelectorAll('pre.astro-code');
-        
+        const codeBlocks = document.querySelectorAll("pre.astro-code");
+
         codeBlocks.forEach((codeBlock) => {
           // Skip if already processed
-          if (codeBlock.parentElement?.classList.contains('code-block-wrapper')) {
+          if (
+            codeBlock.parentElement?.classList.contains("code-block-wrapper")
+          ) {
             return;
           }
-          
+
           // Create wrapper
-          const wrapper = document.createElement('div');
-          wrapper.className = 'code-block-wrapper';
-          
+          const wrapper = document.createElement("div");
+          wrapper.className = "code-block-wrapper";
+
           // Create copy button
-          const copyButton = document.createElement('button');
-          copyButton.className = 'copy-button';
-          copyButton.textContent = 'Copy';
-          copyButton.setAttribute('aria-label', 'Copy code to clipboard');
-          
+          const copyButton = document.createElement("button");
+          copyButton.className = "copy-button";
+          copyButton.textContent = "Copy";
+          copyButton.setAttribute("aria-label", "Copy code to clipboard");
+
           // Wrap the code block
           if (codeBlock.parentNode) {
             codeBlock.parentNode.insertBefore(wrapper, codeBlock);
             wrapper.appendChild(codeBlock);
             wrapper.appendChild(copyButton);
           }
-          
+
           // Add click handler
-          copyButton.addEventListener('click', async () => {
+          copyButton.addEventListener("click", async () => {
             try {
-              const code = codeBlock.querySelector('code');
-              const text = code?.textContent || codeBlock.textContent || '';
-              
+              const code = codeBlock.querySelector("code");
+              const text = code?.textContent || codeBlock.textContent || "";
+
               await navigator.clipboard.writeText(text);
-              
+
               // Visual feedback
-              copyButton.textContent = 'Copied!';
-              copyButton.classList.add('copied');
-              
+              copyButton.textContent = "Copied!";
+              copyButton.classList.add("copied");
+
               setTimeout(() => {
-                copyButton.textContent = 'Copy';
-                copyButton.classList.remove('copied');
+                copyButton.textContent = "Copy";
+                copyButton.classList.remove("copied");
               }, 2000);
-              
             } catch (err) {
-              console.error('Failed to copy code:', err);
-              copyButton.textContent = 'Error';
+              console.error("Failed to copy code:", err);
+              copyButton.textContent = "Error";
               setTimeout(() => {
-                copyButton.textContent = 'Copy';
+                copyButton.textContent = "Copy";
               }, 2000);
             }
           });
         });
       }
-      
+
       // Run on page load
-      document.addEventListener('DOMContentLoaded', addCopyButtons);
-      
+      document.addEventListener("DOMContentLoaded", addCopyButtons);
+
       // Run after view transitions (for Astro's ViewTransitions)
-      document.addEventListener('astro:page-load', addCopyButtons);
+      document.addEventListener("astro:page-load", addCopyButtons);
     </script>
   </body>
 </html>

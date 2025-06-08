@@ -5,7 +5,18 @@
 
 set -e  # Exit on any error
 
+# Parse command line arguments - autofix is enabled by default
+AUTOFIX=true
+if [[ "$1" == "--no-fix" || "$1" == "--check-only" ]]; then
+    AUTOFIX=false
+fi
+
 echo "🚀 Running Astro FastCheck..."
+if [ "$AUTOFIX" = true ]; then
+    echo "🔧 Autofix mode enabled (default)"
+else
+    echo "👀 Check-only mode (no autofix)"
+fi
 echo "================================"
 
 # Colors for output
@@ -30,6 +41,10 @@ print_warning() {
 
 print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
+}
+
+print_fix() {
+    echo -e "${YELLOW}[AUTOFIX]${NC} $1"
 }
 
 # Check if we're in the right directory (has package.json with astro)
@@ -59,12 +74,23 @@ fi
 echo ""
 print_status "Step 2: Checking code formatting with Prettier..."
 echo "------------------------------------------------"
-if npx prettier --check "src/**/*.{astro,ts,js,mjs,json,md,mdx}"; then
+if npx prettier --check "src/**/*.{astro,ts,js,mjs,json,md,mdx}" > /dev/null 2>&1; then
     print_success "Prettier formatting check passed ✓"
 else
-    print_error "Prettier formatting check failed ✗"
-    print_warning "Run 'npx prettier --write \"src/**/*.{astro,ts,js,mjs,json,md,mdx}\"' to fix formatting"
-    OVERALL_SUCCESS=false
+    if [ "$AUTOFIX" = true ]; then
+        print_fix "Formatting issues detected. Running autofix..."
+        if npx prettier --write "src/**/*.{astro,ts,js,mjs,json,md,mdx}"; then
+            print_success "Formatting issues fixed automatically ✓"
+        else
+            print_error "Failed to fix formatting issues ✗"
+            OVERALL_SUCCESS=false
+        fi
+    else
+        print_error "Prettier formatting check failed ✗"
+        print_warning "Run 'npx prettier --write \"src/**/*.{astro,ts,js,mjs,json,md,mdx}\"' to fix formatting"
+        print_warning "Or run './bin/fastcheck' (without --no-fix) to autofix"
+        OVERALL_SUCCESS=false
+    fi
 fi
 
 echo ""
@@ -84,5 +110,8 @@ if [ "$OVERALL_SUCCESS" = true ]; then
     exit 0
 else
     print_error "❌ Some checks failed. Please fix the issues above."
+    if [ "$AUTOFIX" = false ]; then
+        print_warning "💡 Tip: Run './bin/fastcheck' (without --no-fix) to automatically fix formatting issues"
+    fi
     exit 1
-fi 
+fi

@@ -17,35 +17,39 @@ const { Content } = await entry.render();
 <BaseLayout title={entry.data.name}>
   <article>
     <h1>{entry.data.name}</h1>
-    
+
     <div class="project-links">
-      {entry.data.github && (
-        <a 
-          href={entry.data.github} 
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button"
-        >
-          GitHub
-        </a>
-      )}
-      
-      {entry.data.demo && (
-        <a 
-          href={entry.data.demo} 
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button"
-        >
-          Live Demo
-        </a>
-      )}
+      {
+        entry.data.github && (
+          <a
+            href={entry.data.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >
+            GitHub
+          </a>
+        )
+      }
+
+      {
+        entry.data.demo && (
+          <a
+            href={entry.data.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >
+            Live Demo
+          </a>
+        )
+      }
     </div>
-    
+
     <div class="project-content">
       <Content />
     </div>
-    
+
     <div class="blog-nav">
       <a href="/projects">Back to Projects</a>
     </div>

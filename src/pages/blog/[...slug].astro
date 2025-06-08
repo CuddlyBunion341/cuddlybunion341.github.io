@@ -18,18 +18,23 @@ const { Content } = await entry.render();
 <BaseLayout title={entry.data.title}>
   <article>
     <h1>{entry.data.title}</h1>
-    
+
     <div class="meta">
       <span>
-        {new Date(entry.data.publishedAt).toLocaleDateString("en-GB").split("/").join(".")}
+        {
+          new Date(entry.data.publishedAt)
+            .toLocaleDateString("en-GB")
+            .split("/")
+            .join(".")
+        }
       </span>
       <Tags tags={entry.data.tags} path={(tag) => `/blog/tags/${tag}`} />
     </div>
-    
+
     <div class="blog-content">
       <Content />
     </div>
-    
+
     <div class="blog-nav">
       <a href="/blog">Back to Blog</a>
       <a href="#top">Top</a>

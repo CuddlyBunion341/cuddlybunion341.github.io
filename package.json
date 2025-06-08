@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fastcheck": "./bin/fastcheck"
+    "fastcheck": "./bin/fastcheck",
+    "fastcheck:check": "./bin/fastcheck --no-fix"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",

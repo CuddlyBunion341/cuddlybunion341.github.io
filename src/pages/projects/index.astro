@@ -9,14 +9,16 @@ const projects = await getCollection("projects");
 <BaseLayout title="Projects">
   <h1>Projects</h1>
   <p>A collection of personal projects I've worked on.</p>
-  
-  {projects.length > 0 ? (
-    <div class="project-grid">
-      {projects.map((project) => (
-        <ProjectCardGrid project={project} />
-      ))}
-    </div>
-  ) : (
-    <p>No projects available yet.</p>
-  )}
+
+  {
+    projects.length > 0 ? (
+      <div class="project-grid">
+        {projects.map((project) => (
+          <ProjectCardGrid project={project} />
+        ))}
+      </div>
+    ) : (
+      <p>No projects available yet.</p>
+    )
+  }
 </BaseLayout>
