@@ -26,15 +26,6 @@ const { post } = Astro.props;
   </div>
 
   <p>{post.data.description}</p>
-
-  <p>
-    <a
-      href={`/blog/${post.slug}`}
-      aria-label={`Continue reading ${post.data.title}`}
-    >
-      Read more
-    </a>
-  </p>
 </article>
 
 <style>
