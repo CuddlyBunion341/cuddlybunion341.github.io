@@ -62,7 +62,7 @@ const olderPosts = sortedPosts.slice(1);
           <section>
             <h2>More Posts</h2>
 
-            <div class="grid">
+            <div>
               {olderPosts.map((post) => (
                 <BlogPostCard post={post} />
               ))}
