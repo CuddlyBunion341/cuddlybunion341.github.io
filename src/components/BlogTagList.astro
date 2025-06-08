@@ -12,7 +12,7 @@ interface Props {
 const { activeTag } = Astro.props;
 ---
 
-<div class="flex">
+<div class="tag-list-container">
 	<Tags
 		tags={uniqueTags}
 		path={(tag) => `/blog/tags/${tag}`}
@@ -21,3 +21,9 @@ const { activeTag } = Astro.props;
 		activeTag={activeTag}
 	/>
 </div>
+
+<style>
+	.tag-list-container {
+		margin-bottom: 2rem;
+	}
+</style>

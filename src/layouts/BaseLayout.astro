@@ -65,7 +65,7 @@ import Footer from "../components/Footer.astro";
 
       /* Header and Navigation */
       header {
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
         text-align: center;
       }
 
@@ -87,7 +87,7 @@ import Footer from "../components/Footer.astro";
         justify-content: center;
         flex-wrap: wrap;
         gap: 2rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
       }
 
       .main-nav a {
@@ -206,15 +206,20 @@ import Footer from "../components/Footer.astro";
         color: #999;
         font-size: 0.9rem;
         margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .meta > span {
         font-style: italic;
       }
 
       /* Tags */
       .tags {
-        display: inline-flex;
+        display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        margin-left: 1rem;
       }
 
       .tag {
@@ -231,6 +236,18 @@ import Footer from "../components/Footer.astro";
       .tag:hover {
         background: #e74c3c;
         color: #fff;
+      }
+
+      .tag.active {
+        background: #e74c3c;
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .tag-count {
+        font-size: 0.7rem;
+        margin-left: 0.2rem;
+        opacity: 0.8;
       }
 
       /* Buttons and action links */
