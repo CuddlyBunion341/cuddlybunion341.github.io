@@ -380,7 +380,9 @@ const structuredData = {
         padding: 2rem;
         border-radius: 0.5rem;
         background: #fafafa;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
       .project-grid article:hover,
@@ -452,7 +454,8 @@ const structuredData = {
         font-size: 0.9rem;
         line-height: 1.6;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        font-family: "SF Mono", "Monaco", "Menlo", "Consolas", "Ubuntu Mono", monospace;
+        font-family: "SF Mono", "Monaco", "Menlo", "Consolas", "Ubuntu Mono",
+          monospace;
       }
 
       code {
@@ -613,8 +616,9 @@ const structuredData = {
           <li>
             <a
               href="/about"
-              aria-current={Astro.url.pathname === "/about" ? "page" : undefined}
-              >About</a
+              aria-current={Astro.url.pathname === "/about"
+                ? "page"
+                : undefined}>About</a
             >
           </li>
           <li>
@@ -649,11 +653,7 @@ const structuredData = {
           </li>
         </ul>
       </nav>
-      <nav
-        class="social-nav"
-        role="navigation"
-        aria-label="Social media links"
-      >
+      <nav class="social-nav" role="navigation" aria-label="Social media links">
         <ul>
           <li>
             <a
@@ -697,7 +697,7 @@ const structuredData = {
 
         codeBlocks.forEach((codeBlock) => {
           // Skip if already processed
-          if (codeBlock.querySelector('.copy-button')) {
+          if (codeBlock.querySelector(".copy-button")) {
             return;
           }
 
@@ -723,15 +723,15 @@ const structuredData = {
           `;
 
           // Make code block relative positioned
-          codeBlock.style.position = 'relative';
+          codeBlock.style.position = "relative";
           codeBlock.appendChild(copyButton);
 
           // Show button on hover
-          codeBlock.addEventListener('mouseenter', () => {
-            copyButton.style.opacity = '1';
+          codeBlock.addEventListener("mouseenter", () => {
+            copyButton.style.opacity = "1";
           });
-          codeBlock.addEventListener('mouseleave', () => {
-            copyButton.style.opacity = '0';
+          codeBlock.addEventListener("mouseleave", () => {
+            copyButton.style.opacity = "0";
           });
 
           // Add click handler
@@ -770,4 +770,3 @@ const structuredData = {
     </script>
   </body>
 </html>
-

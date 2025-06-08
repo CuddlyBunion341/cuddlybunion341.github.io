@@ -30,14 +30,14 @@ const olderPosts = sortedPosts.slice(1);
           <h2>Latest Post</h2>
           <article>
             <h3>
-              <a href={`/blog/${latestPost.slug}`}>
-                {latestPost.data.title}
-              </a>
+              <a href={`/blog/${latestPost.slug}`}>{latestPost.data.title}</a>
             </h3>
 
             <div class="meta">
               <em>
-                <time datetime={new Date(latestPost.data.publishedAt).toISOString()}>
+                <time
+                  datetime={new Date(latestPost.data.publishedAt).toISOString()}
+                >
                   {new Date(latestPost.data.publishedAt)
                     .toLocaleDateString("en-GB")
                     .split("/")
