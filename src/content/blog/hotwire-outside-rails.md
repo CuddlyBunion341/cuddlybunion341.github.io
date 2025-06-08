@@ -2,12 +2,12 @@
 title: "Extending Hotwire beyond Ruby on Rails"
 publishedAt: 2024-08-03
 description: "Discover how to implement Hotwire's Turbo Streams and Stimulus in a BunJS application, proving that reactive web development isn't exclusive to Rails. Learn to build real-time chat functionality using WebSockets, Turbo Streams for DOM updates, and Stimulus controllers for interactive behavior. A practical guide that demonstrates the versatility of Hotwire technologies beyond the Ruby ecosystem."
-heroImage: "https://images.unsplash.com/photo-1541358150975-668b4a0531c4?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+heroImage: "../../assets/blog/hotwire-hero.webp"
 tags: ["bunjs", "hotwire", "websockets"]
 ---
 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/07t16uvg252gn2vhn6ox.gif)
+![Image description](../../assets/blog/hotwire-demo.webp)
 
 
 This blog article is inspired by a [Hotwire Turbo streams tutorial for Sinatra](https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/ "https://www.writesoftwarewell.com/understanding-hotwire-turbo-streams/").
@@ -74,7 +74,7 @@ Our approach involves implementing the **multiple publisher - multiple subscribe
 
 Here is a simple sequence diagram showing the core idea of this project:
 
-![Sequence diagram of the client-server interactions](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qrxh7bkqbr2r0h1tyr0i.png)
+![Sequence diagram of the client-server interactions](../../assets/blog/hotwire-sequence-diagram.webp)
 
 ### Implement the server
 

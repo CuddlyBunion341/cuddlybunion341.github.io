@@ -2,7 +2,7 @@
 title: "My First Blog Post"
 publishedAt: 2022-07-01
 description: "A comprehensive demonstration of Markdown syntax and formatting capabilities. This post showcases everything from basic text formatting and lists to advanced features like tables, code blocks, ASCII art, and embedded images. Perfect for testing blog layouts and understanding how different Markdown elements render in practice."
-heroImage: "https://docs.astro.build/assets/rose.webp"
+heroImage: "../../assets/blog/rose.webp"
 tags: ["astro", "blogging", "multiplayer"]
 ---
 
@@ -133,7 +133,7 @@ Finally, by including colons : within the header row, you can define text to be 
 
 ## Images
 
-![Image of flowers](https://c1.staticflickr.com/1/675/22381378833_c35b2fdd75_n.jpg)
+![Image of flowers](../../assets/blog/flowers.webp)
 
 ## Finally
 

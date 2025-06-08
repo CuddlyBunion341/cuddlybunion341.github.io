@@ -2,7 +2,6 @@
 title: "Exploring Rust: A Rubyist's Perspective"
 publishedAt: 2025-02-28
 description: "A deep dive into learning Rust as a Ruby developer, exploring the journey of building a voxel game engine with Bevy. From understanding the borrow checker to discovering the power of composition over inheritance, feature flags, and macros. Learn about the trade-offs between Ruby's simplicity and Rust's performance, memory safety, and compile-time guarantees."
-heroImage: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F1nsvwti7jyize5ltjx5j.jpg"
 tags: ["rust", "gamedev"]
 ---
 
@@ -10,7 +9,7 @@ At Renuo, we love Ruby. It's simple, elegant, and powerful. But let's be honest,
 
 Over the last couple of months, I've been exploring low-level programming, hoping to bridge the gap between the high-level world of Ruby and the lower-level world of systems programming. To do this, I started working on my first Rust project: a blazingly fast voxel "game" called [rsmc](https://github.com/CuddlyBunion341/rsmc). It features a terrain generator, meshing, a scalable client-server architecture, and custom serialized messages for high-speed communication. This project has been my playground for learning Rust, and in this post, I'll share some of the lessons I've learned along the way.
 
-![Early stage of development in RSMC. Renet visualiser for simultanous client/server connections.](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nx2cywgbq0i2jatmqt6o.png)
+![Early stage of development in RSMC. Renet visualiser for simultanous client/server connections.](../../assets/blog/rsmc-early-development.webp)
 
 
 ## Why Rust?
@@ -132,7 +131,7 @@ Rust isn't the easiest language to pick up. The borrow checker takes time to und
 
 One of the biggest disadvantages to me is compile times. They can be frustrating since Rust enforces strict checks, but this reduces runtime errors. There's even an [XKCD comic](https://xkcd.com/303/) about it.
 
-  ![XKCD 303 - The #1 programmer excuse for legitimately slacking off: "My code's compiling"](https://imgs.xkcd.com/comics/compiling.png)
+  ![XKCD 303 - The #1 programmer excuse for legitimately slacking off: "My code's compiling"](../../assets/blog/xkcd-compiling.webp)
 
 
 
