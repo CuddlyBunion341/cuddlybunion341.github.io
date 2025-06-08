@@ -3,10 +3,8 @@ const { post } = Astro.props;
 ---
 
 <article>
-  <a href={`/blog/${post.slug}`} aria-label={`Read blog post: ${post.data.title}`}>
-    <h3>{post.data.title}</h3>
-  </a>
-  
+  <h3>{post.data.title}</h3>
+
   <div class="meta">
     <span>
       Published on <time datetime={post.data.publishedAt.toISOString()}>
@@ -14,8 +12,8 @@ const { post } = Astro.props;
       </time>
     </span>
   </div>
-  
+
   <p>{post.data.description}</p>
-  
+
   <a href={`/blog/${post.slug}`} aria-label={`Continue reading ${post.data.title}`}>Read more</a>
 </article>
