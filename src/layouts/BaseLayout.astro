@@ -833,5 +833,111 @@ const structuredData = {
       <Footer />
       <slot name="after-main" />
     </div>
+
+    <!-- Copy button functionality for code blocks -->
+    <style>
+      /* Copy button styles */
+      .code-block-wrapper {
+        position: relative;
+      }
+      
+      .copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: 10;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      
+      .copy-button:hover {
+        background: rgba(0, 0, 0, 0.9);
+      }
+      
+      .code-block-wrapper:hover .copy-button {
+        opacity: 1;
+      }
+      
+      .copy-button.copied {
+        background: #28a745;
+        opacity: 1;
+      }
+      
+      /* Ensure code blocks have proper positioning context */
+      .astro-code {
+        position: relative;
+      }
+    </style>
+
+    <script>
+      // Add copy buttons to code blocks
+      function addCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre.astro-code');
+        
+        codeBlocks.forEach((codeBlock) => {
+          // Skip if already processed
+          if (codeBlock.parentElement?.classList.contains('code-block-wrapper')) {
+            return;
+          }
+          
+          // Create wrapper
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block-wrapper';
+          
+          // Create copy button
+          const copyButton = document.createElement('button');
+          copyButton.className = 'copy-button';
+          copyButton.textContent = 'Copy';
+          copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+          
+          // Wrap the code block
+          if (codeBlock.parentNode) {
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+            wrapper.appendChild(copyButton);
+          }
+          
+          // Add click handler
+          copyButton.addEventListener('click', async () => {
+            try {
+              const code = codeBlock.querySelector('code');
+              const text = code?.textContent || codeBlock.textContent || '';
+              
+              await navigator.clipboard.writeText(text);
+              
+              // Visual feedback
+              copyButton.textContent = 'Copied!';
+              copyButton.classList.add('copied');
+              
+              setTimeout(() => {
+                copyButton.textContent = 'Copy';
+                copyButton.classList.remove('copied');
+              }, 2000);
+              
+            } catch (err) {
+              console.error('Failed to copy code:', err);
+              copyButton.textContent = 'Error';
+              setTimeout(() => {
+                copyButton.textContent = 'Copy';
+              }, 2000);
+            }
+          });
+        });
+      }
+      
+      // Run on page load
+      document.addEventListener('DOMContentLoaded', addCopyButtons);
+      
+      // Run after view transitions (for Astro's ViewTransitions)
+      document.addEventListener('astro:page-load', addCopyButtons);
+    </script>
   </body>
 </html>
