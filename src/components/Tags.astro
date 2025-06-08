@@ -1,26 +1,34 @@
 ---
-import Tag from "@components/Tag.astro";
-
 interface Props {
   tags: string[];
-  path?: (tag: string) => string;
+  path: (tag: string) => string;
   taggedCount?: (tag: string) => number;
   activeTag?: string;
 }
 
-let { tags, path, taggedCount, activeTag } = Astro.props;
-path ??= (tag) => `tags/${tag}`;
+const { tags, path, taggedCount, activeTag } = Astro.props;
 ---
 
-<nav class="my-2 flex flex-wrap">
-  {
-    tags.map((tag) => (
-      <Tag
-        tag={tag}
-        path={path}
-        count={taggedCount === undefined ? undefined : taggedCount(tag)}
-        active={tag === activeTag}
-      />
-    ))
-  }
-</nav>
+{
+  tags && tags.length > 0 && (
+    <ul class="tags" role="group" aria-label="Tags">
+      {tags.map((tag) => (
+        <li>
+          <a
+            href={path(tag)}
+            class={`tag ${activeTag === tag ? "active" : ""}`}
+            aria-label={`View posts tagged with ${tag}`}
+            aria-current={activeTag === tag ? "page" : undefined}
+          >
+            {tag}
+            {taggedCount && (
+              <small aria-label={`${taggedCount(tag)} posts`}>
+                ({taggedCount(tag)})
+              </small>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

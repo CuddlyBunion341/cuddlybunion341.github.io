@@ -1,16 +1,12 @@
 ---
 interface Props {
-  icon: string;
   name: string;
-  description: string;
+  description?: string;
 }
-const { icon, name, description } = Astro.props;
+const { name, description } = Astro.props;
 ---
 
-<li
-  class="rounded p-2 bg-gray-800 shadow-md border border-gray-700 hover:border-gray-100 hover:bg-gray-700"
->
-  <i class={icon}></i>
+<li>
   <b>{name}</b>
-  <p>{description}</p>
+  {description && <p>{description}</p>}
 </li>

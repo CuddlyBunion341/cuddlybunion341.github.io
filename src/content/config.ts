@@ -7,7 +7,6 @@ const blogCollection = defineCollection({
     publishedAt: z.date(),
     description: z.string(),
     tags: z.array(z.string()),
-    heroImage: z.string(),
   }),
 });
 
@@ -25,5 +24,5 @@ const projectCollection = defineCollection({
 
 export const collections = {
   blog: blogCollection,
-  project: projectCollection,
+  projects: projectCollection,
 };

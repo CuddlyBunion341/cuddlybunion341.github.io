@@ -1,8 +1,7 @@
 ---
 title: "Exploring Rust: A Rubyist's Perspective"
 publishedAt: 2025-02-28
-description: "Reflecting on my journey learning Rust in my first project."
-heroImage: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F1nsvwti7jyize5ltjx5j.jpg"
+description: "A deep dive into learning Rust as a Ruby developer, exploring the journey of building a voxel game engine with Bevy. From understanding the borrow checker to discovering the power of composition over inheritance, feature flags, and macros. Learn about the trade-offs between Ruby's simplicity and Rust's performance, memory safety, and compile-time guarantees."
 tags: ["rust", "gamedev"]
 ---
 
@@ -10,8 +9,7 @@ At Renuo, we love Ruby. It's simple, elegant, and powerful. But let's be honest,
 
 Over the last couple of months, I've been exploring low-level programming, hoping to bridge the gap between the high-level world of Ruby and the lower-level world of systems programming. To do this, I started working on my first Rust project: a blazingly fast voxel "game" called [rsmc](https://github.com/CuddlyBunion341/rsmc). It features a terrain generator, meshing, a scalable client-server architecture, and custom serialized messages for high-speed communication. This project has been my playground for learning Rust, and in this post, I'll share some of the lessons I've learned along the way.
 
-![Early stage of development in RSMC. Renet visualiser for simultanous client/server connections.](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nx2cywgbq0i2jatmqt6o.png)
-
+![Early stage of development in RSMC. Renet visualiser for simultanous client/server connections.](../../assets/blog/rsmc-early-development.webp)
 
 ## Why Rust?
 
@@ -19,10 +17,10 @@ Rust is one of the most appreciated programming languages, as highlighted in the
 
 ### Key Benefits
 
-*   **Performance:** Comparable to C and C++, but with safety mechanisms that prevent common errors.
-*   **Memory safety:** Eliminates null pointer dereferences, segmentation faults, and data races.
-*   **Modern syntax:** Readable and expressive, making it accessible despite its low-level capabilities.
-*   **Powerful tooling:** [Cargo](https://doc.rust-lang.org/cargo/) simplifies dependency management, builds, and testing.
+- **Performance:** Comparable to C and C++, but with safety mechanisms that prevent common errors.
+- **Memory safety:** Eliminates null pointer dereferences, segmentation faults, and data races.
+- **Modern syntax:** Readable and expressive, making it accessible despite its low-level capabilities.
+- **Powerful tooling:** [Cargo](https://doc.rust-lang.org/cargo/) simplifies dependency management, builds, and testing.
 
 For my voxel game, Rust's speed and safety make it an excellent choice for terrain generation, networking, and real-time interactions. Unlike dynamically typed languages such as Ruby, Rust catches entire categories of bugs at compile time, improving maintainability.
 
@@ -34,11 +32,10 @@ Since my project is built with [Bevy](https://bevyengine.org/), understanding it
 
 Some of my favorite takeaways:
 
-*   **Systems:** Keep them small and focused on one task. This way they are easier to test and extend.
-*   **Plugins:** Encapsulate resources, systems, and components into distinguishable modules.
-*   **Events:** Use events to the fullest extent to decouple systems and keep code modular.
-*   **States:** Run systems only when they are relevant (e.g., Menu, Playing). This helps with UI and logic separation. In particular this PR: [#32](https://github.com/CuddlyBunion341/rsmc/pull/32)
-    
+- **Systems:** Keep them small and focused on one task. This way they are easier to test and extend.
+- **Plugins:** Encapsulate resources, systems, and components into distinguishable modules.
+- **Events:** Use events to the fullest extent to decouple systems and keep code modular.
+- **States:** Run systems only when they are relevant (e.g., Menu, Playing). This helps with UI and logic separation. In particular this PR: [#32](https://github.com/CuddlyBunion341/rsmc/pull/32)
 
 Bevy makes structuring a game engine intuitive, and its Rust-first approach ensures safety and performance while keeping things flexible. If you're interested in learning more about the ECS approach to game development, I wrote a blog article about planning an ECS: [Multiplayer in Rust Using Renet and Bevy](https://dev.to/renuo/multiplayer-in-rust-using-renet-and-bevy-17p6).
 
@@ -51,17 +48,16 @@ In my voxel game, feature flags help manage debugging tools like wireframe rende
 In `Cargo.toml`, you can define feature flags like this:
 
 ```toml
-[features] 
+[features]
 egui_layer = []
 terrain_visualizer = ["egui_layer"]
 renet_visualizer = ["egui_layer"]
 ```
-  
 
 And then use them in your code:
 
 ```rust
-#[cfg(feature = "egui_layer")] {   
+#[cfg(feature = "egui_layer")] {
 use bevy_inspector_egui::bevy_egui::EguiPlugin;
 	app.add_plugins(DefaultPlugins);
 	app.add_plugins(EguiPlugin);
@@ -90,10 +86,10 @@ Here's an example from my terrain generator:
 pub struct NoiseFunctionParams {
   pub octaves: u32,
   pub height: f64,
-  // ... 
-}  
+  // ...
+}
 
-pub struct HeightParams {     
+pub struct HeightParams {
   pub noise: NoiseFunctionParams, // Composition!
   pub splines: Vec<Vec2>
 }
@@ -132,9 +128,7 @@ Rust isn't the easiest language to pick up. The borrow checker takes time to und
 
 One of the biggest disadvantages to me is compile times. They can be frustrating since Rust enforces strict checks, but this reduces runtime errors. There's even an [XKCD comic](https://xkcd.com/303/) about it.
 
-  ![XKCD 303 - The #1 programmer excuse for legitimately slacking off: "My code's compiling"](https://imgs.xkcd.com/comics/compiling.png)
-
-
+![XKCD 303 - The #1 programmer excuse for legitimately slacking off: "My code's compiling"](../../assets/blog/xkcd-compiling.webp)
 
 From my experience, Rust has its trade-offs. Catching many errors at compile time reduces debugging effort, but the strict rules and verbosity make writing new code slower compared to Ruby. That said, Rust's language servers provide excellent refactoring support, which makes working with larger projects easier.
 

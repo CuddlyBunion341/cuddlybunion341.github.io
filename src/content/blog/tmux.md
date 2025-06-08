@@ -1,8 +1,7 @@
 ---
 title: "2 Simple Configurations to Supercharge your TMUX Setup!"
 publishedAt: 2024-04-14
-description: "This is the first post of my new Astro blog."
-heroImage: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8xfd3ae514xhra5nnpt3.jpg"
+description: "Transform your terminal workflow with these two game-changing tmux configurations: automatic pane resizing and intelligent dimming of inactive panes. Learn how to use tmux hooks and commands to create a seamless, modern terminal multiplexer experience that rivals integrated solutions like iTerm2 and Warp. Includes practical examples, configuration snippets, and tips for optimizing your development environment."
 tags: ["tmux", "terminal"]
 ---
 
@@ -12,7 +11,7 @@ Tmux is a terminal multiplexer. It is a tool for managing multiple shells inside
 
 The main problem I had with tmux when starting out was that panes were not automatically resized as I was used from Warp:
 
-![Managing window panes in tmux with auto-resizing not configured.](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qjyfdlwmxlsb9bkqhxfv.gif)
+![Managing window panes in tmux with auto-resizing not configured.](../../assets/blog/tmux-no-autoresize.webp)
 
 Don't get confused by the remapped tmux prefix. The main thing to notice here is that I am using `<PREFIX> + E` to spread the panes out evenly.
 
@@ -68,7 +67,7 @@ set-hook -g client-resized 'select-layout -E'
 
 This is how the panes behave after adjusting the configuration:
 
-![Creating window panes in tmux with auto-resizing configured.](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u4pg3e849imrdnyf78q7.gif)
+![Creating window panes in tmux with auto-resizing configured.](../../assets/blog/tmux-with-autoresize.webp)
 
 According to the manual entry, we can also shorten the command to the following:
 
@@ -86,7 +85,7 @@ set-hook -g pane-focus-out 'select-pane -P bg=colour233,fg=colour10'
 set-hook -g pane-focus-in 'select-pane -P bg=default,fg=default'
 ```
 
-![Switching panes in tmux with dimming enabled.](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5kgr00agqsw70mb5qrau.gif)
+![Switching panes in tmux with dimming enabled.](../../assets/blog/tmux-dimming-panes.webp)
 
 Now, this is a much nicer alternative than the active border color. If you are wondering how I got rid of it, I used this configuration:
 
