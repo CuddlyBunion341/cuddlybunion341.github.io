@@ -1,16 +1,85 @@
 ---
-const { title } = Astro.props.frontmatter || Astro.props;
+const { title, description, image, type = "website", publishedAt, tags } = Astro.props.frontmatter || Astro.props;
 import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
+
+// SEO defaults
+const defaultTitle = "Dani Bengl - Full-Stack Developer";
+const defaultDescription = "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects.";
+const siteUrl = "https://cuddlybunion341.github.io";
+const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
+const pageTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
+const pageDescription = description || defaultDescription;
+const pageImage = image ? new URL(image, siteUrl).href : `${siteUrl}/og-image.png`;
+
+// Structured data for SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": type === "article" ? "BlogPosting" : "WebPage",
+  "headline": title || defaultTitle,
+  "description": pageDescription,
+  "url": currentUrl,
+  "author": {
+    "@type": "Person",
+    "name": "Dani Bengl",
+    "url": siteUrl,
+    "sameAs": [
+      "https://github.com/CuddlyBunion341",
+      "https://www.linkedin.com/in/daniel-bengl-aa5225221/",
+      "https://www.codewars.com/users/CuddlyBunion341"
+    ]
+  },
+  ...(type === "article" && publishedAt && {
+    "datePublished": publishedAt.toISOString(),
+    "dateModified": publishedAt.toISOString(),
+  }),
+  ...(tags && {
+    "keywords": tags.join(", ")
+  })
+};
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content="Dani Bengl" />
+    <link rel="canonical" href={currentUrl} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={pageImage} />
+    <meta property="og:site_name" content="CB341.DEV" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={currentUrl} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={pageImage} />
+    <meta property="twitter:creator" content="@cuddlybunion341" />
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#e74c3c" />
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="CB341.DEV RSS Feed" href="/rss.xml" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    
     <ViewTransitions />
     <style>
       /* Reset and base styles */
@@ -28,10 +97,34 @@ import Footer from "../components/Footer.astro";
         font-size: 18px;
       }
 
+      /* Skip navigation for accessibility */
+      .skip-nav {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: #e74c3c;
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 0 0 4px 4px;
+        z-index: 1000;
+        font-weight: 500;
+      }
+
+      .skip-nav:focus {
+        top: 6px;
+      }
+
       .container {
         max-width: 720px;
         margin: 0 auto;
         padding: 40px 20px;
+      }
+
+      /* Focus styles for accessibility */
+      *:focus {
+        outline: 2px solid #e74c3c;
+        outline-offset: 2px;
       }
 
       /* Typography */
@@ -96,10 +189,27 @@ import Footer from "../components/Footer.astro";
         font-weight: 500;
         font-size: 1rem;
         transition: color 0.2s;
+        position: relative;
       }
 
-      .main-nav a:hover {
+      .main-nav a:hover,
+      .main-nav a:focus {
         color: #e74c3c;
+      }
+
+      .main-nav a[aria-current="page"] {
+        color: #e74c3c;
+        font-weight: 600;
+      }
+
+      .main-nav a[aria-current="page"]::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #e74c3c;
       }
 
       .social-nav {
@@ -116,7 +226,8 @@ import Footer from "../components/Footer.astro";
         transition: color 0.2s;
       }
 
-      .social-nav a:hover {
+      .social-nav a:hover,
+      .social-nav a:focus {
         color: #e74c3c;
       }
 
@@ -126,7 +237,8 @@ import Footer from "../components/Footer.astro";
         text-decoration: none;
       }
 
-      a:hover {
+      a:hover,
+      a:focus {
         text-decoration: underline;
       }
 
@@ -174,6 +286,7 @@ import Footer from "../components/Footer.astro";
         color: #999;
         font-size: 0.9rem;
         text-align: center;
+        border-radius: 8px;
       }
 
       /* Content sections */
@@ -197,7 +310,8 @@ import Footer from "../components/Footer.astro";
         text-decoration: none;
       }
 
-      article h3 a:hover {
+      article h3 a:hover,
+      article h3 a:focus {
         color: #e74c3c;
       }
 
@@ -233,7 +347,8 @@ import Footer from "../components/Footer.astro";
         transition: all 0.2s;
       }
 
-      .tag:hover {
+      .tag:hover,
+      .tag:focus {
         background: #e74c3c;
         color: #fff;
       }
@@ -259,13 +374,20 @@ import Footer from "../components/Footer.astro";
         text-decoration: none;
         font-weight: 500;
         margin: 0.5rem 0.5rem 0.5rem 0;
-        transition: background-color 0.2s;
+        transition: all 0.2s;
         font-size: 0.9rem;
+        border-radius: 4px;
+        border: 2px solid #000;
       }
 
-      .button:hover, .action-link:hover {
+      .button:hover, 
+      .button:focus,
+      .action-link:hover,
+      .action-link:focus {
         background: #e74c3c;
+        border-color: #e74c3c;
         text-decoration: none;
+        transform: translateY(-1px);
       }
 
       /* Action buttons container */
@@ -276,9 +398,15 @@ import Footer from "../components/Footer.astro";
         margin: 2rem 0;
       }
 
-      /* Hide SVG icons for cleaner look */
-      svg {
+      /* SVG accessibility */
+      svg[aria-hidden="true"] {
         display: none;
+      }
+
+      svg:not([aria-hidden]) {
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: middle;
       }
 
       /* Project grid layout */
@@ -298,7 +426,8 @@ import Footer from "../components/Footer.astro";
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
-      .project-grid article:hover {
+      .project-grid article:hover,
+      .project-grid article:focus-within {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
@@ -353,6 +482,12 @@ import Footer from "../components/Footer.astro";
         padding: 0.8rem;
         background: #f8f8f8;
         border-radius: 4px;
+        transition: background-color 0.2s;
+      }
+
+      .skill-item:hover,
+      .skill-item:focus-within {
+        background: #f0f0f0;
       }
 
       .skill-item h4 {
@@ -399,8 +534,8 @@ import Footer from "../components/Footer.astro";
       .astro-code code {
         background: none !important;
         padding: 0 !important;
-        font-family: inherit !important;
-        color: #2d3748 !important;
+        border: none !important;
+        font-size: inherit !important;
       }
 
       /* Simple, clean syntax highlighting */
@@ -521,7 +656,8 @@ import Footer from "../components/Footer.astro";
         transition: color 0.2s;
       }
 
-      footer a:hover {
+      footer a:hover,
+      footer a:focus {
         color: #e74c3c;
       }
 
@@ -598,6 +734,28 @@ import Footer from "../components/Footer.astro";
         }
       }
 
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        .tag {
+          border: 1px solid #666;
+        }
+        
+        .button, .action-link {
+          border: 2px solid currentColor;
+        }
+      }
+
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
       /* Clean list styles */
       ul, ol {
         margin: 1rem 0;
@@ -632,29 +790,46 @@ import Footer from "../components/Footer.astro";
         border: none;
         padding: 0;
       }
+
+      /* Screen reader only content */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
     </style>
   </head>
   <body>
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
+    
     <div class="container">
-      <header>
-        <a href="/" class="site-title">CB341.DEV</a>
-        <nav class="main-nav">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/uses">Uses</a>
-          <a href="/til">TIL</a>
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
+      <header role="banner">
+        <a href="/" class="site-title" aria-label="CB341.DEV - Home">CB341.DEV</a>
+        <nav class="main-nav" role="navigation" aria-label="Main navigation">
+          <a href="/" aria-current={Astro.url.pathname === "/" ? "page" : undefined}>Home</a>
+          <a href="/about" aria-current={Astro.url.pathname === "/about" ? "page" : undefined}>About</a>
+          <a href="/uses" aria-current={Astro.url.pathname === "/uses" ? "page" : undefined}>Uses</a>
+          <a href="/til" aria-current={Astro.url.pathname === "/til" ? "page" : undefined}>TIL</a>
+          <a href="/blog" aria-current={Astro.url.pathname.startsWith("/blog") ? "page" : undefined}>Blog</a>
+          <a href="/projects" aria-current={Astro.url.pathname.startsWith("/projects") ? "page" : undefined}>Projects</a>
         </nav>
-        <nav class="social-nav">
-          <a href="https://www.codewars.com/users/CuddlyBunion341">Codewars</a>
-          <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/">LinkedIn</a>
-          <a href="https://github.com/CuddlyBunion341">GitHub</a>
+        <nav class="social-nav" role="navigation" aria-label="Social media links">
+          <a href="https://www.codewars.com/users/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="Codewars profile (opens in new tab)">Codewars</a>
+          <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a>
+          <a href="https://github.com/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a>
         </nav>
       </header>
-      <main>
+      
+      <main id="main-content" role="main">
         <slot />
       </main>
+      
       <Footer />
       <slot name="after-main" />
     </div>

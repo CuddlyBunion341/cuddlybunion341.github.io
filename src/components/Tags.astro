@@ -9,20 +9,22 @@ interface Props {
 const { tags, path, taggedCount, activeTag } = Astro.props;
 ---
 
-{
-  tags.length > 0 && (
-    <nav class="tags">
-      {tags.map((tag) => (
-        <a 
-          href={path(tag)} 
-          class={`tag ${activeTag === tag ? 'active' : ''}`}
-        >
-          {tag}
-          {taggedCount && (
-            <span class="tag-count">({taggedCount(tag)})</span>
-          )}
-        </a>
-      ))}
-    </nav>
-  )
-}
+{tags && tags.length > 0 && (
+  <div class="tags" role="group" aria-label="Tags">
+    {tags.map((tag) => (
+      <a 
+        href={path(tag)} 
+        class={`tag ${activeTag === tag ? 'active' : ''}`}
+        aria-label={`View posts tagged with ${tag}`}
+        aria-current={activeTag === tag ? 'page' : undefined}
+      >
+        {tag}
+        {taggedCount && (
+          <span class="tag-count" aria-label={`${taggedCount(tag)} posts`}>
+            ({taggedCount(tag)})
+          </span>
+        )}
+      </a>
+    ))}
+  </div>
+)}

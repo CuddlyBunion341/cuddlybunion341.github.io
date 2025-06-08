@@ -11,7 +11,10 @@ const latestPost = posts.length > 0 ? posts[0] : null;
 const projects = await getCollection("projects");
 ---
 
-<BaseLayout title="Dani Bengl - Portfolio">
+<BaseLayout 
+  title="Dani Bengl - Portfolio"
+  description="Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects."
+>
   <div class="hero-section">
     <div class="hero-content">
       <h1>Hello, I'm Dani!</h1>
@@ -22,48 +25,50 @@ const projects = await getCollection("projects");
         I work on building robust web applications and enjoy the elegance and productivity that Rails brings to development.
       </p>
       
-      <div class="actions">
+      <div class="actions" role="group" aria-label="Quick navigation">
         <a href="/about" class="button">About Me</a>
         <a href="/projects" class="button">View Projects</a>
         <a href="/blog" class="button">Read Blog</a>
       </div>
     </div>
     <div class="hero-image">
-      <div class="profile-placeholder">
+      <div class="profile-placeholder" role="img" aria-label="Profile image placeholder">
         <span>Profile Image</span>
       </div>
     </div>
   </div>
 
   {latestPost && (
-    <section>
-      <h2>Latest Blog Post</h2>
+    <section aria-labelledby="latest-post-heading">
+      <h2 id="latest-post-heading">Latest Blog Post</h2>
       
       <article>
-        <a href={`/blog/${latestPost.slug}`}>
+        <a href={`/blog/${latestPost.slug}`} aria-label={`Read blog post: ${latestPost.data.title}`}>
           <h3>{latestPost.data.title}</h3>
         </a>
         
         <div class="meta">
           <span>
-            Published on {latestPost.data.publishedAt.toLocaleDateString()}
+            Published on <time datetime={latestPost.data.publishedAt.toISOString()}>
+              {latestPost.data.publishedAt.toLocaleDateString()}
+            </time>
           </span>
         </div>
         
         <p>{latestPost.data.description}</p>
         
-        <a href={`/blog/${latestPost.slug}`}>Read more</a>
+        <a href={`/blog/${latestPost.slug}`} aria-label={`Continue reading ${latestPost.data.title}`}>Read more</a>
       </article>
       
-      <a href="/blog">All Posts</a>
+      <a href="/blog" aria-label="View all blog posts">All Posts</a>
     </section>
   )}
 
-  <section>
-    <h2>Featured Project</h2>
+  <section aria-labelledby="featured-project-heading">
+    <h2 id="featured-project-heading">Featured Project</h2>
     
     {projects.length > 0 && <ProjectCardGrid project={projects[0]} />}
     
-    <a href="/projects">All Projects</a>
+    <a href="/projects" aria-label="View all projects">All Projects</a>
   </section>
 </BaseLayout>

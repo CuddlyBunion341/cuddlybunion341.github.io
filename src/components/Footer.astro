@@ -2,15 +2,16 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer>
+<footer role="contentinfo">
   <div>
     <p>© {currentYear} CuddlyBunion341. All rights reserved.</p>
     
-    <div>
+    <nav aria-label="Footer social links">
       <a 
         href="https://github.com/CuddlyBunion341" 
         target="_blank" 
         rel="noopener noreferrer"
+        aria-label="GitHub profile (opens in new tab)"
       >
         <span>GitHub</span>
       </a>
@@ -19,6 +20,7 @@ const currentYear = new Date().getFullYear();
         href="https://www.linkedin.com/in/daniel-bengl-aa5225221/" 
         target="_blank" 
         rel="noopener noreferrer"
+        aria-label="LinkedIn profile (opens in new tab)"
       >
         <span>LinkedIn</span>
       </a>
@@ -27,9 +29,10 @@ const currentYear = new Date().getFullYear();
         href="/rss.xml" 
         target="_blank" 
         rel="noopener noreferrer"
+        aria-label="RSS Feed (opens in new tab)"
       >
         <span>RSS Feed</span>
       </a>
-    </div>
+    </nav>
   </div>
 </footer>
