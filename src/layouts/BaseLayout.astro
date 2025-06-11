@@ -165,68 +165,26 @@ const structuredData = {
       <h1><center><a href="/" aria-label="CB341.DEV - Home">CB341.DEV</a></center></h1>
       <nav role="navigation" aria-label="Main navigation">
         <center>
-        <a
-          href="/"
-          aria-current={Astro.url.pathname === "/" ? "page" : undefined}
-          >Home</a
-        >
+        <a href="/" aria-current={Astro.url.pathname === "/" ? "page" : undefined}>Home</a>
         |
-        <a
-          href="/about"
-          aria-current={Astro.url.pathname === "/about"
-            ? "page"
-            : undefined}>About</a
-        >
+        <a href="/about" aria-current={Astro.url.pathname === "/about" ? "page" : undefined}>About</a>
         |
-        <a
-          href="/uses"
-          aria-current={Astro.url.pathname === "/uses" ? "page" : undefined}
-          >Uses</a
-        >
+        <a href="/uses" aria-current={Astro.url.pathname === "/uses" ? "page" : undefined}>Uses</a>
         |
-        <a
-          href="/til"
-          aria-current={Astro.url.pathname === "/til" ? "page" : undefined}
-          >TIL</a
-        >
+        <a href="/til" aria-current={Astro.url.pathname === "/til" ? "page" : undefined}>TIL</a>
         |
-        <a
-          href="/blog"
-          aria-current={Astro.url.pathname.startsWith("/blog")
-            ? "page"
-            : undefined}>Blog</a
-        >
+        <a href="/blog" aria-current={Astro.url.pathname.startsWith("/blog") ? "page" : undefined}>Blog</a>
         |
-        <a
-          href="/projects"
-          aria-current={Astro.url.pathname.startsWith("/projects")
-            ? "page"
-            : undefined}>Projects</a
-        >
+        <a href="/projects" aria-current={Astro.url.pathname.startsWith("/projects") ? "page" : undefined}>Projects</a>
         </center>
       </nav>
       <nav class="social-nav" role="navigation" aria-label="Social media links">
         <center>
-          <a
-            href="https://www.codewars.com/users/CuddlyBunion341"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Codewars profile (opens in new tab)">Codewars</a
-          >
+          <a href="https://www.codewars.com/users/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="Codewars profile (opens in new tab)">Codewars</a>
           |
-          <a
-            href="https://www.linkedin.com/in/daniel-bengl-aa5225221/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a
-          >
+          <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a>
           |
-          <a
-            href="https://github.com/CuddlyBunion341"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile (opens in new tab)">GitHub</a
-          >
+          <a href="https://github.com/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a>
         </center>
       </nav>
     </header>
@@ -236,7 +194,6 @@ const structuredData = {
     </main>
 
     <Footer />
-    <slot name="after-main" />
 
     <script>
       function addCopyButtons() {
