@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import Tags from "../../../components/Tags.astro";
 import BlogTagList from "../../../components/BlogTagList.astro";
+import { formatDate } from "../../../utils/dateHelpers";
 
 export async function getStaticPaths() {
   const allBlogPosts = await getCollection("blog");
@@ -38,10 +38,7 @@ const { taggedBlogPosts } = Astro.props;
           <div class="meta">
             <em>
               <time datetime={new Date(post.data.publishedAt).toISOString()}>
-                {new Date(post.data.publishedAt)
-                  .toLocaleDateString("en-GB")
-                  .split("/")
-                  .join(".")}
+                {formatDate(post.data.publishedAt)}
               </time>
             </em>
           </div>

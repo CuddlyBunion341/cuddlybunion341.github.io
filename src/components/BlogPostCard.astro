@@ -1,4 +1,6 @@
 ---
+import { formatDate } from "../utils/dateHelpers";
+
 const { post } = Astro.props;
 ---
 
@@ -15,12 +17,7 @@ const { post } = Astro.props;
   <div class="meta">
     <em>
       Published on <time datetime={post.data.publishedAt.toISOString()}>
-        {
-          new Date(post.data.publishedAt)
-            .toLocaleDateString("en-GB")
-            .split("/")
-            .join(".")
-        }
+        {formatDate(post.data.publishedAt)}
       </time>
     </em>
   </div>
