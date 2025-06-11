@@ -3,11 +3,7 @@ const { project } = Astro.props;
 ---
 
 <article>
-  <h3>
-    <a href={`/projects/${project.slug}`}>
-      {project.data.name}
-    </a>
-  </h3>
+  <h3>{project.data.name}</h3>
 
   <p>{project.data.description}</p>
 

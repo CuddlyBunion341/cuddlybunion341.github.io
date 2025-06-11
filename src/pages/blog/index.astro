@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import BlogPostCard from "../../components/BlogPostCard.astro";
 import Tags from "../../components/Tags.astro";
+import { formatDate } from "../../utils/dateHelpers";
 
 const allBlogPosts = await getCollection("blog");
 const sortedPosts = allBlogPosts.sort((a, b) =>
@@ -38,10 +39,7 @@ const olderPosts = sortedPosts.slice(1);
                 <time
                   datetime={new Date(latestPost.data.publishedAt).toISOString()}
                 >
-                  {new Date(latestPost.data.publishedAt)
-                    .toLocaleDateString("en-GB")
-                    .split("/")
-                    .join(".")}
+                  {formatDate(latestPost.data.publishedAt)}
                 </time>
               </em>
               <Tags
@@ -62,7 +60,7 @@ const olderPosts = sortedPosts.slice(1);
           <section>
             <h2>More Posts</h2>
 
-            <div class="grid">
+            <div>
               {olderPosts.map((post) => (
                 <BlogPostCard post={post} />
               ))}

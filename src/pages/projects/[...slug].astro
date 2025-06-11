@@ -14,10 +14,8 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BaseLayout title={entry.data.name}>
+<BaseLayout>
   <article>
-    <h1>{entry.data.name}</h1>
-
     <div class="actions">
       {
         entry.data.github && (
