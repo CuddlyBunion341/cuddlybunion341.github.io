@@ -9,6 +9,7 @@ const {
 } = Astro.props.frontmatter || Astro.props;
 import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
+import NavLink from "../components/NavLink.astro";
 
 const defaultTitle = "Dani Bengl - Full-Stack Developer";
 const defaultDescription =
@@ -128,11 +129,6 @@ const structuredData = {
         outline-offset: 2px;
       }
 
-      nav ul li a[aria-current="page"] {
-        color: #e74c3c;
-        font-weight: 600;
-      }
-
       @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -156,35 +152,59 @@ const structuredData = {
         cursor: pointer;
         font-family: inherit;
       }
+
+      .astro-code {
+        font-size: 0.8rem;
+      }
+
+      h1, h2, h3 {
+        line-height: 1.2;
+      }
+
+      table td, table th {
+        border-bottom: 1px solid #ddd;
+      }
+
+      @media (max-width: 768px) {
+        .mobile-table thead { display: none; }
+        .mobile-table tr { display: block; border-bottom: 1px solid #ddd }
+        .mobile-table td {
+          display: block; border-bottom: none;
+        }
+        .mobile-table td:before {
+          content: attr(data-label) ": ";
+          font-weight: bold;
+        }
+      }
     </style>
   </head>
   <body>
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
     <header role="banner">
-      <h1><center><a href="/" aria-label="CB341.DEV - Home">CB341.DEV</a></center></h1>
+      <h1><center><NavLink href="/" aria-label="CB341.DEV - Home">CB341.DEV</NavLink></center></h1>
       <nav role="navigation" aria-label="Main navigation">
         <center>
-        <a href="/" aria-current={Astro.url.pathname === "/" ? "page" : undefined}>Home</a>
-        |
-        <a href="/about" aria-current={Astro.url.pathname === "/about" ? "page" : undefined}>About</a>
-        |
-        <a href="/uses" aria-current={Astro.url.pathname === "/uses" ? "page" : undefined}>Uses</a>
-        |
-        <a href="/til" aria-current={Astro.url.pathname === "/til" ? "page" : undefined}>TIL</a>
-        |
-        <a href="/blog" aria-current={Astro.url.pathname.startsWith("/blog") ? "page" : undefined}>Blog</a>
-        |
-        <a href="/projects" aria-current={Astro.url.pathname.startsWith("/projects") ? "page" : undefined}>Projects</a>
+          <NavLink href="/">Home</NavLink>
+          |
+          <NavLink href="/about">About</NavLink>
+          |
+          <NavLink href="/uses">Uses</NavLink>
+          |
+          <NavLink href="/til">TIL</NavLink>
+          |
+          <NavLink href="/blog">Blog</NavLink>
+          |
+          <NavLink href="/projects">Projects</NavLink>
         </center>
       </nav>
       <nav class="social-nav" role="navigation" aria-label="Social media links">
         <center>
-          <a href="https://www.codewars.com/users/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="Codewars profile (opens in new tab)">Codewars</a>
+          <NavLink href="https://www.codewars.com/users/CuddlyBunion341" external target="_blank" rel="noopener noreferrer" aria-label="Codewars profile (opens in new tab)">Codewars</NavLink>
           |
-          <a href="https://www.linkedin.com/in/daniel-bengl-aa5225221/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a>
+          <NavLink href="https://www.linkedin.com/in/daniel-bengl-aa5225221/" external target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</NavLink>
           |
-          <a href="https://github.com/CuddlyBunion341" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a>
+          <NavLink href="https://github.com/CuddlyBunion341" external target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</NavLink>
         </center>
       </nav>
     </header>
@@ -227,8 +247,36 @@ const structuredData = {
         });
       }
 
-      document.addEventListener("DOMContentLoaded", addCopyButtons);
-      document.addEventListener("astro:page-load", addCopyButtons);
+      function makeTablesResponsive() {
+        const tables = document.querySelectorAll("table");
+
+        tables.forEach((table) => {
+          if (table.hasAttribute("data-responsive")) return;
+          table.setAttribute("data-responsive", "true");
+
+          const headers = Array.from(table.querySelectorAll("thead th")).map(th => th.textContent?.trim() || "");
+          
+          table.classList.add("mobile-table");
+          
+          const rows = table.querySelectorAll("tbody tr");
+          rows.forEach((row) => {
+            const cells = row.querySelectorAll("td");
+            cells.forEach((cell, index) => {
+              if (headers[index]) {
+                cell.setAttribute("data-label", headers[index]);
+              }
+            });
+          });
+        });
+      }
+
+      function initializeEnhancements() {
+        addCopyButtons();
+        makeTablesResponsive();
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeEnhancements);
+      document.addEventListener("astro:page-load", initializeEnhancements);
     </script>
   </body>
 </html>
