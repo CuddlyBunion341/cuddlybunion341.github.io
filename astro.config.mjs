@@ -10,6 +10,9 @@ export default defineConfig({
     syntaxHighlight: false,
   },
   integrations: [
+    mdx({
+      extendPlugins: false,
+    }),
     htmlBeautifier({
       indent_size: 2,
       indent_char: " ",
