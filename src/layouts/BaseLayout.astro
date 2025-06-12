@@ -145,16 +145,8 @@ const structuredData = {
         height: auto;
       }
 
-      .copy-button {
-        top: 3px;
-        right: 3px;
-        position: absolute;
-        cursor: pointer;
-        font-family: inherit;
-      }
-
-      .astro-code {
-        font-size: 0.8rem;
+      pre {
+        overflow-x: auto;
       }
 
       h1, h2, h3 {
@@ -216,37 +208,6 @@ const structuredData = {
     <Footer />
 
     <script>
-      function addCopyButtons() {
-        const codeBlocks = document.querySelectorAll("pre");
-
-        codeBlocks.forEach((codeBlock) => {
-          if (codeBlock.querySelector(".copy-button")) return;
-
-          const copyButton = document.createElement("button");
-          copyButton.classList.add("copy-button");
-          copyButton.textContent = "Copy";
-          copyButton.setAttribute("aria-label", "Copy code to clipboard");
-
-          codeBlock.style.position = "relative";
-          codeBlock.appendChild(copyButton);
-
-          copyButton.addEventListener("click", async () => {
-            const text = codeBlock.querySelector("code")?.textContent || codeBlock.textContent || "";
-
-            try {
-              await navigator.clipboard.writeText(text);
-              copyButton.textContent = "Copied!";
-            } catch (err) {
-              copyButton.textContent = "Error";
-            }
-
-            setTimeout(() => {
-              copyButton.textContent = "Copy";
-            }, 2000);
-          });
-        });
-      }
-
       function makeTablesResponsive() {
         const tables = document.querySelectorAll("table");
 
@@ -270,13 +231,8 @@ const structuredData = {
         });
       }
 
-      function initializeEnhancements() {
-        addCopyButtons();
-        makeTablesResponsive();
-      }
-
-      document.addEventListener("DOMContentLoaded", initializeEnhancements);
-      document.addEventListener("astro:page-load", initializeEnhancements);
+      document.addEventListener("DOMContentLoaded", makeTablesResponsive);
+      document.addEventListener("astro:page-load", makeTablesResponsive);
     </script>
   </body>
 </html>
