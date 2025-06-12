@@ -1,5 +1,4 @@
 import { defineConfig, sharpImageService } from "astro/config";
-import markdownConfig from "./markdown.config";
 import mdx from "@astrojs/mdx";
 import htmlBeautifier from 'astro-html-beautifier';
 import sitemap from '@astrojs/sitemap';
@@ -7,12 +6,10 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   layout: "layouts/BaseLayout.astro",
-  markdown: markdownConfig,
+  markdown: {
+    syntaxHighlight: false,
+  },
   integrations: [
-    mdx({
-      ...markdownConfig,
-      extendPlugins: false,
-    }),
     htmlBeautifier({
       indent_size: 2,
       indent_char: " ",
