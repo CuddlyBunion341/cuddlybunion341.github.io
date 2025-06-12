@@ -27,14 +27,17 @@ Some notable software written in Rust includes:
 - **Amethyst**: A performant tiling window manager for MacOS.
 - **Condorium Blockchain**: A performant and secure blockchain technology.
 
-> I mean, there is no such thing as a perfect programming language Rust is merely a statically type low-level multi-paradigm perfect programming language
-> [YouTube interview](https://www.youtube.com/watch?v=TGfQu0bQTKc&t=95s) by [Programmers Are Also Human](https://www.youtube.com/@programmersarealsohuman5909), Rust is a perfect programming language.
+> I mean, there is no such thing as a perfect programming language.
+> Rust is merely a statically type low-level multi-paradigm perfect programming language
+>
+> [YouTube interview](https://www.youtube.com/watch?v=TGfQu0bQTKc&t=95s) by [Programmers Are Also Human](https://www.youtube.com/@programmersarealsohuman5909),
 
 ![Ferris the Rustacean](../../assets/blog/ferris-rustacean.webp)
 
 ## Picking a game engine
 
 > There are currently 5 games written in Rust. And 50 game engines.
+>
 > Interview with a Senior Rust Developer - [2:52](https://www.youtube.com/watch?v=TGfQu0bQTKc&t=168s)
 
 There are too many game engines available for Rust. An excellent resource is [Are We Game Yet](https://arewegameyet.rs/ecosystem/engines/). I also recommend [this article by GeeksforGeeks](https://www.geeksforgeeks.org/rust-game-engines/), which makes picking the optimal engine easier.
