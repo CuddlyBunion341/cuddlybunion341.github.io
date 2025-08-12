@@ -1,13 +1,11 @@
 ---
-title: "Implementing Custom Figma Designs in Rails"
+title: "Challenges in Implementing Super Custom Figma Designs"
 publishedAt: 2025-08-12
 description: "A technical overview of the challenges faced when translating highly customized Figma designs into a Rails application. This article discusses layout issues, the limitations of CSS frameworks like Bootstrap and Tailwind, and suggests a GUI editor design for more efficient component positioning."
 tags: ["rails", "css", "figma", "gui-editor"]
 ---
 
-# Challenges in Implementing the [hackts.ch](https://hackts.ch) Design
-
-While building the hackts.ch site, I encountered layout issues that I did not anticipate. The design came from a highly customised Figma file with precise alignments, irregular shapes and spacing patterns.
+While building the [hackts.ch](https://hackts.ch) site, I encountered layout issues that I did not anticipate. The design came from a highly customised Figma file with precise alignments, irregular shapes and spacing patterns.
 
 I chose Rails with custom Sass stylesheets because of the abundance of unique styling across the page. [Bootstrap](https://getbootstrap.com/) felt difficult to adapt to the design, and [Tailwind’s utility classes](https://tailwindcss.com/docs/utility-first) were not flexible enough for the level of customisation required.
 
