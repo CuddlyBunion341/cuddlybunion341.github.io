@@ -27,7 +27,7 @@ Looking back, several methods might have eased the process:
 - Exporting directly from Figma as SVGs to keep both vector shapes and text, applying CSS classes to [SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/style) for consistent styling ([MDN: Styling SVG with CSS](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_and_CSS))  
 - Adding overlays for pixel accurate alignment adjustments  
 
-While each could have been useful, all still required manual editing of pixel values.
+While using images and clickable areas may allow for faster development, it compromises accessibility, responsiveness, and maintainability, ultimately leading to a poorer user experience and not aligning with best practices in web development.
 
 ## A Possible Solution
 
