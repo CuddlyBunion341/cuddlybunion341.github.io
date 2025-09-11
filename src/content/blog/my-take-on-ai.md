@@ -46,12 +46,12 @@ One concrete example is transforming imperative XML building code into a cleaner
 
 Before:
 
-```php
-$senderNode = $xml->addChild('sender');
-$senderNode->addChild('name', 'Fahrländer Partner AG');
-$senderNode->addChild('openimmo_anid', OPENIMMO_ANID);
-$senderNode->addChild('datum', date('Y-m-d'));
-$senderNode->addChild('makler_id', 'fpre');
+```ruby
+sender_node = xml.add_child('<sender/>')
+sender_node.add_child('<name>Fahrländer Partner AG</name>')
+sender_node.add_child("<openimmo_anid>#{OpenImmoFeedbackGenerator::OPENIMMO_ANID}</openimmo_anid>") if OpenImmoFeedbackGenerator::OPENIMMO_ANID.present?
+sender_node.add_child("<datum>#{Date.current.strftime('%Y-%m-%d')}</datum>")
+sender_node.add_child('<makler_id>fpre</makler_id>')
 ```
 
 After:
