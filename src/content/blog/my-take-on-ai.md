@@ -126,6 +126,8 @@ What makes me mad are the phrases it throws back at me, like:
 
 > “All mailer related functionalliyy is working perfectly! 🚀”
 
+These are quotes, not exaggerations.
+
 It is designed to tell you what you want to hear, not what you are supposed to. AI does not seem to be honest and seems to agree with me even if I am making a mistake myself. It is up to me to detect its bullshit. During my internship at Renuo, [Josua](https://www.linkedin.com/in/josua-schmid-05240456/?originalSubdomain=ch) taught me how important a bullshit detector is, and that lesson applies here more than ever.
 
 ## Code Quality Debate
