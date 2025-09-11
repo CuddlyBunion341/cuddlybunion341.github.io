@@ -87,7 +87,7 @@ So while tests make AI driven refactoring safer, they do not guarantee that the 
 
 ## Pride and Ownership
 
-![Meme about AI as a tool](68e64f01-9706-470b-bc3f-5e8529dadf1b.png)
+![Meme about AI as a tool](../../assets/blog/chef-tool.png)
 
 My problem is that I cannot feel proud about projects I created with AI because I did not create them—an agent like Claude did.
 
