@@ -48,22 +48,18 @@ Before:
 
 ```ruby
 sender_node = xml.add_child('<sender/>')
-sender_node.add_child('<name>Fahrländer Partner AG</name>')
+sender_node.add_child('<name>Anonymous</name>')
 sender_node.add_child("<openimmo_anid>#{OpenImmoFeedbackGenerator::OPENIMMO_ANID}</openimmo_anid>") if OpenImmoFeedbackGenerator::OPENIMMO_ANID.present?
 sender_node.add_child("<datum>#{Date.current.strftime('%Y-%m-%d')}</datum>")
-sender_node.add_child('<makler_id>fpre</makler_id>')
 ```
-
-After:
 
 ```erb
 <sender>
-  <name>Fahrländer Partner AG</name>
+  <name>Anonymous</name>
   <% if OpenImmoFeedbackGenerator::OPENIMMO_ANID.present? %>
-  <openimmo_anid><%= OpenImmoFeedbackGenerator::OPENIMMO_ANID %></openimmo_anid>
+    <openimmo_anid><%= OpenImmoFeedbackGenerator::OPENIMMO_ANID %></openimmo_anid>
   <% end %>
   <datum><%= Date.current.strftime("%Y-%m-%d") %></datum>
-  <makler_id>fpre</makler_id>
 </sender>
 ```
 
