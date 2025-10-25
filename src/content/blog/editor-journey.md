@@ -1,6 +1,6 @@
 ---
 title: "My Editor Journey"
-publishedAt: 2025-25-10
+publishedAt: 2025-10-25
 description: "My journey through text editors, from Atom to LazyVim, with some thoughts on AI coding assistants."
 tags: ["neovim","ai","workflow"]
 ---
