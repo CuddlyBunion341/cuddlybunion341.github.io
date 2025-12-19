@@ -1,7 +1,7 @@
 [
   {
-    "name": "cuddlybunion341.github.io",
-    "slug": "cuddlybunion341-github-io",
+    "name": "cb341.github.io",
+    "slug": "cb341-github-io",
     "description": "Personal portfolio/blog built with Astro.",
     "tags": ["astro", "blog", "portfolio"]
   },

@@ -7,7 +7,7 @@ tags: ["rust", "gamedev"]
 
 At Renuo, we love Ruby. It's simple, elegant, and powerful. But let's be honest, Ruby isn't the fastest language out there.
 
-Over the last couple of months, I've been exploring low-level programming, hoping to bridge the gap between the high-level world of Ruby and the lower-level world of systems programming. To do this, I started working on my first Rust project: a blazingly fast voxel "game" called [rsmc](https://github.com/CuddlyBunion341/rsmc). It features a terrain generator, meshing, a scalable client-server architecture, and custom serialized messages for high-speed communication. This project has been my playground for learning Rust, and in this post, I'll share some of the lessons I've learned along the way.
+Over the last couple of months, I've been exploring low-level programming, hoping to bridge the gap between the high-level world of Ruby and the lower-level world of systems programming. To do this, I started working on my first Rust project: a blazingly fast voxel "game" called [rsmc](https://github.com/cb341/rsmc). It features a terrain generator, meshing, a scalable client-server architecture, and custom serialized messages for high-speed communication. This project has been my playground for learning Rust, and in this post, I'll share some of the lessons I've learned along the way.
 
 ![Early stage of development in RSMC. Renet visualiser for simultanous client/server connections.](../../assets/blog/rsmc-early-development.webp)
 
@@ -35,7 +35,7 @@ Some of my favorite takeaways:
 - **Systems:** Keep them small and focused on one task. This way they are easier to test and extend.
 - **Plugins:** Encapsulate resources, systems, and components into distinguishable modules.
 - **Events:** Use events to the fullest extent to decouple systems and keep code modular.
-- **States:** Run systems only when they are relevant (e.g., Menu, Playing). This helps with UI and logic separation. In particular this PR: [#32](https://github.com/CuddlyBunion341/rsmc/pull/32)
+- **States:** Run systems only when they are relevant (e.g., Menu, Playing). This helps with UI and logic separation. In particular this PR: [#32](https://github.com/cb341/rsmc/pull/32)
 
 Bevy makes structuring a game engine intuitive, and its Rust-first approach ensures safety and performance while keeping things flexible. If you're interested in learning more about the ECS approach to game development, I wrote a blog article about planning an ECS: [Multiplayer in Rust Using Renet and Bevy](https://dev.to/renuo/multiplayer-in-rust-using-renet-and-bevy-17p6).
 
@@ -101,7 +101,7 @@ Instead of inheriting from a base class, `HeightParams` contains a `NoiseFunctio
 
 Rust's macros are like Ruby's metaprogramming but more structured and powerful. They help eliminate boilerplate while maintaining type safety.
 
-Here's a macro I used to [define blocks](https://github.com/CuddlyBunion341/rsmc/blob/main/src/client/terrain/util/blocks.rs) in my project:
+Here's a macro I used to [define blocks](https://github.com/cb341/rsmc/blob/main/src/client/terrain/util/blocks.rs) in my project:
 
 ```rust
 macro_rules! add_block {

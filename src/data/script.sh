@@ -19,7 +19,7 @@ name: \"${name}\"
 description: \"${description}\"
 tags: [${tags}]
 heroImage: \"/src/assets/projects/${slug}.webp\"
-github: \"https://github.com/CuddlyBunion341/${slug}\"
+github: \"https://github.com/cb341/${slug}\"
 ---
 There is no description for this project yet.
 "

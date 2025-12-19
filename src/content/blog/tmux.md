@@ -105,4 +105,4 @@ While tmux isn't as usable/powerful out of the box as the integrated tmux in Ite
 - Screen recorder: [CleanShotX](https://cleanshot.com/)
 - Keystroke recorder: [KeyCastr](https://github.com/keycastr/keycastr)
 - Terminal Emulator: [Alacritty](https://github.com/alacritty/alacritty)
-- Other configuration: [My Dotfiles](https://github.com/CuddlyBunion341/dotfiles)
+- Other configuration: [My Dotfiles](https://github.com/cb341/dotfiles)

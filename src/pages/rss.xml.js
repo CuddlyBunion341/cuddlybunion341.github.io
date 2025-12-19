@@ -18,7 +18,7 @@ export async function GET(context) {
           allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
         }),
         categories: post.data.tags || [],
-        author: "CuddlyBunion341",
+        author: "cb341",
         guid: post.slug,
         ...(post.data.heroImage && {
           enclosure: {
@@ -36,11 +36,11 @@ export async function GET(context) {
   );
 
   return rss({
-    title: "CuddlyBunion341 Blog",
+    title: "cb341 Blog",
     description: "Personal blog and portfolio",
     site: context.site,
     language: "en",
-    copyright: `Copyright (c) ${new Date().getFullYear()} CuddlyBunion341. Licensed under MIT.`,
+    copyright: `Copyright (c) ${new Date().getFullYear()} cb341. Licensed under MIT.`,
     lastBuildDate: new Date(),
     ttl: 60,
     customData: `<generator>Astro v4</generator>`,

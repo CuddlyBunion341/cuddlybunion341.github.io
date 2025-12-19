@@ -234,4 +234,4 @@ You can find the complete chatting application with additional features such as:
 - Random username generation
 - Real-time user list
 
-The GitHub Repository for this project can be found here: [https://github.com/CuddlyBunion341/bunjs-turbo-demo](https://github.com/CuddlyBunion341/bunjs-turbo-demo "https://github.com/CuddlyBunion341/bunjs-turbo-demo")
+The GitHub Repository for this project can be found here: [https://github.com/cb341/bunjs-turbo-demo](https://github.com/cb341/bunjs-turbo-demo "https://github.com/cb341/bunjs-turbo-demo")
