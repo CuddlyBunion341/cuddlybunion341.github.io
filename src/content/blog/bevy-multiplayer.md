@@ -285,4 +285,4 @@ pub fn handle_lobby_sync_event_system(
 
 The multiplayer demo project demonstrates the intricate planning and attention to detail needed to synchronize player attributes between the client and server. This showcases the complexity of creating a seamless multiplayer experience at a lower level.
 
-For more detailed code, visit the MIT-Licensed [GitHub repository](https://github.com/CuddlyBunion341/bevy-multiplayer).
+For more detailed code, visit the MIT-Licensed [GitHub repository](https://github.com/cb341/bevy-multiplayer).

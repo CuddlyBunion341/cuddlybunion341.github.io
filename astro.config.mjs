@@ -34,7 +34,7 @@ export default defineConfig({
     }),
     sitemap()
   ],
-  site: "https://cuddlybunion341.github.io",
+  site: "https://cb341.github.io",
   image: {
     service: sharpImageService(),
   },
