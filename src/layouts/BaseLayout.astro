@@ -7,14 +7,13 @@ const {
   publishedAt,
   tags,
 } = Astro.props.frontmatter || Astro.props;
-import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import NavLink from "../components/NavLink.astro";
 
 const defaultTitle = "Dani Bengl - Full-Stack Developer";
 const defaultDescription =
   "Full-stack software developer specializing in Ruby on Rails, web applications, and modern development practices. Portfolio, blog, and projects.";
-const siteUrl = "https://cb341.github.io";
+const siteUrl = "https://cb341.dev";
 const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
 const pageTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
 const pageDescription = description || defaultDescription;
@@ -52,6 +51,8 @@ const structuredData = {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="dns-prefetch" href="https://cb341.dev" />
+    <link rel="preconnect" href="https://cb341.dev" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
@@ -87,12 +88,15 @@ const structuredData = {
       href="/rss.xml"
     />
 
+    <link rel="prefetch" href="/blog" />
+    <link rel="prefetch" href="/projects" />
+    <link rel="prefetch" href="/about" />
+
     <script
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
 
-    <ViewTransitions />
     <style>
       * {
         box-sizing: border-box;

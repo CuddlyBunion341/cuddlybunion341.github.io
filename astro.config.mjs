@@ -1,11 +1,11 @@
 import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
-import htmlBeautifier from 'astro-html-beautifier';
 import sitemap from '@astrojs/sitemap';
+import compress from "astro-compress";
 
-// https://astro.build/config
 export default defineConfig({
   layout: "layouts/BaseLayout.astro",
+  output: 'static',
   markdown: {
     syntaxHighlight: false,
   },
@@ -13,29 +13,36 @@ export default defineConfig({
     mdx({
       extendPlugins: false,
     }),
-    htmlBeautifier({
-      indent_size: 2,
-      indent_char: " ",
-      max_preserve_newlines: 2,
-      preserve_newlines: true,
-      keep_array_indentation: true,
-      break_chained_methods: false,
-      indent_scripts: "normal",
-      brace_style: "collapse",
-      space_before_conditional: true,
-      unescape_strings: false,
-      jslint_happy: false,
-      end_with_newline: true,
-      wrap_line_length: 120,
-      indent_inner_html: true,
-      comma_first: false,
-      e4x: false,
-      indent_empty_lines: false
-    }),
-    sitemap()
+    sitemap(),
+    compress({
+      CSS: true,
+      HTML: {
+        removeAttributeQuotes: false,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+      Image: false,
+      JavaScript: true,
+      SVG: true,
+    })
   ],
-  site: "https://cb341.github.io",
+  site: "https://cb341.dev",
   image: {
     service: sharpImageService(),
+    domains: [],
+  },
+  build: {
+    inlineStylesheets: 'auto',
+    assets: '_astro',
+  },
+  vite: {
+    build: {
+      cssCodeSplit: false,
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+        },
+      },
+    },
   },
 });
